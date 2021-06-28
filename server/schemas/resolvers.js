@@ -1,5 +1,5 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { User, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -11,14 +11,12 @@ const resolvers = {
         .select('-__v -password')
     },
     // get all users
-    getUsers: async () => {
-      try {
+    getUsers: async (_parent, _args, context) => {
+      if (context.user) {
         const allUsers = await User.find();
         return allUsers;
-      } catch (e) {
-        console.log(e)
-        throw e;
       }
+      throw new AuthenticationError('Not logged in');
     },
   },
 
@@ -51,8 +49,15 @@ const resolvers = {
     },
 
     // Send message
-
-
+    sendMsg: async (_parent, { to, msg }, context) => {
+      if (context.user) {
+        const receiver = await User.findOne({ username: to });
+        if (!receiver) throw new UserInputError('User not found');
+        const msgToSend = await Message.create({ from: context.user.username, to, msg });
+        return msgToSend;
+      }
+      throw new AuthenticationError('Not logged in');
+    }
   },
 };
 
