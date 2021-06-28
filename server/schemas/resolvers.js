@@ -13,9 +13,11 @@ const resolvers = {
     // get all users
     getUsers: async () => {
       try {
-        return User.find();
-      } catch (error) {
-        console.log(error);
+        const allUsers = await User.find();
+        return allUsers;
+      } catch (e) {
+        console.log(e)
+        throw e;
       }
     },
   },
@@ -46,7 +48,11 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
-    }
+    },
+
+    // Send message
+
+
   },
 };
 

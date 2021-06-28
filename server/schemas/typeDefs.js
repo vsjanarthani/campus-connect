@@ -15,6 +15,12 @@ type Users {
   username: String!
   email: String!
 }
+type Message {
+  _id: ID!
+  msg: String!
+  from: String!
+  to: String!
+}
 
 type Query {
   user(username: String!): User
@@ -24,6 +30,7 @@ type Query {
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
+  sendMsg(to:String! msg:String!): Message!
 }
 `;
 
