@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    This is Home page
+  </div>
+</DocumentFragment>
+`;

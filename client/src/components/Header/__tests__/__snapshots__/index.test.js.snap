@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component matches snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="MuiBox-root MuiBox-root-10"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary makeStyles-appbar-6 MuiPaper-elevation4"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-7 MuiToolbar-gutters"
+      >
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiTypography-root MuiTypography-body1"
+          href="/"
+          tabindex="0"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            <span
+              class="makeStyles-title-9"
+            >
+              Campus Connect
+            </span>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </a>
+        <ul
+          class="MuiList-root MuiList-padding"
+        >
+          <a
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-listItem-8"
+            href="/login"
+            tabindex="0"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15.5 5H11l5 7-5 7h4.5l5-7z"
+                />
+                <path
+                  d="M8.5 5H4l5 7-5 7h4.5l5-7z"
+                />
+              </svg>
+               Login
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </a>
+          <a
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-listItem-8"
+            href="/signup"
+            tabindex="0"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                />
+              </svg>
+               Signup
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </a>
+        </ul>
+      </div>
+    </header>
+  </nav>
+</DocumentFragment>
+`;
