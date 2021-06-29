@@ -26,3 +26,5 @@ const reactionSchema = new Schema(
 );
 
 module.exports = reactionSchema;
+
+// Reaction models needs messageId and UserID!

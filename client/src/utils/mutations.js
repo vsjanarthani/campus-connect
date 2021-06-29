@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const REACT_TO_MESSAGE = gql`
-mutation reactToMessage($messageId: ID!, $content: String!) {
-  reactToMessage(messageId: $messageId, content: $content) {
+mutation reactToMessage($_id: ID!, $content: String!) {
+  reactToMessage(_id: $messageId, content: $content) {
     _id
     reactionCount
       reactions {
@@ -35,8 +35,6 @@ mutation reactToMessage($messageId: ID!, $content: String!) {
         createdAt
         username
       }
-    }
-  }
   }
 }
 `

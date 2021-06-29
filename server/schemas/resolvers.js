@@ -87,23 +87,60 @@ const resolvers = {
     },
 
     // React to message
-    reactToMessage: async (_parent, { _id, content }, context) => {
-      const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
-      if (context.user) {
+    // reactToMessage: async (_parent, { _id, content }, context) => {
+    //   const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
+    //   if (context.user) {
 
-        // Validate reaction content
-        if (!reactions.includes(content)) throw new UserInputError('Invalid reaction');
-        // Get message
-        const message = await Message.findOne({ _id })
-        if (!message) throw new UserInputError('message not found')
-        if (message.from !== user.username && message.to !== user.username) {
-          throw new ForbiddenError('Unauthorized');
+    //     // Validate reaction content
+    //     if (!reactions.includes(content)) throw new UserInputError('Invalid reaction');
+    //     // Get message
+    //     const message = await Message.findOne({ _id })
+    //     if (!message) throw new UserInputError('message not found')
+    //     if (message.from !== user.username && message.to !== user.username) {
+    //       throw new ForbiddenError('Unauthorized');
+    //     }
+
+
+    //   }
+    //   throw new AuthenticationError('Not logged in');
+    // }
+  },
+  // Subscriptions
+  Subscription: {
+    newMessage: {
+      subscribe: withFilter(
+        (_parent, _args, context) => {
+          if (!context.user) throw new AuthenticationError('Unauthenticated')
+          return context.pubsub.asyncIterator('NEW_MESSAGE')
+        },
+        ({ newMessage }, _args, { user }) => {
+          if (
+            newMessage.from === user.username ||
+            newMessage.to === user.username
+          ) {
+            return true
+          }
+
+          return false
         }
+      ),
+    },
+    newReaction: {
+      subscribe: withFilter(
+        (_parent, _args, context) => {
+          if (!context.user) throw new AuthenticationError('Unauthenticated')
+          return context.pubsub.asyncIterator('NEW_REACTION')
+        },
+        async ({ newReaction }, _args, { user }) => {
+          const message = await newReaction.getMessage()
+          if (message.from === user.username || message.to === user.username) {
+            return true
+          }
 
-
-      }
-      throw new AuthenticationError('Not logged in');
-    }
+          return false
+        }
+      ),
+    },
   },
 };
 
@@ -112,3 +149,4 @@ module.exports = resolvers;
 // To do:
 // 1. Catch all database errors to display on the front-end
 // 2. change getmsgs to include msg sent by as well as sent to you
+// 3. reactToMessage is incomplete, need to complete it
