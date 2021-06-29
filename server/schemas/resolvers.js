@@ -18,6 +18,20 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+
+    // Receive Messages sent to you
+    getMsgs: async (_parent, { from }, context) => {
+      if (context.user) {
+        const sender = await User.findOne({ username: from });
+        if (!sender) throw new UserInputError('User not found');
+        const msgToGet = await Message.find({
+          to: context.user.username
+        }).sort({ createdAt: -1 });
+
+        return msgToGet;
+      }
+      throw new AuthenticationError('Not logged in');
+    }
   },
 
   // Mutations
@@ -35,13 +49,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect Username');
+        throw new AuthenticationError('Incorrect Credentials');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect Password');
+        throw new AuthenticationError('Incorrect Credentials');
       }
 
       const token = signToken(user);
@@ -51,6 +65,7 @@ const resolvers = {
     // Send message
     sendMsg: async (_parent, { to, msg }, context) => {
       if (context.user) {
+        if (context.user.username === to) throw new UserInputError('You can send msgs to yourself');
         const receiver = await User.findOne({ username: to });
         if (!receiver) throw new UserInputError('User not found');
         const msgToSend = await Message.create({ from: context.user.username, to, msg });
@@ -63,4 +78,6 @@ const resolvers = {
 
 module.exports = resolvers;
 
-// To do: errors to display if username is not unquie upon sign in
+// To do:
+// 1. Catch all database errors to display on the front-end
+// 2. change getmsgs to include msg sent by as well as sent to you

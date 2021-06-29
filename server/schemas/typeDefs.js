@@ -20,11 +20,13 @@ type Message {
   msg: String!
   from: String!
   to: String!
+  createdAt: String!
 }
 
 type Query {
   user(username: String!): User
   getUsers: [Users]!
+  getMsgs(from:String!): [Message]!
 }
 
 type Mutation {
@@ -35,3 +37,6 @@ type Mutation {
 `;
 
 module.exports = typeDefs;
+
+// https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/ - Date types for createdAt
+// Should date be formated at the front end? sorting by createdAt could be a problems if its formatted?!
