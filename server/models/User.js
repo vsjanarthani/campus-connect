@@ -19,7 +19,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 5
-    }
+    },
+    image: {
+      type: String,
+    },
   },
   //   {
   //     toJSON: {

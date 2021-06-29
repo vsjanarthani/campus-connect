@@ -1,5 +1,7 @@
-const jwt = require('jsonwebtoken');
 require("dotenv").config();
+const jwt = require('jsonwebtoken');
+const { PubSub } = require('apollo-server-express');
+const pubsub = new PubSub();
 
 // const secret = process.env.SECRET_KEY;
 const secret = "randompass";
@@ -7,6 +9,7 @@ const expiration = '2h';
 
 module.exports = {
   authMiddleware: function ({ req }) {
+
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -28,7 +31,7 @@ module.exports = {
     } catch {
       console.log('Invalid token');
     }
-
+    req.pubsub = pubsub;
     return req;
   },
   signToken: function ({ username, email, _id }) {
