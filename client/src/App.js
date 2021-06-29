@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
+import Chat from './pages/Chat/Chat';
 
 const client = new ApolloClient({
   request: operation => {
@@ -32,7 +33,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          {/* <Route exact path="/chat" component={Chat} /> */}
+          <Route exact path="/chat" component={Chat} />
           <Route component={NoMatch} />
         </Switch>
       </Router>

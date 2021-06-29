@@ -1,5 +1,7 @@
-const jwt = require('jsonwebtoken');
 require("dotenv").config();
+const jwt = require('jsonwebtoken');
+const { PubSub } = require('apollo-server-express');
+const pubsub = new PubSub();
 
 // const secret = process.env.SECRET_KEY;
 const secret = "randompass";
@@ -25,6 +27,7 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
+      req.pubsub = pubsub;
     } catch {
       console.log('Invalid token');
     }
