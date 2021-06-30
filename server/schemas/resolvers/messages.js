@@ -122,4 +122,4 @@ module.exports = {
     },
 }
 
-// Need to check if reactToMessage and subscriptions are working correctly
+// Need to check if get msg, send msg, reactToMessage and subscriptions are working correctly
