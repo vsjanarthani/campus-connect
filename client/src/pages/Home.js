@@ -16,17 +16,20 @@ const useStyles = makeStyles((theme) => ({
 
     contain: {
         marginTop: `10vh`,
+        fortFamily: `Poppins`,
+      marginLeft: `5vh`,
+      marginRight: `5vh`,
         width: `65vw`,
         justifyContent: "center",
     },
     starter: {
-        fontsize: '1.5rem',
-        fontfamily: 'Poppins',
         justifyContent: 'center',
-        marginTop: `1vh`,
+        margin: `1vh`,
+        fontWeight: 900,
+        fontSize: `2rem`
     },
     alterHeader: {
-        fontsize: '1.5rem',
+        fontSize: '1.5rem',
         marginTop: `2vh`,
         weight: `600`
     },
@@ -35,29 +38,45 @@ const useStyles = makeStyles((theme) => ({
         fontfamily: 'Poppins',
         margin: `1vh`
     },
-    joinbutton: {
-        lineheight: '50px',
-        height: '50px',
+
+      download: {
+        display: 'inline block',
+        width: `228px`,
+        textdecoration: 'none',
+        borderradius: `4px`,
+        border: '2px solid #D9EDFF',
+        color: `white`,
+      
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        fontSize: '1.5rem',
+        marginTop: `1vh`,
+        marginLeft: `.5vw`,
+        height: `56px`,
         textalign: 'center',
-        width: '250px',
-        cursor: 'pointer',
-        backgroundColor: 'purple',
-        color: 'blue',
+        lineheight: '50px',
+        padding: '0 30px',
+        webkittransition: 'all 0.3s',
         transition: 'all 0.3s',
-        position: 'center',
+    
+     
+    },
+    boxy:{
+      border: `black`,
+      borderweight: `2px`
     },
     span: {
         transition: 'all 0.3s',
     },
     logopick: {
         width: '100vw'
-    }
-,
+    
 
-    field: {
-        display: 'flex',
-        margin: `1vh`,
+
      
+    },
+    field: {
+      margin: `1vh`
+    
     }
 }));
 
@@ -71,9 +90,9 @@ const Home = () => {
 
     return (
         <div>  
-            <Box className={classes.contain}>
+            <Box container className={classes.contain}>
             <Grid>
-                <Typography className={classes.starter} > Get Connected</Typography>  </Grid>
+                <Typography  component='h1' className={classes.starter} > Get Connected</Typography>  </Grid>
 
             <Grid><Typography className={classes.alterHeader}>Avatar Alter Egos</Typography></Grid>
 
@@ -84,6 +103,7 @@ const Home = () => {
            
             <Funavatar className={classes.logopick} avatars={funLogos} />
             <Typography className={classes.alterHeader}>Social Profiles</Typography>
+            <Box className={classes.boxy}>
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid>
 
@@ -99,6 +119,7 @@ const Home = () => {
           ),
         }}
       />
+      </Grid><Grid>
         <TextField
         className={classes.field} variant="outlined" 
         id="input-with-icon-textfield"
@@ -114,8 +135,8 @@ const Home = () => {
 
 </Grid></form>
 
-                    
-                <Grid><Button className={classes.joinbutton}><span>Connect</span></Button></Grid>
+</Box>        
+                <Grid><Button className={classes.download}><span>Connect</span></Button></Grid>
         
         </Box>
         </div>
