@@ -16,6 +16,7 @@ type Message {
   from: String!
   to: String!
   createdAt: String!
+  reactionCount: Int
   reactions: [Reaction]
 }
 type Reaction {

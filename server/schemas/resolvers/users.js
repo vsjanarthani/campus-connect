@@ -8,7 +8,7 @@ module.exports = {
   Query: {
     // get all users
     getUsers: async (_parent, _args, context) => {
-      console.log(context.user);
+      // console.log(context.user);
       try {
         // throw error if the user is not logged in
         if (!context.user) throw new AuthenticationError('Not logged in');
@@ -78,7 +78,7 @@ module.exports = {
           throw new UserInputError('bad input', { errors })
         }
         const user = await User.create(args);
-        const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ email }, "myawesomeproject", {
           expiresIn: 60 * 60,
         })
         return {

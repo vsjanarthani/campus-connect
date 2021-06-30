@@ -4,7 +4,7 @@ const { PubSub } = require('apollo-server-express');
 const pubsub = new PubSub();
 
 module.exports = (context) => {
-  console.log(context.req, context.connection);
+
   let token
   if (context.req && context.req.headers.authorization) {
     token = context.req.headers.authorization.split('Bearer ')[1]

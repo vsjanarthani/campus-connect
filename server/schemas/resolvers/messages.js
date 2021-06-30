@@ -13,60 +13,74 @@ module.exports = {
     Query: {
         // Receive Messages sent to you
         getMsgs: async (_parent, { from }, context) => {
-            // check if the user is logged in
-            if (context.user) {
+            try {
+                // throw error if the user is not logged in
+                if (!context.user) throw new AuthenticationError('Not logged in');
+                const receiverEmail = context.user.email;
                 // check if sender is in the database
-                const sender = await User.findOne({ username: from });
+                const sender = await User.findOne({ email: from });
                 if (!sender) throw new UserInputError('User not found');
-
                 // Get messages that are sent to the user and sort it by createdAt
                 const msgToGet = await Message.find({
-                    to: context.user.username
+                    to: { $in: [receiverEmail, sender.email] },
+                    from: { $in: [receiverEmail, sender.email] }
                 }).sort({ createdAt: -1 });
 
                 return msgToGet;
+
+            } catch (error) {
+                console.log(error)
+                throw error
             }
-            throw new AuthenticationError('Not logged in');
         }
     },
     // Mutations
     Mutation: {
         // Send message
         sendMsg: async (_parent, { to, msg }, context) => {
-            // check if the user is logged in
-            if (context.user) {
-                // check if 'from' and 'to' are same
-                if (context.user.username === to) throw new UserInputError('You can send msgs to yourself');
+            try {
+                // throw error if the user is not logged in
+                if (!context.user) throw new AuthenticationError('Not logged in');
+                const senderEmail = context.user.email;
                 // check if the receiver is in the database
-                const receiver = await User.findOne({ username: to });
+                const receiver = await User.findOne({ email: to });
                 if (!receiver) throw new UserInputError('User not found');
                 // check if msg is empty
                 if (msg.trim() === '') throw new UserInputError('Message is empty');
                 // create new message and publish it
-                const msgToSend = await Message.create({ from: context.user.username, to, msg });
+                const msgToSend = await Message.create({ from: senderEmail, to, msg });
                 context.pubsub.publish('NEW_MESSAGE', { newMessage: msgToSend })
                 return msgToSend;
+            } catch (error) {
+                console.log(error)
+                throw error
             }
-            throw new AuthenticationError('Not logged in');
         },
         // React to message
-        // reactToMessage: async (_parent, { _id, content }, context) => {
-        //   const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
-        //   if (context.user) {
-
-        //     // Validate reaction content
-        //     if (!reactions.includes(content)) throw new UserInputError('Invalid reaction');
-        //     // Get message
-        //     const message = await Message.findOne({ _id })
-        //     if (!message) throw new UserInputError('message not found')
-        //     if (message.from !== user.username && message.to !== user.username) {
-        //       throw new ForbiddenError('Unauthorized');
-        //     }
-
-
-        //   }
-        //   throw new AuthenticationError('Not logged in');
-        // }
+        reactToMessage: async (_parent, { messageId, content }, { user, pubsub }) => {
+            // const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
+            try {
+                // throw error if the user is not logged in
+                if (!user) throw new AuthenticationError('Not logged in');
+                // Get message
+                const updatedMsg = await Message.findOneAndUpdate(
+                    { _id: messageId },
+                    { $push: { reactions: { content, email: user.email } } },
+                    { new: true }
+                );
+                console.log(updatedMsg);
+                if (!updatedMsg) throw new UserInputError('message not found');
+                if (updatedMsg.from !== user.email && updatedMsg.to !== user.email) {
+                    throw new ForbiddenError('Unauthorized');
+                }
+                const index = updatedMsg.reactions.length - 1;
+                pubsub.publish('NEW_REACTION', { newReaction: updatedMsg.reactions[index] });
+                return updatedMsg;
+            } catch (error) {
+                console.log(error)
+                throw error
+            }
+        }
     },
 
     // Subscriptions
@@ -107,3 +121,5 @@ module.exports = {
         },
     },
 }
+
+// Need to check if reactToMessage and subscriptions are working correctly
