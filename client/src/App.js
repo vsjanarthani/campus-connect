@@ -29,26 +29,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-	const [theme, setTheme] = useState('blue');
-
-	const toggle = () => {
-		if (theme === 'blue') {
-			setTheme('green');
-		} else if (theme === 'green') {
-			setTheme('blue');
-		}
-	};
-
-	const useStyles = makeStyles({
-		root: {
-			backgroundColor: theme,
-			height: '30px',
-			width: '30px'
-		}
-	});
-
-	const classes = useStyles();
-
 	return (
 		<ApolloProvider client={client}>
 			<Header />
@@ -61,10 +41,6 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Router>
-			<Button onClick={toggle} variant="contained">
-				Click me!
-			</Button>
-			<div className={classes.root}></div>
 			<Footer />
 		</ApolloProvider>
 	);
