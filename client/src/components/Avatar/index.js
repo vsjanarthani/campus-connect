@@ -5,16 +5,35 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+img = require('../../../public/assets/image/alien.png')
 
 const tileData = [
     {
-        img: image,
-        title: 'Image',
+        img: "../../../assets/image/alien.png",
+        title: 'alien',
     },
     {
-
+        img: "../../../assets/image/chimp.png",
+        title: 'chimp',
     },
+    {
+        img: "../../../assets/image/egg.png",
+        title: 'egg',
+    },
+    {
+        img: "../../../assets/image/peach.png",
+        title: 'peach',
+    },
+    {
+        img: "../../../assets/image/pizza.png",
+        title: 'pizza',
+    },
+    {
+        img: "../../../assets/image/shoe.png",
+        title: 'shoe',
+    }
 ];
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
