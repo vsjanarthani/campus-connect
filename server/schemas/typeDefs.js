@@ -4,18 +4,11 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 type User {
   _id: ID!
-  username: String
-  email: String
-  image: String
-  latestMessage: Message
-}
-type Auth {
-  token: ID!
-  user: User
-}
-type Users {
   username: String!
-  email: String!
+  email: String
+  token: ID!
+  imageUrl: String
+  latestMessage: Message
 }
 type Message {
   _id: ID!
@@ -23,6 +16,7 @@ type Message {
   from: String!
   to: String!
   createdAt: String!
+  reactionCount: Int
   reactions: [Reaction]
 }
 type Reaction {
@@ -33,14 +27,12 @@ type Reaction {
     user: User!
   }
 type Query {
-  user(username: String!): User
-  getUsers: [Users]!
+  login(email: String!, password: String!): User!
+  getUsers: [User]!
   getMsgs(from:String!): [Message]!
 }
-
 type Mutation {
-  login(email: String!, password: String!): Auth
-  addUser(username: String!, email: String!, password: String!): Auth
+  addUser(username: String!, email: String!, password: String!): User!
   sendMsg(to:String! msg:String!): Message!
   reactToMessage(_id: ID!, content: String!): Reaction!
 }

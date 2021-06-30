@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const Chat = () => {
 
     const classes = useStyles();
+
     return (
         <MessageProvider>
             <Paper className={classes.root}>
