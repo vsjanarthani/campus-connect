@@ -1,38 +1,26 @@
-require("dotenv").config();
 const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
+
 const pubsub = new PubSub();
 
-// const secret = process.env.SECRET_KEY;
-const secret = "randompass";
-const expiration = '2h';
-
 module.exports = {
-  authMiddleware: function ({ req }) {
-
-    // allows token to be sent via req.body, req.query, or headers
-    let token = req.body.token || req.query.token || req.headers.authorization;
-
-    // ["Bearer", "<tokenvalue>"]
-    if (req.headers.authorization) {
-      token = token
-        .split(' ')
-        .pop()
-        .trim();
+  authMiddleware: function ({ context }) {
+    let token
+    if (context.req && context.req.headers.authorization) {
+      token = context.req.headers.authorization.split('Bearer ')[1]
+    } else if (context.connection && context.connection.context.Authorization) {
+      token = context.connection.context.Authorization.split('Bearer ')[1]
     }
 
-    if (!token) {
-      return req;
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRET, (_err, decodedToken) => {
+        context.user = decodedToken
+      })
     }
 
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log('Invalid token');
-    }
-    req.pubsub = pubsub;
-    return req;
+    context.pubsub = pubsub
+
+    return context
   },
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
