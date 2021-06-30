@@ -11,11 +11,25 @@ import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Chat from './pages/Chat/Chat';
 import DynamicRoute from './utils/dynamicRoute';
-import ApolloProvider from './Apolloprovider';
+import { ApolloProvider, ApolloClient } from '@apollo/client';
+// import ApolloProvider from './Apolloprovider';
+
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    });
+  },
+  uri: 'http://localhost:3001/graphql'
+});
 
 function App() {
   return (
-    <ApolloProvider>
+    <ApolloProvider client={client}>
       <AuthProvider>
         <MessageProvider>
           <Header />

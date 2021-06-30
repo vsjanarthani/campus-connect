@@ -8,7 +8,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useLazyQuery } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
+import { LOGIN_USER } from '../../utils/queries';
 import { useAuthDispatch } from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
@@ -92,6 +92,7 @@ const Login = () => {
 
     const [loginUser, { loading }] = useLazyQuery(LOGIN_USER, {
         onError: (err) => {
+            console.log(`login error ${err}`);
             setErrors(err.graphQLErrors[0].extensions.errors);
             setOpen(true);
             setAlertMsg(errors);
@@ -152,7 +153,7 @@ const Login = () => {
                 </Button>
                 <Button
                     disabled={loading}
-                    href="/singup"
+                    href="/signup"
                     className={classes.button}>
                     Singup Instead?
                 </Button>

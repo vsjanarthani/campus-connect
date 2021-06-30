@@ -29,10 +29,11 @@ const authLink = setContext((_, { headers }) => {
 httpLink = authLink.concat(httpLink)
 
 // const host = window.location.host
-const host = "localhost:3000";
+
 
 const wsLink = new WebSocketLink({
-    uri: `ws://${host}/graphql/`,
+    // uri: `ws://${host}/graphql/`,
+    uri: 'ws://localhost:3001/graphql/',
     options: {
         reconnect: true,
         connectionParams: {
@@ -63,3 +64,5 @@ const ApolloProvider = (props) => {
 }
 
 export default ApolloProvider;
+
+// change the Uri before deploying to heroku

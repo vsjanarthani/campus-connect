@@ -54,31 +54,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = (props) => {
+const Header = () => {
 
     const classes = useStyles();
-    const { user } = useAuthState();
-    const authDispatch = useAuthDispatch()
-
-    const dynamicLink = () => {
-        if (props.authenticated && !user) {
-            return (
-                <>
-                    <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
-                    <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
-                </>
-            )
-        }
-        else {
-            return (
-                <>
-                    <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
-                    <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
-
-                </>
-            )
-        }
-    }
+    const authDispatch = useAuthDispatch();
 
     const logout = event => {
         event.preventDefault();
@@ -96,7 +75,10 @@ const Header = (props) => {
                         <span className={classes.title}>Campus Connect</span>
                     </Typography>
                     <List>
-                        {dynamicLink()}
+                        <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
+                        <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
+                        <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
+                        <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
                     </List>
                 </Toolbar>
             </AppBar>
