@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
-import Auth from '../../utils/auth';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 const Chat = () => {
 
     const classes = useStyles();
-    return Auth.loggedIn() && (
 
+    return (
         <MessageProvider>
             <Paper className={classes.root}>
                 <Grid container spacing={2}>

@@ -4,7 +4,6 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const { typeDefs, resolvers } = require('./schemas');
 const path = require('path');
-require('dotenv').config();
 const db = require('./config/connection');
 const authMiddleware = require('./utils/auth');
 

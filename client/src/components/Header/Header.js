@@ -1,11 +1,11 @@
-
+import React from 'react';
 import {
     AppBar, Toolbar, List, Typography
 } from '@material-ui/core';
 import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Auth from '../../utils/auth';
+import { useAuthDispatch, useAuthState } from '../../utils/auth';
 
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -54,13 +54,36 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Header = () => {
+const Header = (props) => {
 
     const classes = useStyles();
+    const { user } = useAuthState();
+    const authDispatch = useAuthDispatch()
+
+    const dynamicLink = () => {
+        if (props.authenticated && !user) {
+            return (
+                <>
+                    <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
+                    <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
+                </>
+            )
+        }
+        else {
+            return (
+                <>
+                    <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
+                    <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
+
+                </>
+            )
+        }
+    }
 
     const logout = event => {
         event.preventDefault();
-        Auth.logout();
+        authDispatch({ type: 'LOGOUT' })
+        window.location.href = '/'
     };
 
     return (
@@ -73,18 +96,7 @@ const Header = () => {
                         <span className={classes.title}>Campus Connect</span>
                     </Typography>
                     <List>
-                        {Auth.loggedIn() ? (
-                            <>
-                                <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
-                                <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
-
-                            </>
-                        ) : (
-                            <>
-                                <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
-                                <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
-                            </>
-                        )}
+                        {dynamicLink()}
                     </List>
                 </Toolbar>
             </AppBar>
