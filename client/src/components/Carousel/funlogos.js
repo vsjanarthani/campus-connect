@@ -1,5 +1,5 @@
 
-const FunLogos =
+const funLogos =
 
     [
         {
@@ -64,4 +64,4 @@ const FunLogos =
     ]
 
 
-export default FunLogos
+export default funLogos
