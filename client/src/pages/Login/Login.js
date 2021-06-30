@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/queries';
 import { useAuthDispatch } from '../../utils/auth';
 
@@ -90,27 +90,28 @@ const Login = () => {
 
     const dispatch = useAuthDispatch();
 
-    const [loginUser, { loading }] = useLazyQuery(LOGIN_USER, {
-        onError: (err) => {
-            console.log(`login error ${err}`);
-            setErrors(err.graphQLErrors[0].extensions.errors);
-            setOpen(true);
-            setAlertMsg(errors);
-            setSeverity('error');
-        },
-        onCompleted(data) {
-            dispatch({ type: 'LOGIN', payload: data.login })
-            setOpen(true)
-            setAlertMsg('Logged in');
-            setSeverity('success')
-            window.location.href = '/chat'
-        },
-    })
+    const { data, loading, error } = useQuery(LOGIN_USER);
+
+    if (error) {
+        console.log(`login error ${error}`);
+        setErrors(error);
+        setOpen(true);
+        setAlertMsg(errors);
+        setSeverity('error');
+    }
+    if (data) {
+        dispatch({ type: 'LOGIN', payload: data.login })
+        setOpen(true)
+        setAlertMsg('Logged in');
+        setSeverity('success')
+        window.location.href = '/chat'
+    }
+
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
-        loginUser({ variables })
+        data({ variables })
     }
 
     return (

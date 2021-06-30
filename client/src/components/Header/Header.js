@@ -5,7 +5,7 @@ import {
 import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuthDispatch, useAuthState } from '../../utils/auth';
+import { useAuthDispatch } from '../../utils/auth';
 
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';

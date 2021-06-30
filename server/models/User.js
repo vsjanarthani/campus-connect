@@ -20,15 +20,10 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    image: {
+    imageUrl: {
       type: String,
     },
   },
-  //   {
-  //     toJSON: {
-  //       virtuals: true
-  //     }
-  //   }
 );
 
 // set up pre-save middleware to create password
