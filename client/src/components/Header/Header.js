@@ -61,10 +61,8 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Header = () => {
+const Header = props => {
 	const classes = useStyles();
-
-	const [toggle, setToggle] = useState(false);
 
 	const logout = event => {
 		event.preventDefault();
@@ -84,7 +82,7 @@ const Header = () => {
 							control={<Switch color="primary" />}
 							label="Theme"
 							labelPlacement="top"
-							onChange={event => setToggle(event.target.checked)}
+							onChange={event => props.onChange(event.target.checked)}
 						/>
 
 						{Auth.loggedIn() ? (

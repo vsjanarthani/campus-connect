@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import ApolloClient from 'apollo-boost';
@@ -10,10 +10,6 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Chat from './pages/Chat/Chat';
-
-// Material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 const client = new ApolloClient({
 	request: operation => {
@@ -29,9 +25,16 @@ const client = new ApolloClient({
 });
 
 function App() {
+	const [toggle, setToggle] = useState(false);
+
+	const toggleHandler = value => {
+		console.log(value);
+		setToggle(value);
+	};
+
 	return (
 		<ApolloProvider client={client}>
-			<Header />
+			<Header onChange={value => toggleHandler(value)} />
 			<Router>
 				<Switch>
 					<Route exact path="/" component={Home} />
