@@ -16,7 +16,7 @@ module.exports = {
             try {
                 // throw error if the user is not logged in
                 if (!context.user) throw new AuthenticationError('Not logged in');
-                const receiver = context.user.username;
+                const receiver = context.user.data.username;
                 // check if sender is in the database
                 const sender = await User.findOne({ username: from });
                 if (!sender) throw new UserInputError('User not found');
@@ -38,10 +38,11 @@ module.exports = {
     Mutation: {
         // Send message
         sendMsg: async (_parent, { to, msg }, context) => {
+            console.log(context.user.data.username);
             try {
                 // throw error if the user is not logged in
                 if (!context.user) throw new AuthenticationError('Not logged in');
-                const sender = context.user.username;
+                const sender = context.user.data.username;
                 // check if the receiver is in the database
                 const receiver = await User.findOne({ username: to });
                 if (!receiver) throw new UserInputError('User not found');
@@ -65,12 +66,12 @@ module.exports = {
                 // Get message
                 const updatedMsg = await Message.findOneAndUpdate(
                     { _id: messageId },
-                    { $push: { reactions: { content, username: user.username } } },
+                    { $push: { reactions: { content, username: user.data.username } } },
                     { new: true }
                 );
                 console.log(updatedMsg);
                 if (!updatedMsg) throw new UserInputError('message not found');
-                if (updatedMsg.from !== user.username && updatedMsg.to !== user.username) {
+                if (updatedMsg.from !== user.data.username && updatedMsg.to !== user.data.username) {
                     throw new ForbiddenError('Unauthorized');
                 }
                 const index = updatedMsg.reactions.length - 1;
@@ -93,8 +94,8 @@ module.exports = {
                 },
                 ({ newMessage }, _args, { user }) => {
                     if (
-                        newMessage.from === user.username ||
-                        newMessage.to === user.username
+                        newMessage.from === user.data.username ||
+                        newMessage.to === user.data.username
                     ) {
                         return true
                     }
@@ -111,7 +112,7 @@ module.exports = {
                 },
                 async ({ newReaction }, _args, { user }) => {
                     const message = await newReaction.getMessage()
-                    if (message.from === user.username || message.to === user.username) {
+                    if (message.from === user.data.username || message.to === user.data.username) {
                         return true
                     }
 
