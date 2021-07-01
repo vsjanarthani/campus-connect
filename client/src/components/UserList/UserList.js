@@ -1,4 +1,7 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_USERS } from '../../utils/queries';
+import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -32,74 +35,52 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const getUsers = [
-    {
-        "username": "Jordan.Mosciski16",
-        "email": "Jordan.Mosciski16.Williamson@gmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Elton54",
-        "email": "Elton5452@hotmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Dominic_Harris13",
-        "email": "Dominic_Harris13.Hermiston@hotmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Damion_Christiansen",
-        "email": "Damion_Christiansen.Langworth@gmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Nella.Doyle",
-        "email": "Nella.Doyle_Hand@yahoo.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Marta_Shanahan31",
-        "email": "Marta_Shanahan31.Lubowitz57@hotmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Cassie.Streich19",
-        "email": "Cassie.Streich1996@yahoo.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Schuyler30",
-        "email": "Schuyler30.Conn@gmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-    {
-        "username": "Jerrell45",
-        "email": "Jerrell4596@gmail.com",
-        "image": "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png",
-    },
-];
-
 const UserList = () => {
     const classes = useStyles();
+    const dispatch = useMessageDispatch()
+    const { users } = useMessageState()
+    // const selectedUser = users?.find((u) => u.selected === true)?.username
+
+    const { loading } = useQuery(GET_USERS, {
+        onCompleted: (data) =>
+            dispatch({ type: 'SET_USERS', payload: data.getUsers }),
+        onError: (err) => console.log(err),
+    })
+
+    let usersMarkup
+    if (!users || loading) {
+        usersMarkup = <p>Loading..</p>
+    } else if (users.length === 0) {
+        usersMarkup = <p>No users have joined yet</p>
+    } else if (users.length > 0) {
+        usersMarkup = users.map((user) => {
+            // const selected = selectedUser === user.username
+            return (
+                <div key={user.username}>
+                    <ListItem
+                        className={classes.listItem}
+                        onClick={() =>
+                            dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
+                        component={Button}>
+                        <Avatar alt={user.username} src={user.imageUrl || "https://img.icons8.com/office/16/000000/thor.png"} />
+                        <ListItemText primary={user.username} />
+                        <ListItemText secondary={user.latestMessage
+                            ? user.latestMessage.content
+                            : 'You are now connected!'} />
+                    </ListItem>
+                    <Divider />
+                </div>
+            )
+        })
+    }
     return (
         <Box className={classes.container} component="div">
             <List>
-                {getUsers.map((item) => (
-                    <div key={item.username}>
-                        <ListItem
-                            className={classes.listItem}
-                            component={Button}>
-                            <Avatar alt={item.username} src={item.image} />
-                            <ListItemText primary={item.username} />
-                        </ListItem>
-                        <Divider />
-                    </div>
-                ))}
+                {usersMarkup}
             </List>
         </Box>
     );
-
 }
+export default UserList;
 
-export default UserList
+// https://icons8.com/icon/set/characters/office - Good reference for random free icon links
