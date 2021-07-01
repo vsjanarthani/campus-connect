@@ -4,6 +4,7 @@ const businessLogos = [
         id: `1`,
         title: `Bootstrap`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021129/bootstrap_ponvns.png`,
+        // give them all a nameStyle, and pass this in so the radio buttons work
 
 
     },
