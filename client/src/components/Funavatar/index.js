@@ -11,14 +11,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function ImageAvatars(props) {
   const classes = useStyles();
-
+ 
   return (
     <div className={classes.root}>
       {props.avatars.map(item => (
-      <Avatar alt={item.title} src={item.image} key={item.id}/>
+      <Avatar alt={item.title} src={item.image} key={item.id} onClick={avatarSelect}/>
       ))}
     </div>
   );
+  
 }
