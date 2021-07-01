@@ -159,3 +159,6 @@ const ChatBody = () => {
 }
 
 export default ChatBody
+
+// Needs styling and proper alignment
+// check on the errors that are displaying while compiling
