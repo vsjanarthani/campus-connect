@@ -1,28 +1,30 @@
 import gql from 'graphql-tag';
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
+mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
       token
         _id
         username
+    email
+    imageUrl
+    createdAt
     }
   }
 `;
 
 export const REACT_TO_MESSAGE = gql`
-mutation reactToMessage($_id: ID!, $content: String!) {
-  reactToMessage(_id: $_id, content: $content) {
-    _id
-    reactionCount
+ mutation reactToMessage($messageId: ID!, $content: String!) {
+    reactToMessage(messageId: $messageId, content: $content) {
+      _id
+      reactionCount
       reactions {
         _id
         content
         createdAt
-        username
       }
+    }
   }
-}
 `
 export const SEND_MESSAGE = gql`
 mutation sendMsg($to: String!, $msg: String!) {

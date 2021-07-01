@@ -1,7 +1,6 @@
 const { UserInputError, AuthenticationError, } = require('apollo-server-express');
 const { User, Message } = require('../../models');
-const jwt = require('jsonwebtoken');
-// require('dotenv').config();
+const { authToken } = require('../../utils/auth');
 
 module.exports = {
   // Queries
@@ -12,9 +11,9 @@ module.exports = {
       try {
         // throw error if the user is not logged in
         if (!context.user) throw new AuthenticationError('Not logged in');
-        const clientEmail = context.user.email;
-        let allUsers = await User.find({ email: { $ne: clientEmail } });
-        const msgs = await Message.find({ $or: [{ from: clientEmail }, { to: clientEmail }] })
+        const clientName = context.user.username;
+        let allUsers = await User.find({ username: { $ne: clientName } });
+        const msgs = await Message.find({ $or: [{ from: clientName }, { to: clientName }] })
           .sort({ createdAt: -1 });
         allUsers = allUsers.map((otherUser) => {
           const latestMessage = msgs.find(
@@ -30,26 +29,24 @@ module.exports = {
     },
 
     // user login
-    login: async (_parent, { email, password }) => {
+    login: async (_parent, { username, password }) => {
       let errors = {}
       try {
         // Validate user input
-        if (email.trim() === '')
-          errors.email = 'email must not be empty'
+        if (username.trim() === '')
+          errors.username = 'username must not be empty'
         if (password === '') errors.password = 'password must not be empty'
 
         if (Object.keys(errors).length > 0) {
           throw new UserInputError('bad input', { errors })
         }
         // check if email is in the database
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (!user) throw new AuthenticationError('Incorrect Credentials');
         // check if password is matching/correct
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) throw new AuthenticationError('Incorrect Credentials');
-        const token = jwt.sign({ email }, "myawesomeproject", {
-          expiresIn: 60 * 60,
-        })
+        const token = authToken(user);
         return {
           ...user.toJSON(),
           token,
@@ -78,9 +75,7 @@ module.exports = {
           throw new UserInputError('bad input', { errors })
         }
         const user = await User.create(args);
-        const token = jwt.sign({ email }, "myawesomeproject", {
-          expiresIn: 60 * 60,
-        })
+        const token = authToken(user);
         return {
           ...user.toJSON(),
           token,

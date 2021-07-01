@@ -87,7 +87,7 @@ const Signup = (props) => {
     const [errors, setErrors] = useState({})
 
     const [addUser, { loading }] = useMutation(ADD_USER, {
-        update: (_, __) => props.history.push('/login'),
+        update: (_, __) => props.history.push('/'),
         onError: (err) => {
             setErrors(err.graphQLErrors[0].extensions.errors)
             setOpen(true);

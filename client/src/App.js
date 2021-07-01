@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MessageProvider } from './utils/messagecontext';
 import { AuthProvider } from './utils/auth';
 import './App.css';
@@ -10,7 +10,6 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Chat from './pages/Chat/Chat';
-import DynamicRoute from './utils/dynamicRoute';
 import { setContext } from '@apollo/client/link/context';
 import {
   ApolloClient,
@@ -46,11 +45,11 @@ function App() {
           <Header />
           <Router>
             <Switch>
-              <DynamicRoute exact path="/" component={Home} guest />
-              <DynamicRoute exact path="/login" component={Login} guest />
-              <DynamicRoute exact path="/signup" component={Signup} guest />
-              <DynamicRoute exact path="/chat" component={Chat} authenticated />
-              <DynamicRoute component={NoMatch} guest />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/chat" component={Chat} />
+              <Route component={NoMatch} guest />
             </Switch>
           </Router>
           <Footer />

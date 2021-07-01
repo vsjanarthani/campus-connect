@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/queries';
 import { useAuthDispatch } from '../../utils/auth';
 
@@ -79,55 +79,72 @@ function Alert(props) {
 
 const Login = () => {
     const classes = useStyles();
-    const [variables, setVariables] = useState({
-        email: '',
-        password: '',
-    })
-    const [errors, setErrors] = useState({});
+    const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const [open, setOpen] = useState(false);
+    const [errors, setErrors] = useState({})
+    const dispatch = useAuthDispatch()
+    const [variables, setVariables] = useState({
+        username: '',
+        password: '',
+    });
+    const [login, { loading }] = useLazyQuery(LOGIN_USER, {
+        onError: (err) => {
+            console.log(err)
+            setErrors(err.graphQLErrors[0].extensions.errors)
+        },
+        onCompleted(data) {
+            dispatch({ type: 'LOGIN', payload: data.login })
+            window.location.href = '/'
+        },
+    })
 
-    const dispatch = useAuthDispatch();
+    // update state based on form input changes
+    const handleChange = event => {
+        const { name, value } = event.target;
 
-    const { data, loading, error } = useQuery(LOGIN_USER);
+        setVariables({
+            ...variables,
+            [name]: value
+        });
+    };
 
-    if (error) {
-        console.log(`login error ${error}`);
-        setErrors(error);
-        setOpen(true);
-        setAlertMsg(errors);
-        setSeverity('error');
-    }
-    if (data) {
-        dispatch({ type: 'LOGIN', payload: data.login })
-        setOpen(true)
-        setAlertMsg('Logged in');
-        setSeverity('success')
-        window.location.href = '/chat'
-    }
+    // submit form
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+        console.log(variables);
+        try {
+            await login({
+                variables: { ...variables }
+            });
 
+        } catch (error) {
+            setOpen(true)
+            setAlertMsg(error);
+            setSeverity('error')
+            console.error(error);
+        }
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
-
-        data({ variables })
-    }
+        // clear form values
+        setVariables({
+            username: '',
+            password: ''
+        });
+    };
 
     return (
         <Grid container justify="center">
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
+
                 <InputField
                     fullWidth={true}
-                    label="Email"
+                    label="Username"
                     variant="outlined"
                     required
-                    name='email'
-                    type='email'
-                    value={variables.email}
-                    onChange={(e) =>
-                        setVariables({ ...variables, email: e.target.value })
-                    }
+                    name='username'
+                    type='username'
+                    value={variables.username}
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
                     className={classes.field}
                 />
@@ -138,34 +155,26 @@ const Login = () => {
                     required
                     variant="outlined"
                     value={variables.password}
-                    onChange={(e) =>
-                        setVariables({ ...variables, password: e.target.value })
-                    }
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
                 />
                 <Button
                     variant="outlined"
                     fullWidth={true}
-                    disabled={loading}
                     endIcon={<DoubleArrowIcon />}
                     type="submit"
                     className={classes.button}>
                     {loading ? 'loading..' : 'Login'}
                 </Button>
-                <Button
-                    disabled={loading}
-                    href="/signup"
-                    className={classes.button}>
-                    Singup Instead?
-                </Button>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {alertMsg}
+                    {errors && alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>
+
     )
-};
+}
 
 export default Login

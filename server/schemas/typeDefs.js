@@ -7,6 +7,7 @@ type User {
   username: String!
   email: String
   token: ID!
+  createdAt: String!
   imageUrl: String
   latestMessage: Message
 }
@@ -27,14 +28,14 @@ type Reaction {
     user: User!
   }
 type Query {
-  login(email: String!, password: String!): User!
+  login(username: String!, password: String!): User!
   getUsers: [User]!
   getMsgs(from:String!): [Message]!
 }
 type Mutation {
   addUser(username: String!, email: String!, password: String!): User!
   sendMsg(to:String! msg:String!): Message!
-  reactToMessage(_id: ID!, content: String!): Reaction!
+  reactToMessage(messageId: ID!, content: String!): Message!
 }
 type Subscription {
     newMessage: Message!
