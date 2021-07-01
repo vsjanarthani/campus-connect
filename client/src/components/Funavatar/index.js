@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -15,16 +15,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ImageAvatars(props) {
   const classes = useStyles();
- // avatar select function () { was clicked } use radio button to return item.title radio name will relate via name
- // write a function only one radio button can be checked
+
+const handleClick = function() {
+  console.log("we got a click, baby!")
+}
+
   return (
     <div className={classes.root}>
       {props.avatars.map(item => (<div>
-      <Avatar alt={item.title} src={item.image} value={item.title} name={item.title} key={item.id}/>
-      <input type="radio" name={item.nameStyle} value={item.title} key={item.title}></input>
+        <button onClick={handleClick}>
+          <Avatar alt={item.title} src={item.image} key={item.title} />
+        </button>
       </div>
       ))}
     </div>
   );
-  
+
 }
