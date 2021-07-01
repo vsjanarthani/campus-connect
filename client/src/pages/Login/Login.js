@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
@@ -84,7 +84,7 @@ const Login = () => {
     const [severity, setSeverity] = useState('');
     const classes = useStyles();
     const [formState, setFormState] = useState({ username: '', password: '' });
-    const [login, { error }] = useQuery(LOGIN_USER);
+    const [login, { error }] = useLazyQuery(LOGIN_USER);
 
     // update state based on form input changes
     const handleChange = event => {
@@ -99,13 +99,11 @@ const Login = () => {
     // submit form
     const handleFormSubmit = async event => {
         event.preventDefault();
-
+        console.log(formState);
         try {
-            const { data } = await login({
-                variables: { ...formState }
-            });
-
-            Auth.login(data.login.token);
+            const data = await login({ formState });
+            console.log(data);
+            // Auth.login(data.login.token);
         } catch (error) {
             setOpen(true)
             setAlertMsg(error.text);
