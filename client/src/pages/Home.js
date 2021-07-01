@@ -69,9 +69,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const avatars = businessLogos;
-const avatars2 = funLogos;
-
+const avatars = [];
 
 const Home = () => {
 
@@ -86,7 +84,7 @@ const Home = () => {
             <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
             <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
-            <Funavatar avatars={avatars} /> 
+            <Funavatar avatars={businessLogos} /> 
 
             <Grid> <Typography className={classes.textDetail}>If you're gonna party, who is it with?</Typography></Grid>
            
