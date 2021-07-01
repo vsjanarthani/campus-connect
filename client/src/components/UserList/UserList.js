@@ -62,11 +62,11 @@ const UserList = () => {
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
-                        <Avatar alt={user.username} src={user.imageUrl || "https://img.icons8.com/office/16/000000/thor.png"} />
+                        <Avatar alt={user.username} src={user.imageUrl || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
                         <ListItemText primary={user.username} />
                         <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
-                            : 'You are now connected!'} />
+                            : 'Connected..'} />
                     </ListItem>
                     <Divider />
                 </div>
