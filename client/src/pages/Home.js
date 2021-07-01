@@ -15,40 +15,43 @@ const useStyles = makeStyles((theme) => ({
 
 
     contain: {
-        marginTop: `10vh`,
-        fortFamily: `Poppins`,
-      marginLeft: `5vh`,
-      marginRight: `5vh`,
-        width: `65vw`,
-        justifyContent: "center",
+        marginTop: `5vh`,
+        marginLeft: `2vw`,
+        marginRight: `2vw`,
+        width: `65vw`
     },
-    starter: {
+    header: {
         justifyContent: 'center',
+        fontFamily: `Poppins`,
         margin: `1vh`,
-        fontWeight: 900,
-        fontSize: `2rem`
+        marginLeft: `1vw`,
+        fontWeight:800,
+        fontSize: `1.5rem`,
+        
     },
-    alterHeader: {
-        fontSize: '1.5rem',
-        marginTop: `2vh`,
+    subHeader: {
+        fontSize: '1.2rem',
+        fontFamily: `Poppins`,
+        marginLeft: `1vw`,
+        marginTop: `3vh`,
+        marginBottom: `1vh`,
         weight: `600`
     },
-    alterIntro: {
-        fontsize: '1.5rem',
-        fontfamily: 'Poppins',
+    textDetail: {
+        fontsize: '.9rem',
+        fontfamily: 'Roboto',
         margin: `1vh`
     },
 
-      download: {
-        display: 'inline block',
-        width: `228px`,
+      connectButton: {
+        fontFamily: `Poppins`,
         textdecoration: 'none',
-        borderradius: `4px`,
-        border: '2px solid #D9EDFF',
+        width: `230px`,
+        borderRadius: `6px`,
+        border: '1px solid #D9EDFF',
         color: `white`,
-      
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        fontSize: '1.5rem',
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', // update later w real color scheme
+        fontSize: '1.3rem',
         marginTop: `1vh`,
         marginLeft: `.5vw`,
         height: `56px`,
@@ -58,21 +61,7 @@ const useStyles = makeStyles((theme) => ({
         webkittransition: 'all 0.3s',
         transition: 'all 0.3s',
     
-     
-    },
-    boxy:{
-      border: `black`,
-      borderweight: `2px`
-    },
-    span: {
-        transition: 'all 0.3s',
-    },
-    logopick: {
-        width: '100vw'
-    
 
-
-     
     },
     field: {
       margin: `1vh`
@@ -90,19 +79,19 @@ const Home = () => {
 
     return (
         <div>  
-            <Box container className={classes.contain}>
-            <Grid>
-                <Typography  component='h1' className={classes.starter} > Get Connected</Typography>  </Grid>
+            <Box className={classes.contain}>
+            <Grid container >
+                <Typography  component='h1' className={classes.header} > Get Connected</Typography>  </Grid>
 
-            <Grid><Typography className={classes.alterHeader}>Avatar Alter Egos</Typography></Grid>
+            <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
-            <Grid> <Typography className={classes.alterIntro}>Pick a fave tech:</Typography></Grid>
+            <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
             <Funavatar avatars={avatars} /> 
 
-            <Grid> <Typography className={classes.alterIntro}>If you're gonna party, who is it with?</Typography></Grid>
+            <Grid> <Typography className={classes.textDetail}>If you're gonna party, who is it with?</Typography></Grid>
            
-            <Funavatar className={classes.logopick} avatars={funLogos} />
-            <Typography className={classes.alterHeader}>Social Profiles</Typography>
+            <Funavatar avatars={funLogos} />
+            <Typography className={classes.subHeader}>Social Profiles</Typography>
             <Box className={classes.boxy}>
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid>
@@ -111,6 +100,7 @@ const Home = () => {
         className={classes.field} variant="outlined" 
         id="input-with-icon-textfield"
         label="LinkedIn Profile"
+        placeholder="/in/LinkedInName"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -123,7 +113,8 @@ const Home = () => {
         <TextField
         className={classes.field} variant="outlined" 
         id="input-with-icon-textfield"
-        label="Instragram Profile"
+        label="Instragram Handle"
+        placeholder="@YourInstagram"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -136,7 +127,7 @@ const Home = () => {
 </Grid></form>
 
 </Box>        
-                <Grid><Button className={classes.download}><span>Connect</span></Button></Grid>
+                <Grid><Button className={classes.connectButton}>Connect</Button></Grid>
         
         </Box>
         </div>
