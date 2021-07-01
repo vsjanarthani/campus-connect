@@ -16,14 +16,14 @@ module.exports = {
             try {
                 // throw error if the user is not logged in
                 if (!context.user) throw new AuthenticationError('Not logged in');
-                const receiverEmail = context.user.email;
+                const receiver = context.user.username;
                 // check if sender is in the database
-                const sender = await User.findOne({ email: from });
+                const sender = await User.findOne({ username: from });
                 if (!sender) throw new UserInputError('User not found');
                 // Get messages that are sent to the user and sort it by createdAt
                 const msgToGet = await Message.find({
-                    to: { $in: [receiverEmail, sender.email] },
-                    from: { $in: [receiverEmail, sender.email] }
+                    to: { $in: [receiver, sender.username] },
+                    from: { $in: [receiver, sender.username] }
                 }).sort({ createdAt: -1 });
 
                 return msgToGet;
@@ -41,14 +41,14 @@ module.exports = {
             try {
                 // throw error if the user is not logged in
                 if (!context.user) throw new AuthenticationError('Not logged in');
-                const senderEmail = context.user.email;
+                const sender = context.user.username;
                 // check if the receiver is in the database
-                const receiver = await User.findOne({ email: to });
+                const receiver = await User.findOne({ username: to });
                 if (!receiver) throw new UserInputError('User not found');
                 // check if msg is empty
                 if (msg.trim() === '') throw new UserInputError('Message is empty');
                 // create new message and publish it
-                const msgToSend = await Message.create({ from: senderEmail, to, msg });
+                const msgToSend = await Message.create({ from: sender, to, msg });
                 context.pubsub.publish('NEW_MESSAGE', { newMessage: msgToSend })
                 return msgToSend;
             } catch (error) {
@@ -65,12 +65,12 @@ module.exports = {
                 // Get message
                 const updatedMsg = await Message.findOneAndUpdate(
                     { _id: messageId },
-                    { $push: { reactions: { content, email: user.email } } },
+                    { $push: { reactions: { content, username: user.username } } },
                     { new: true }
                 );
                 console.log(updatedMsg);
                 if (!updatedMsg) throw new UserInputError('message not found');
-                if (updatedMsg.from !== user.email && updatedMsg.to !== user.email) {
+                if (updatedMsg.from !== user.username && updatedMsg.to !== user.username) {
                     throw new ForbiddenError('Unauthorized');
                 }
                 const index = updatedMsg.reactions.length - 1;
@@ -122,4 +122,4 @@ module.exports = {
     },
 }
 
-// Need to check if get msg, send msg, reactToMessage and subscriptions are working correctly
+// Need to check if reactToMessage and subscriptions are working correctly
