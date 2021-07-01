@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Auth from '../../utils/auth';
 import Switch from '@material-ui/core/Switch';
-
+import Clock from 'react-live-clock';
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CreateIcon from '@material-ui/icons/Create';
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         paddingLeft: '1rem'
        
+    },
+    clock: {
+        fontFamily: `Poppins`
     },
     listItem: {
         marginRight: theme.spacing(2),
@@ -84,6 +87,11 @@ const Header = () => {
                             </>
                         ) : (
                             <> 
+                            <Clock
+          className={classes.clock}
+          format={'h:mm a'}
+          style={{fontSize: '1.5em'}}
+          ticking={true} />
                              <Switch //https://material-ui.com/components/switches/
                                 color="primary"
                                  name="checkedB"
