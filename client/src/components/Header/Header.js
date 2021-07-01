@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuthDispatch } from '../../utils/auth';
+import { useAuthState } from '../../utils/auth';
 
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -58,7 +59,7 @@ const Header = () => {
 
     const classes = useStyles();
     const authDispatch = useAuthDispatch();
-
+    const { user } = useAuthState();
     const logout = event => {
         event.preventDefault();
         authDispatch({ type: 'LOGOUT' })
@@ -75,10 +76,17 @@ const Header = () => {
                         <span className={classes.title}>Campus Connect</span>
                     </Typography>
                     <List>
-                        <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
-                        <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
-                        <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
-                        <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
+                        {!user ? (
+                            <>
+                                <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
+                                <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
+                            </>
+                        ) : (
+                            <>
+                                <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
+                                <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
+                            </>
+                        )}
                     </List>
                 </Toolbar>
             </AppBar>
