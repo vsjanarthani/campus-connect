@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MessageProvider } from './utils/messagecontext';
+import { AuthProvider } from './utils/auth';
 import './App.css';
 import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
@@ -22,7 +23,7 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token')
+  const token = localStorage.getItem('token')
   console.log({ token })
   return {
     headers: {
@@ -39,19 +40,21 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <MessageProvider>
-        <Header />
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/chat" component={Chat} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Router>
-        <Footer />
-      </MessageProvider>
+      <AuthProvider>
+        <MessageProvider>
+          <Header />
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/chat" component={Chat} />
+              <Route component={NoMatch} guest />
+            </Switch>
+          </Router>
+          <Footer />
+        </MessageProvider>
+      </AuthProvider>
     </ApolloProvider >
   );
 }
