@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Auth from '../../utils/auth';
+import Switch from '@material-ui/core/Switch';
 
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -25,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingLeft: '1rem',
-        paddingTop: '1.5rem',
+        paddingLeft: '1rem'
+       
     },
     listItem: {
         marginRight: theme.spacing(2),
@@ -45,6 +46,8 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: "whitesmoke",
+        fontFamily: "Poppins",
+        fontWeight: 800,
         '@media (max-width:1200px)': {
             fontSize: '1.2rem',
         },
@@ -80,7 +83,12 @@ const Header = () => {
 
                             </>
                         ) : (
-                            <>
+                            <> 
+                             <Switch //https://material-ui.com/components/switches/
+                                color="primary"
+                                 name="checkedB"
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                />
                                 <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
                                 <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
                             </>
