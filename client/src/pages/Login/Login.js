@@ -80,7 +80,7 @@ function Alert(props) {
 const Login = () => {
     const classes = useStyles();
     const [variables, setVariables] = useState({
-        email: '',
+        username: '',
         password: '',
     })
     const [errors, setErrors] = useState({});
@@ -119,14 +119,14 @@ const Login = () => {
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
                 <InputField
                     fullWidth={true}
-                    label="Email"
+                    label="Username"
                     variant="outlined"
                     required
-                    name='email'
-                    type='email'
-                    value={variables.email}
+                    name='username'
+                    type='username'
+                    value={variables.username}
                     onChange={(e) =>
-                        setVariables({ ...variables, email: e.target.value })
+                        setVariables({ ...variables, username: e.target.value })
                     }
                     inputProps={{ className: classes.input }}
                     className={classes.field}

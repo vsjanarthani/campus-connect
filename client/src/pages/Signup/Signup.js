@@ -9,6 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
+import { useAuthDispatch } from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -84,22 +85,27 @@ const Signup = (props) => {
     const [variables, setVariables] = useState({
         username: '', email: '', password: '',
     })
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
+    const dispatch = useAuthDispatch();
 
-    const [addUser, { loading }] = useMutation(ADD_USER, {
-        update: (_, __) => props.history.push('/login'),
-        onError: (err) => {
-            setErrors(err.graphQLErrors[0].extensions.errors)
-            setOpen(true);
-            setAlertMsg(errors);
-            setSeverity('error');
-        },
-    })
+    const [addUser, { data, error, loading }] = useMutation(ADD_USER);
+
+    if (error) {
+        setErrors(error)
+        setOpen(true);
+        setAlertMsg(errors);
+        setSeverity('error');
+    }
+    if (data) {
+        dispatch({ type: 'SIGNUP', payload: data.Signup })
+    }
+
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
         addUser({ variables })
+
     }
 
     return (
