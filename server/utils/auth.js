@@ -18,7 +18,16 @@ const authMiddleware = (context) => {
   if (token) {
     jwt.verify(token, secret, (_err, decodedToken) => {
       context.user = decodedToken;
-      console.log(decodedToken);
+      // console.log(decodedToken);
+      // Decode token exmaple below
+      //  data: {
+      //   username: 'Subash',
+      //    email: 'subash@gmail.com',
+      //    _id: '60daa7c806c2b64e9068b736'
+      //  },
+      //  iat: 1625124587,
+      //  exp: 1625131787
+      // }
     })
   }
 
