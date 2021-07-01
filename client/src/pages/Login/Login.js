@@ -9,7 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/queries';
-import { useAuthDispatch } from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -78,45 +78,52 @@ function Alert(props) {
 }
 
 const Login = () => {
-    const classes = useStyles();
-    const [variables, setVariables] = useState({
-        username: '',
-        password: '',
-    })
-    const [errors, setErrors] = useState({});
+
+    const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const [open, setOpen] = useState(false);
+    const classes = useStyles();
+    const [formState, setFormState] = useState({ username: '', password: '' });
+    const [login, { error }] = useQuery(LOGIN_USER);
 
-    const dispatch = useAuthDispatch();
+    // update state based on form input changes
+    const handleChange = event => {
+        const { name, value } = event.target;
 
-    const { data, loading, error } = useQuery(LOGIN_USER);
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    };
 
-    if (error) {
-        console.log(`login error ${error}`);
-        setErrors(error);
-        setOpen(true);
-        setAlertMsg(errors);
-        setSeverity('error');
-    }
-    if (data) {
-        dispatch({ type: 'LOGIN', payload: data.login })
-        setOpen(true)
-        setAlertMsg('Logged in');
-        setSeverity('success')
-        window.location.href = '/chat'
-    }
+    // submit form
+    const handleFormSubmit = async event => {
+        event.preventDefault();
 
+        try {
+            const { data } = await login({
+                variables: { ...formState }
+            });
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
+            Auth.login(data.login.token);
+        } catch (error) {
+            setOpen(true)
+            setAlertMsg(error.text);
+            setSeverity('error')
+            console.error(error);
+        }
 
-        data({ variables })
-    }
+        // clear form values
+        setFormState({
+            username: '',
+            password: ''
+        });
+    };
 
     return (
         <Grid container justify="center">
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
+
                 <InputField
                     fullWidth={true}
                     label="Username"
@@ -124,10 +131,8 @@ const Login = () => {
                     required
                     name='username'
                     type='username'
-                    value={variables.username}
-                    onChange={(e) =>
-                        setVariables({ ...variables, username: e.target.value })
-                    }
+                    value={formState.username}
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
                     className={classes.field}
                 />
@@ -137,35 +142,27 @@ const Login = () => {
                     name='password'
                     required
                     variant="outlined"
-                    value={variables.password}
-                    onChange={(e) =>
-                        setVariables({ ...variables, password: e.target.value })
-                    }
+                    value={formState.password}
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
                 />
                 <Button
                     variant="outlined"
                     fullWidth={true}
-                    disabled={loading}
                     endIcon={<DoubleArrowIcon />}
                     type="submit"
                     className={classes.button}>
-                    {loading ? 'loading..' : 'Login'}
-                </Button>
-                <Button
-                    disabled={loading}
-                    href="/signup"
-                    className={classes.button}>
-                    Singup Instead?
+                    Login
                 </Button>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {alertMsg}
+                    {error && alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>
+
     )
-};
+}
 
 export default Login

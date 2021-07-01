@@ -3,7 +3,10 @@ const { PubSub } = require('apollo-server-express');
 // require('dotenv').config();
 const pubsub = new PubSub();
 
-module.exports = (context) => {
+const secret = 'mysecretsshhhhh';
+const expiration = '2h';
+
+const authMiddleware = (context) => {
 
   let token
   if (context.req && context.req.headers.authorization) {
@@ -13,7 +16,7 @@ module.exports = (context) => {
   }
 
   if (token) {
-    jwt.verify(token, "myawesomeproject", (_err, decodedToken) => {
+    jwt.verify(token, secret, (_err, decodedToken) => {
       context.user = decodedToken;
       console.log(decodedToken);
     })
@@ -23,5 +26,13 @@ module.exports = (context) => {
 
   return context
 };
+
+const authToken = ({ username, email, _id }) => {
+  const payload = { username, email, _id };
+  return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+}
+
+
+module.exports = { authMiddleware, authToken }
 
 // unable to add the secret key to .env!

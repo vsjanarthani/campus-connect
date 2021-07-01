@@ -1,7 +1,6 @@
 const { UserInputError, AuthenticationError, } = require('apollo-server-express');
 const { User, Message } = require('../../models');
-const jwt = require('jsonwebtoken');
-// require('dotenv').config();
+const { authToken } = require('../../utils/auth');
 
 module.exports = {
   // Queries
@@ -47,9 +46,7 @@ module.exports = {
         // check if password is matching/correct
         const correctPw = await user.isCorrectPassword(password);
         if (!correctPw) throw new AuthenticationError('Incorrect Credentials');
-        const token = jwt.sign({ username }, "myawesomeproject", {
-          expiresIn: 60 * 60,
-        })
+        const token = authToken(user);
         return {
           ...user.toJSON(),
           token,
@@ -78,9 +75,7 @@ module.exports = {
           throw new UserInputError('bad input', { errors })
         }
         const user = await User.create(args);
-        const token = jwt.sign({ username }, "myawesomeproject", {
-          expiresIn: 60 * 60,
-        })
+        const token = authToken(user);
         return {
           ...user.toJSON(),
           token,

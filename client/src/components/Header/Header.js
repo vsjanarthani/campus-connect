@@ -1,11 +1,10 @@
-import React from 'react';
 import {
     AppBar, Toolbar, List, Typography
 } from '@material-ui/core';
 import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuthDispatch } from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -57,12 +56,10 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
 
     const classes = useStyles();
-    const authDispatch = useAuthDispatch();
 
     const logout = event => {
         event.preventDefault();
-        authDispatch({ type: 'LOGOUT' })
-        window.location.href = '/'
+        Auth.logout();
     };
 
     return (
@@ -75,10 +72,18 @@ const Header = () => {
                         <span className={classes.title}>Campus Connect</span>
                     </Typography>
                     <List>
-                        <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
-                        <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
-                        <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
-                        <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
+                        {Auth.loggedIn() ? (
+                            <>
+                                <Button className={classes.listItem} href="/chat"><ChatIcon /> Chat</Button>
+                                <Button className={classes.listItem} href="/" onClick={logout}><ExitToAppIcon /> Logout</Button>
+
+                            </>
+                        ) : (
+                            <>
+                                <Button className={classes.listItem} href="/login"><DoubleArrowIcon /> Login</Button>
+                                <Button className={classes.listItem} href="/signup"><CreateIcon /> Signup</Button>
+                            </>
+                        )}
                     </List>
                 </Toolbar>
             </AppBar>
@@ -86,4 +91,4 @@ const Header = () => {
     );
 }
 
-export default Header
+export default Header;

@@ -9,7 +9,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-import { useAuthDispatch } from '../../utils/auth';
+
+import Auth from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -77,36 +78,56 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const Signup = (props) => {
-    const classes = useStyles();
+const Signup = (client) => {
+
+    const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const [open, setOpen] = useState(false);
-    const [variables, setVariables] = useState({
-        username: '', email: '', password: '',
-    })
-    const [errors, setErrors] = useState({});
-    const dispatch = useAuthDispatch();
+    const classes = useStyles();
+    const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+    const [addUser, { error }] = useMutation(ADD_USER);
 
-    const [addUser, { data, error, loading }] = useMutation(ADD_USER);
+    // update state based on form input changes
+    const handleChange = event => {
+        const { name, value } = event.target;
 
-    if (error) {
-        setErrors(error)
-        setOpen(true);
-        setAlertMsg(errors);
-        setSeverity('error');
-    }
-    if (data) {
-        dispatch({ type: 'SIGNUP', payload: data.Signup })
-    }
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+    };
 
+    // submit form
+    const handleFormSubmit = async event => {
+        event.preventDefault();
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
+        try {
+            console.log(formState);
+            const { data } = await addUser({
+                variables: { ...formState }
 
-        addUser({ variables })
+            });
+            console.log(data);
+            // if (userData.status === 200) {
+            //     setOpen(true)
+            //     setAlertMsg('Form submission Success');
+            //     setSeverity('success')
+            // }
+            // else {
+            //     setOpen(true)
+            //     setAlertMsg('Submission Failed, Try again!');
+            //     setSeverity('warning')
+            // }
 
-    }
+            Auth.login(data.addUser.token);
+        } catch (e) {
+            console.log(error);
+            setOpen(true)
+            setAlertMsg(e.text);
+            setSeverity('error')
+            console.log("signup error", e);
+        }
+    };
 
     return (
         <Grid container justify="center">
@@ -120,10 +141,8 @@ const Signup = (props) => {
                     required
                     inputProps={{ className: classes.input }}
                     className={classes.field}
-                    value={variables.username}
-                    onChange={(e) =>
-                        setVariables({ ...variables, username: e.target.value })
-                    }
+                    value={formState.username}
+                    onChange={handleChange}
                 />
                 <InputField
                     fullWidth={true}
@@ -132,10 +151,8 @@ const Signup = (props) => {
                     required
                     name='email'
                     type='email'
-                    value={variables.email}
-                    onChange={(e) =>
-                        setVariables({ ...variables, email: e.target.value })
-                    }
+                    value={formState.email}
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
                     className={classes.field}
                 />
@@ -145,12 +162,9 @@ const Signup = (props) => {
                     name='password'
                     required
                     variant="outlined"
-                    value={variables.password}
-                    onChange={(e) =>
-                        setVariables({ ...variables, password: e.target.value })
-                    }
+                    value={formState.password}
+                    onChange={handleChange}
                     inputProps={{ className: classes.input }}
-                    className={classes.field}
                 />
                 <Button
                     variant="outlined"
@@ -158,12 +172,12 @@ const Signup = (props) => {
                     endIcon={<CreateIcon />}
                     type="submit"
                     className={classes.button}>
-                    {loading ? 'loading..' : 'Signup'}
+                    Signup
                 </Button>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {alertMsg}
+                    {error && alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>
