@@ -21,7 +21,7 @@ export default function ImageAvatars(props) {
     <div className={classes.root}>
       {props.avatars.map(item => (<div>
       <Avatar alt={item.title} src={item.image} value={item.title} name={item.title} key={item.id}/>
-      <input type="radio" name="techName" value={item.title} key={item.id}></input>
+      <input type="radio" name={item.nameStyle} value={item.title} key={item.title}></input>
       </div>
       ))}
     </div>

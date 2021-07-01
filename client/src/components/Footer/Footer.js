@@ -35,7 +35,7 @@ const Footer = () => {
 
     return (
         <div className={classes.bottomNavContainer}>
-            <h3 className={classes.footer}>Made by Sarah and Clayton with like pretty much no help from anyone else. Jeez!</h3>
+            <h3 className={classes.footer}>Made by 🎅</h3>
         </div>
     );
 };
