@@ -1,4 +1,5 @@
 import React from 'react';
+import "./messenger.css"
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +9,8 @@ import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
 import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
-import Online from "../../components/Online/Online"
+import Online from "../../components/Online/Online";
+
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
