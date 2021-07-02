@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const dateFormat = require('../utils/dateFormat');
 
 const userSchema = new Schema(
   {
@@ -20,15 +21,20 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    image: {
+    imageUrl: {
       type: String,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: timestamp => dateFormat(timestamp)
+    },
   },
-  //   {
-  //     toJSON: {
-  //       virtuals: true
-  //     }
-  //   }
+  {
+    toJSON: {
+      getters: true
+    }
+  }
 );
 
 // set up pre-save middleware to create password

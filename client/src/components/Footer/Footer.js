@@ -1,5 +1,7 @@
 import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import GitHub from '@material-ui/icons/GitHub';
+import Button from '@material-ui/core/Button';
 
 const Footer = props => {
 	const useStyles = makeStyles(() => ({
@@ -8,7 +10,7 @@ const Footer = props => {
 			alignItems: 'center',
 			justifyContent: 'space-evenly',
 			position: 'fixed',
-			background: props.data.header,
+			background: '#003262',
 			bottom: '0',
 			left: '0',
 			width: '100%',
@@ -28,6 +30,9 @@ const Footer = props => {
 			'@media (min-width:1200px)': {
 				fontSize: '1.5rem'
 			}
+		},
+		icon: {
+			color: `white`
 		}
 	}));
 
@@ -35,7 +40,14 @@ const Footer = props => {
 
 	return (
 		<div className={classes.bottomNavContainer}>
-			<h3 className={classes.footer}>Made by Team</h3>
+			<Button
+				className={classes.icon}
+				href="https://github.com/Clayto30/campus-connect"
+				target="_blank"
+			>
+				{' '}
+				<GitHub />
+			</Button>
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
 	AppBar,
 	Toolbar,
@@ -9,8 +10,9 @@ import {
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Auth from '../../utils/auth';
-
+import { useAuthDispatch } from '../../utils/auth';
+import { useAuthState } from '../../utils/auth';
+import Clock from 'react-live-clock';
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CreateIcon from '@material-ui/icons/Create';
@@ -19,7 +21,6 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
 
 const Header = props => {
-	console.log(props);
 	const useStyles = makeStyles(theme => ({
 		appbar: {
 			flexGrow: 1,
@@ -32,8 +33,10 @@ const Header = props => {
 			display: 'flex',
 			justifyContent: 'space-between',
 			alignItems: 'center',
-			paddingLeft: '1rem',
-			paddingTop: '1.5rem'
+			paddingLeft: '1rem'
+		},
+		clock: {
+			fontFamily: `Poppins`
 		},
 		listItem: {
 			marginRight: theme.spacing(2),
@@ -52,6 +55,8 @@ const Header = props => {
 		},
 		title: {
 			color: 'whitesmoke',
+			fontFamily: 'Poppins',
+			fontWeight: 800,
 			'@media (max-width:1200px)': {
 				fontSize: '1.2rem'
 			},
@@ -62,10 +67,12 @@ const Header = props => {
 	}));
 
 	const classes = useStyles();
-
+	const authDispatch = useAuthDispatch();
+	const { user } = useAuthState();
 	const logout = event => {
 		event.preventDefault();
-		Auth.logout();
+		authDispatch({ type: 'LOGOUT' });
+		window.location.href = '/';
 	};
 
 	return (
@@ -76,30 +83,41 @@ const Header = props => {
 						<span className={classes.title}>Campus Connect</span>
 					</Typography>
 					<List>
-						<FormControlLabel
-							value="theme"
-							control={<Switch color="primary" />}
-							label="Theme"
-							labelPlacement="top"
-							onChange={event => props.onChange(event.target.checked)}
-						/>
-
-						{Auth.loggedIn() ? (
+						{!user ? (
 							<>
-								<Button className={classes.listItem} href="/chat">
-									<ChatIcon /> Chat
-								</Button>
-								<Button className={classes.listItem} href="/" onClick={logout}>
-									<ExitToAppIcon /> Logout
-								</Button>
-							</>
-						) : (
-							<>
+								<Clock
+									className={classes.clock}
+									format={'h:mm a'}
+									style={{ fontSize: '1.2em' }}
+									ticking={true}
+								/>
 								<Button className={classes.listItem} href="/login">
 									<DoubleArrowIcon /> Login
 								</Button>
 								<Button className={classes.listItem} href="/signup">
 									<CreateIcon /> Signup
+								</Button>
+							</>
+						) : (
+							<>
+								<Clock
+									className={classes.clock}
+									format={'h:mm a'}
+									style={{ fontSize: '1.2em' }}
+									ticking={true}
+								/>
+								<Switch //https://material-ui.com/components/switches/
+									color="primary"
+									name="checkedB"
+									inputProps={{ 'aria-label': 'primary checkbox' }}
+									onChange={event => props.onChange(event.target.checked)}
+								/>
+
+								<Button className={classes.listItem} href="/chat">
+									<ChatIcon /> Chat
+								</Button>
+								<Button className={classes.listItem} href="/" onClick={logout}>
+									<ExitToAppIcon /> Logout
 								</Button>
 							</>
 						)}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
-import ApolloClient from 'apollo-boost';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { MessageProvider } from './utils/messagecontext';
+import { AuthProvider } from './utils/auth';
 import './App.css';
 import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
@@ -10,22 +10,36 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Chat from './pages/Chat/Chat';
+import { setContext } from '@apollo/client/link/context';
+import DynamicRoute from './utils/DynamicRoute';
+import {
+	ApolloClient,
+	InMemoryCache,
+	ApolloProvider,
+	createHttpLink
+} from '@apollo/client';
 
 // theme stuff
 import { makeStyles } from '@material-ui/core/styles';
 import { workTheme, funTheme } from './utils/themes';
 
-const client = new ApolloClient({
-	request: operation => {
-		const token = localStorage.getItem('id_token');
-
-		operation.setContext({
-			headers: {
-				authorization: token ? `Bearer ${token}` : ''
-			}
-		});
-	},
+// import ApolloProvider from './Apolloprovider';
+const httpLink = createHttpLink({
 	uri: 'http://localhost:3001/graphql'
+});
+const authLink = setContext((_, { headers }) => {
+	const token = localStorage.getItem('token');
+	console.log({ token });
+	return {
+		headers: {
+			...headers,
+			authorization: token ? `Bearer ${token}` : ''
+		}
+	};
+});
+const client = new ApolloClient({
+	link: authLink.concat(httpLink),
+	cache: new InMemoryCache()
 });
 
 function App() {
@@ -59,17 +73,24 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
-			<Header onChange={value => setThemeToggle(value)} data={currentTheme} />
-			<Router>
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/signup" component={Signup} />
-					<Route exact path="/chat" component={Chat} />
-					<Route component={NoMatch} />
-				</Switch>
-			</Router>
-			<Footer data={currentTheme} />
+			<AuthProvider>
+				<MessageProvider>
+					<Header
+						onChange={value => setThemeToggle(value)}
+						data={currentTheme}
+					/>
+					<Router>
+						<Switch>
+							<DynamicRoute exact path="/" component={Home} guest />
+							<DynamicRoute exact path="/login" component={Login} guest />
+							<DynamicRoute exact path="/signup" component={Signup} guest />
+							<DynamicRoute exact path="/chat" component={Chat} authenticated />
+							<DynamicRoute component={NoMatch} guest />
+						</Switch>
+					</Router>
+					<Footer data={currentTheme} />
+				</MessageProvider>
+			</AuthProvider>
 		</ApolloProvider>
 	);
 }

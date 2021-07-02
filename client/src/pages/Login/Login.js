@@ -7,9 +7,9 @@ import Button from "@material-ui/core/Button";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { useLazyQuery } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/queries';
+import { useAuthDispatch } from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -78,20 +78,33 @@ function Alert(props) {
 }
 
 const Login = () => {
-
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const classes = useStyles();
-    const [formState, setFormState] = useState({ email: '', password: '' });
-    const [login, { error }] = useMutation(LOGIN_USER);
+    const [errors, setErrors] = useState({})
+    const dispatch = useAuthDispatch()
+    const [variables, setVariables] = useState({
+        username: '',
+        password: '',
+    });
+    const [login, { loading }] = useLazyQuery(LOGIN_USER, {
+        onError: (err) => {
+            console.log(err)
+            setErrors(err.graphQLErrors[0].extensions.errors)
+        },
+        onCompleted(data) {
+            dispatch({ type: 'LOGIN', payload: data.login })
+            window.location.href = '/'
+        },
+    })
 
     // update state based on form input changes
     const handleChange = event => {
         const { name, value } = event.target;
 
-        setFormState({
-            ...formState,
+        setVariables({
+            ...variables,
             [name]: value
         });
     };
@@ -99,23 +112,22 @@ const Login = () => {
     // submit form
     const handleFormSubmit = async event => {
         event.preventDefault();
-
+        console.log(variables);
         try {
-            const { data } = await login({
-                variables: { ...formState }
+            await login({
+                variables: { ...variables }
             });
 
-            Auth.login(data.login.token);
         } catch (error) {
             setOpen(true)
-            setAlertMsg(error.text);
+            setAlertMsg(error);
             setSeverity('error')
             console.error(error);
         }
 
         // clear form values
-        setFormState({
-            email: '',
+        setVariables({
+            username: '',
             password: ''
         });
     };
@@ -126,12 +138,12 @@ const Login = () => {
 
                 <InputField
                     fullWidth={true}
-                    label="Email"
+                    label="Username"
                     variant="outlined"
                     required
-                    name='email'
-                    type='email'
-                    value={formState.email}
+                    name='username'
+                    type='username'
+                    value={variables.username}
                     onChange={handleChange}
                     inputProps={{ className: classes.input }}
                     className={classes.field}
@@ -142,7 +154,7 @@ const Login = () => {
                     name='password'
                     required
                     variant="outlined"
-                    value={formState.password}
+                    value={variables.password}
                     onChange={handleChange}
                     inputProps={{ className: classes.input }}
                 />
@@ -152,12 +164,12 @@ const Login = () => {
                     endIcon={<DoubleArrowIcon />}
                     type="submit"
                     className={classes.button}>
-                    Login
+                    {loading ? 'loading..' : 'Login'}
                 </Button>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {error && alertMsg}
+                    {errors && alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>
