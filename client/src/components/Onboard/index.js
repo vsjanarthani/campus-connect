@@ -8,6 +8,9 @@ import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
 // PART OF ONBOARDING 
 //ASK USERS FOR SOCIAL PROFILES
 //NEEDS LOGO SELECTION ABOVE
+import Funavatar from '../Funavatar';
+import funLogos from '../Funavatar/funlogos';
+import businessLogos from '../Funavatar/businesslogos';
 //MISSING AVATARS
 const useStyles = makeStyles((theme) => ({
 
@@ -69,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 const avatars = [];
 
-const OnboardForm = () => {
+const Onboard = () => {
 
     const classes = useStyles();
 
@@ -82,11 +85,11 @@ const OnboardForm = () => {
                 <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
                 <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
-
+                <Funavatar avatars={businessLogos} /> 
 
                 <Grid> <Typography className={classes.textDetail}>If you're gonna party, what's your vibe?</Typography></Grid>
 
-
+                <Funavatar avatars={funLogos} />
                 <Typography className={classes.subHeader}>Social Profiles</Typography>
                 <Box className={classes.boxy}>
                     <form className={classes.root} noValidate autoComplete="off">
@@ -130,4 +133,4 @@ const OnboardForm = () => {
     )
 }
 
-export default OnboardForm
+export default Onboard;
