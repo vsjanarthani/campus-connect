@@ -16,6 +16,8 @@ const useStyles = makeStyles(() => ({
     container: {
         background: "whitesmoke",
         flexGrow: 1,
+        maxHeight: '100%',
+        overflow: 'auto'
     },
     listItem: {
         color: "#003262",
