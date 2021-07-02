@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +25,13 @@ const handleClick = function() {
   return (
     <div className={classes.root}>
       {props.avatars.map(item => (<div>
-        <button onClick={handleClick} key={item.id}>
+        <Tooltip
+        title={item.tip}
+        placement="top"
+      >
+        <Button onClick={handleClick} key={item.id}>
           <Avatar alt={item.title} src={item.image} key={item.title} />
-        </button>
+        </Button></Tooltip>
       </div>
       ))}
     </div>
