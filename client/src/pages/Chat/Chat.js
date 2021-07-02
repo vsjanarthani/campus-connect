@@ -1,23 +1,26 @@
 import React from 'react';
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
 import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
+import Conversation from "../../components/Conversation/Conversation";
+import Message from "../../components/Message/Message";
+import Online from "../../components/Online/Online"
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        width: '100vw',
-        height: '80vh',
-        padding: theme.spacing(2),
-        marginTop: theme.spacing(2),
-        background: "whitesmoke",
-        boxShadow: "none",
-    },
-}));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         flexGrow: 1,
+//         width: '100vw',
+//         height: '80vh',
+//         padding: theme.spacing(2),
+//         marginTop: theme.spacing(2),
+//         background: "whitesmoke",
+//         boxShadow: "none",
+//     },
+// }));
 
 const Chat = () => {
 
