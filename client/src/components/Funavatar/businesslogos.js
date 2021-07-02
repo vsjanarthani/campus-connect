@@ -5,7 +5,7 @@ const businessLogos = [
         title: `Bootstrap`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021129/bootstrap_ponvns.png`,
         nameStyle: `business`,
-        tip: ` Bootstrap appeared a year after the first iPad`
+        tip: ` Bootstrap appeared a year after the first iPad. 2011, a million years ago.`
     },
 
     {
