@@ -1,4 +1,5 @@
 import React from 'react';
+import "./userList.css";
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
@@ -7,7 +8,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import Button from '@material-ui/core/Button';
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Avatar from '@material-ui/core/Avatar';
 
@@ -58,12 +59,13 @@ const UserList = () => {
             return (
                 <div key={user.username}>
                     <ListItem
-                        className={classes.listItem}
+                        className="conversation"
+                        // className={classes.listItem}
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
                         <Avatar alt={user.username} src={user.imageUrl || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
-                        <ListItemText primary={user.username} />
+                        <ListItemText primary={user.username} className="conversationName"/>
                         <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} />
