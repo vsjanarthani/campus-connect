@@ -5,6 +5,7 @@ const businessLogos = [
         title: `Bootstrap`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021129/bootstrap_ponvns.png`,
         nameStyle: `business`,
+        tip: ` Bootstrap appeared a year after the first iPad`
     },
 
     {
@@ -12,6 +13,7 @@ const businessLogos = [
         title: `npm`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021128/npm_gb7k5c.png`,
         nameStyle: `business`,
+        tip: `Nutrias Punching Marmots? Natural Polyglot Machine?`
     },
 
     {
@@ -19,6 +21,7 @@ const businessLogos = [
         title: `Javascript`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/javascript_uzzfmq.png`,
         nameStyle: `business`,
+        tip: `How do you comfort a JavaScript bug? You console it.`
 
     },
     {
@@ -26,6 +29,7 @@ const businessLogos = [
         title: `React`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/react_gpcdnf.png`,
         nameStyle: `business`,
+        tip: `Are you Florida during the coronavirus? Because you really need to learn how to manage your state`
 
     },
 
@@ -34,6 +38,7 @@ const businessLogos = [
         title: `Material UI`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/material-ui_mldr9z.png`,
         nameStyle: `business`,
+        tip: `Lookin' good 😎`
     },
 
     {
@@ -41,6 +46,7 @@ const businessLogos = [
         title: `Node`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021117/node_rvobvk.png`,
         nameStyle: `business`,
+        tip: `Oh node you didn't.`
     },
 
     {
@@ -48,6 +54,7 @@ const businessLogos = [
         title: `CSS`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/css_rojwbv.png`,
         nameStyle: `business`,
+        tip: `Stylin, fam.`
     },
 
     {
@@ -55,6 +62,8 @@ const businessLogos = [
         title: `jQuery`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021117/jquery_fxerqc.png`,
         nameStyle: `business`,
+        tip: `$$$ C.R.E.A.M.`
+
     }
 
 

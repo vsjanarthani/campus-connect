@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const dateFormat = require('../utils/dateFormat');
 
 const userSchema = new Schema(
   {
@@ -20,22 +21,24 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    businessLogo: {
-      type: String
+    imageUrl: {
+      type: String,
     },
-    funLogo: {
-      type: String
-    }
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: timestamp => dateFormat(timestamp)
+    },
   },
-//   {
-//     toJSON: {
-//       virtuals: true
-//     }
-//   }
+  {
+    toJSON: {
+      getters: true
+    }
+  }
 );
 
 // set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
@@ -45,7 +48,7 @@ userSchema.pre('save', async function(next) {
 });
 
 // compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
+userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 

@@ -10,7 +10,7 @@
     "seed": "node seeders/seeds.js"
   },
   "keywords": [],
-  "author": "Janarthani V Subramaniam",
+  "author": "Janarthani V Subramaniam, Megan Close, ",
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^2.25.2",
