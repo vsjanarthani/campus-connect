@@ -11,12 +11,17 @@ import businessLogos from '../Funavatar/businesslogos';
 
 const useStyles = makeStyles((theme) => ({
 
+    root: {
+        width: '90vw',
+        justifyContent: `center`,
+        margin: `auto`
 
+    },
     contain: {
         marginTop: `5vh`,
         marginLeft: `2vw`,
         marginRight: `2vw`,
-        width: `65vw`
+        width: `70vw`
     },
     header: {
         justifyContent: 'center',
@@ -28,9 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
     scroller: {
-        overflow: 'auto'
-  
-      },
+        overflow: 'auto',
+        paddingTop: `1vh`,
+        paddingBottom: `1vh`
+
+    },
     subHeader: {
         fontSize: '1.2rem',
         fontFamily: `Poppins`,
@@ -47,22 +54,24 @@ const useStyles = makeStyles((theme) => ({
 
     connectButton: {
         fontFamily: `Poppins`,
-        width: `230px`,
+        width: '90vw',
         borderRadius: `6px`,
         border: '1px solid #D9EDFF',
         color: `white`,
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', // update later w real color scheme
         fontSize: '1.3rem',
         marginTop: `1vh`,
-        marginLeft: `.5vw`,
+
         height: `56px`,
         textalign: 'center',
         lineheight: '50px',
-        padding: '0 30px',
+
 
     },
     field: {
-        margin: `1vh`
+        marginTop: `1vh`,
+        margin: `auto`,
+        width: '90vw'
 
     }
 }));
@@ -74,61 +83,61 @@ const Onboard = () => {
     const classes = useStyles();
 
     return (
-        <div>
-            <Box className={classes.contain}>
-                <Grid container >
-                    <Typography component='h1' className={classes.header} > Get Connected</Typography>  </Grid>
 
-                <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
+        <Box className={classes.root}>
+            <Grid container >
+                <Typography component='h1' className={classes.header} > Get Connected</Typography>  </Grid>
 
-                <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
-                <div className={classes.scroller}>
-                <Funavatar avatars={businessLogos} /> 
-                </div>
-                <Grid> <Typography className={classes.textDetail}>If you're gonna party, what's your vibe?</Typography></Grid>
-                <div className={classes.scroller}>
+            <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
+
+            <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
+            <div className={classes.scroller}>
+                <Funavatar avatars={businessLogos} />
+            </div>
+            <Grid> <Typography className={classes.textDetail}>If you're gonna party, what's your vibe?</Typography></Grid>
+            <div className={classes.scroller}>
                 <Funavatar avatars={funLogos} />
-                </div>
-                <Typography className={classes.subHeader}>Social Profiles</Typography>
-                <Box className={classes.boxy}>
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <Grid>
+            </div>
+            <Typography className={classes.subHeader}>Social Profiles</Typography>
+            <Box className={classes.boxy}>
+                <form  noValidate autoComplete="off">
+                    <Grid>
 
-                            <TextField
-                                className={classes.field} variant="outlined"
-                                id="input-with-icon-textfield"
-                                label="LinkedIn Profile"
-                                placeholder="/in/LinkedInName"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <LinkedInIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                        </Grid><Grid>
-                            <TextField
-                                className={classes.field} variant="outlined"
-                                id="input-with-icon-textfield"
-                                label="Instragram Handle"
-                                placeholder="@YourInstagram"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <InstagramIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-
-                        </Grid></form>
-
-                </Box>
-                <Grid><Button className={classes.connectButton}>Connect</Button></Grid>
+                        <TextField
+                            className={classes.field} variant="outlined"
+                            id="input-with-icon-textfield"
+                            label="LinkedIn Profile"
+                            placeholder="/in/LinkedInName"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LinkedInIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid><Grid>
+                        <TextField
+                            className={classes.field} variant="outlined"
+                            id="input-with-icon-textfield"
+                            label="Instragram Handle"
+                            placeholder="@YourInstagram"
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <InstagramIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />   <Grid>
+                            <Button className={classes.connectButton}>Connect</Button></Grid>
+                    </Grid></form>
 
             </Box>
-        </div>
+
+
+        </Box>
+
     )
 }
 
