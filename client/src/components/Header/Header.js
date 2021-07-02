@@ -18,48 +18,49 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
 
-const useStyles = makeStyles(theme => ({
-	appbar: {
-		flexGrow: 1,
-		margin: 0,
-		width: '100%',
-		height: '8vh',
-		background: '#003262'
-	},
-	toolbar: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingLeft: '1rem',
-		paddingTop: '1.5rem'
-	},
-	listItem: {
-		marginRight: theme.spacing(2),
-		color: 'whitesmoke',
-		'&:hover': {
-			color: 'orange'
+const Header = props => {
+	console.log(props);
+	const useStyles = makeStyles(theme => ({
+		appbar: {
+			flexGrow: 1,
+			margin: 0,
+			width: '100%',
+			height: '8vh',
+			background: props.data.header
 		},
-		'& .MuiTypography-body1': {
+		toolbar: {
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+			paddingLeft: '1rem',
+			paddingTop: '1.5rem'
+		},
+		listItem: {
+			marginRight: theme.spacing(2),
+			color: 'whitesmoke',
+			'&:hover': {
+				color: 'orange'
+			},
+			'& .MuiTypography-body1': {
+				'@media (max-width:1200px)': {
+					fontSize: '0.9rem'
+				},
+				'@media (min-width:1200px)': {
+					fontSize: '1.1rem'
+				}
+			}
+		},
+		title: {
+			color: 'whitesmoke',
 			'@media (max-width:1200px)': {
-				fontSize: '0.9rem'
+				fontSize: '1.2rem'
 			},
 			'@media (min-width:1200px)': {
-				fontSize: '1.1rem'
+				fontSize: '1.5rem'
 			}
 		}
-	},
-	title: {
-		color: 'whitesmoke',
-		'@media (max-width:1200px)': {
-			fontSize: '1.2rem'
-		},
-		'@media (min-width:1200px)': {
-			fontSize: '1.5rem'
-		}
-	}
-}));
+	}));
 
-const Header = props => {
 	const classes = useStyles();
 
 	const logout = event => {

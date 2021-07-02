@@ -59,7 +59,7 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
-			<Header onChange={value => setThemeToggle(value)} />
+			<Header onChange={value => setThemeToggle(value)} data={currentTheme} />
 			<Router>
 				<Switch>
 					<Route exact path="/" component={Home} />
@@ -69,7 +69,7 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Router>
-			<Footer />
+			<Footer data={currentTheme} />
 		</ApolloProvider>
 	);
 }
