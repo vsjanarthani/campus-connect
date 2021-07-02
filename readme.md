@@ -1,9 +1,15 @@
-# Campus Connect  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-## Description
-This is an app to connect students 
+![Frame 18](https://user-images.githubusercontent.com/77648727/123899304-c78a3500-d91b-11eb-8cad-3b7b7db0aac7.png)
 
-## Built Using
-JavaScript, ES6, MongoDB, React, bootstrap, Node.js (Express, Mongoose, graphql, jsonwebtoken, apollo/client, apollo-server-express).
+## Description
+This is an app to connect bootcamp alumni for networking purposes.
+
+## Built Using 
+- [x] JavaScript
+- [x] ES6
+- [x] MongoDB
+- [x] React
+- [x] Bootstrap
+- [x] Node.js (Express, Mongoose, graphQL, jsonwebtoken, Apollo/Client, Apollo-Server-Express)
 
 ## Table of Contents
 * [Installation](#Installation)
@@ -17,21 +23,32 @@ JavaScript, ES6, MongoDB, React, bootstrap, Node.js (Express, Mongoose, graphql,
 * [Questions](#Questions)
 
 ### Installation
-To clone the repo run ```git clone https://github.com/vsjanarthani/Campus-Connect-MERN.git ``` in your terminal. After cloning the repo, run ```npm install``` to install the necessary dependencies.
+To clone the repo run ```git clone https://github.com/vsjanarthani/Campus-Connect-MERN.git ``` in your terminal
+Run ```npm install``` to install the necessary dependencies.
 
 ### Usage
 After installing all the dependencies, run ```npm start``` in your terminal to start the application. 
 
-### User-Story
-
+### User-Story 
+> AS AN UCB Coding Bootcamp Graduate       
+> I WANT to keep in touch with my cohort and TAs       
+> SO THAT I can maintain professional and personal relationships       
 
 ### Acceptance-Criteria
+> ADD       
+> Acceptance       
+> Criteria       
  
 ### License
 This application is covered under **MIT** license.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Contributing 
-
+[Clayton Goff]()
+[Janarthani V S]()
+[Megan Close]()
+[Graham Hall]()
+[Sarah Durkin]()
 
 ### Screenshot
 ![webpage](./assets/images/screenshot.png)
@@ -40,7 +57,7 @@ This application is covered under **MIT** license.
 The application is deployed on  [https:///](https:///)
 
 ### Questions
-If you have any questions, please reach out to the<br>
-Author: Janarthani V S <br>
-Email : <vs.janarthani@gmail.com> <br>
-Author's github profile: [GitHub](https://github.com/vsjanarthani)
+If you have any questions, please reach out to any of the contributors.
+
+### Resources 
+
