@@ -1,13 +1,13 @@
 import React from 'react';
+import "./chat.css";
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 // import { makeStyles } from '@material-ui/core/styles';
 // import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
-import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
-import Message from "../../components/Message/Message";
-import Online from "../../components/Online/Online";
+// import Message from "../../components/Message/Message";
+// import Online from "../../components/Online/Online";
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -54,7 +54,7 @@ const Chat = () => {
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
                         <div className="messagesHere">
-                            <Message />
+                            {/* <Message />
                             <Message user={true} />
                             <Message />
                             <Message />
@@ -66,7 +66,8 @@ const Chat = () => {
                             <Message user={true} />
                             <Message user={true} />
                             <Message user={true} />
-                            <Message user={true} />
+                            <Message user={true} /> */}
+                            <ChatBody />
                         </div>
                         <div className="chatBoxBottom">
                             <textarea className="messageInput" placeholder="Write Your Message"></textarea>
@@ -76,7 +77,7 @@ const Chat = () => {
                 </div>
                 <div className="chatOnline">
                     <div className="chatOnline">
-                        <Online />
+                        {/* <Online /> */}
                     </div>
                 </div>
             </div>

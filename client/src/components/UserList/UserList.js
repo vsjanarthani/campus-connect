@@ -8,33 +8,33 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import Button from '@material-ui/core/Button';
-// import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Avatar from '@material-ui/core/Avatar';
 
-// const useStyles = makeStyles(() => ({
-//     container: {
-//         background: "whitesmoke",
-//         flexGrow: 1,
-//     },
-//     listItem: {
-//         color: "#003262",
-//         paddingLeft: '0.5rem',
-//         textTransform: 'none',
-//         "&:hover": {
-//             color: "orange",
-//         },
-//         "& .MuiTypography-body1": {
+const useStyles = makeStyles(() => ({
+    container: {
+        background: "whitesmoke",
+        flexGrow: 1,
+    },
+    listItem: {
+        color: "#003262",
+        paddingLeft: '0.5rem',
+        textTransform: 'none',
+        "&:hover": {
+            color: "orange",
+        },
+        "& .MuiTypography-body1": {
 
-//             '@media (max-width:1200px)': {
-//                 fontSize: '0.9rem',
-//             },
-//             '@media (min-width:1200px)': {
-//                 fontSize: '1.1rem',
-//             },
-//         },
-//     },
-// }));
+            '@media (max-width:1200px)': {
+                fontSize: '0.9rem',
+            },
+            '@media (min-width:1200px)': {
+                fontSize: '1.1rem',
+            },
+        },
+    },
+}));
 
 const UserList = () => {
     const classes = useStyles();
