@@ -1,5 +1,4 @@
 import React from 'react';
-import "./messenger.css";
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 // import { makeStyles } from '@material-ui/core/styles';
