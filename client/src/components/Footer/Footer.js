@@ -1,6 +1,7 @@
 import React from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
-
+import GitHub from '@material-ui/icons/GitHub';
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(() => ({
     bottomNavContainer: {
         display: 'flex',
@@ -26,7 +27,10 @@ const useStyles = makeStyles(() => ({
         },
         '@media (min-width:1200px)': {
             fontSize: '1.5rem',
-        },
+        }
+    },
+    icon: {
+        color: `white`
     }
 }));
 
@@ -35,8 +39,10 @@ const Footer = () => {
 
     return (
         <div className={classes.bottomNavContainer}>
-            <h3 className={classes.footer}>Made by Team</h3>
-        </div>
+        <Button className={classes.icon}
+          href="https://github.com/Clayto30/campus-connect"
+          target="_blank"> <GitHub /></Button>
+    </div>
     );
 };
 
