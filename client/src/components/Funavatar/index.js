@@ -11,6 +11,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  box: {
+    background: `white`,/*button color*/
+    borderRadius: `4px`,
+    border: `lightgrey`,
+    transition: 'all 0.3s',
+    boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`,
+  }
 }));
 
 
@@ -29,7 +36,7 @@ const handleClick = function() {
         title={item.tip}
         placement="top"
       >
-        <Button onClick={handleClick} key={item.id}>
+        <Button className={classes.box} onClick={handleClick} key={item.id}>
           <Avatar alt={item.title} src={item.image} key={item.title} />
         </Button></Tooltip>
       </div>
