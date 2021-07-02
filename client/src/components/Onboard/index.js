@@ -5,13 +5,10 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from "@material-ui/core/Button";
 import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
-// PART OF ONBOARDING 
-//ASK USERS FOR SOCIAL PROFILES
-//NEEDS LOGO SELECTION ABOVE
 import Funavatar from '../Funavatar';
 import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
-//MISSING AVATARS
+
 const useStyles = makeStyles((theme) => ({
 
 
@@ -50,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
     connectButton: {
         fontFamily: `Poppins`,
-        textdecoration: 'none',
         width: `230px`,
         borderRadius: `6px`,
         border: '1px solid #D9EDFF',
@@ -63,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
         textalign: 'center',
         lineheight: '50px',
         padding: '0 30px',
-        webkittransition: 'all 0.3s',
-        transition: 'all 0.3s',
-
 
     },
     field: {
