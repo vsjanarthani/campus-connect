@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
+import Onboard from './components/Onboard';
 import Chat from './pages/Chat/Chat';
 import { setContext } from '@apollo/client/link/context';
 import DynamicRoute from './utils/DynamicRoute';
@@ -84,6 +85,7 @@ function App() {
 							<DynamicRoute exact path="/" component={Home} guest />
 							<DynamicRoute exact path="/login" component={Login} guest />
 							<DynamicRoute exact path="/signup" component={Signup} guest />
+							<DynamicRoute exact path="/onboard" component={Onboard} />
 							<DynamicRoute exact path="/chat" component={Chat} authenticated />
 							<DynamicRoute component={NoMatch} guest />
 						</Switch>

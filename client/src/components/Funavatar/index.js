@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function ImageAvatars(props) {
+export default function Funavatar(props) {
   const classes = useStyles();
 
 const handleClick = function() {
@@ -23,7 +23,7 @@ const handleClick = function() {
   return (
     <div className={classes.root}>
       {props.avatars.map(item => (<div>
-        <button onClick={handleClick}>
+        <button onClick={handleClick} key={item.id}>
           <Avatar alt={item.title} src={item.image} key={item.title} />
         </button>
       </div>
