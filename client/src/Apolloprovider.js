@@ -9,6 +9,22 @@ import { setContext } from '@apollo/client/link/context'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { getMainDefinition } from '@apollo/client/utilities'
 
+// import { Client, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
+//     const wsClient = new Client('ws://localhost:8080');
+//     const networkInterface = createNetworkInterface({
+//     uri: '/graphql',
+//     opts: {
+//         credentials: 'same-origin',
+//     },
+//     });
+//     const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+//     networkInterface,
+//     wsClient,
+//     );
+//     const client = new ApolloClient({
+//     networkInterface: networkInterfaceWithSubscriptions,
+//     // ...
+// });
 
 let httpLink = createHttpLink({
     // uri: '/graphql/',

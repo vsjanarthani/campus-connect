@@ -64,17 +64,17 @@ const Chat = () => {
                             <Message user={true} /> */}
                             <ChatBody />
                         </div>
-                        <div className="chatBoxBottom">
+                        {/* <div className="chatBoxBottom">
                             <textarea className="messageInput" placeholder="Write Your Message"></textarea>
                             <button className="submit">Send</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
-                <div className="chatOnline">
+                {/* <div className="chatOnline">
                     <div className="chatOnline">
-                        {/* <Online /> */}
+                        <Online />
                     </div>
-                </div>
+                </div> */}
             </div>
         </MessageProvider>
     )
