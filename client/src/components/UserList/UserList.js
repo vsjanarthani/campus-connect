@@ -1,4 +1,5 @@
 import React from 'react';
+import "./userList.css";
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
@@ -15,6 +16,9 @@ const useStyles = makeStyles(() => ({
     container: {
         background: "whitesmoke",
         flexGrow: 1,
+        maxHeight: '100%',
+        overflow: 'auto',
+        padding: "15px"
     },
     listItem: {
         color: "#003262",
@@ -58,12 +62,13 @@ const UserList = () => {
             return (
                 <div key={user.username}>
                     <ListItem
+                        className="conversation"
                         className={classes.listItem}
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
                         <Avatar alt={user.username} src={user.imageUrl || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
-                        <ListItemText primary={user.username} />
+                        <ListItemText primary={user.username} className="conversationName"/>
                         <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} />
