@@ -1,23 +1,40 @@
-const express = require('express');
+// import packages and varialbes needed
+const http = require('http');
 const { ApolloServer } = require('apollo-server-express');
+const express = require('express');
 const { typeDefs, resolvers } = require('./schemas');
 const path = require('path');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
+require('dotenv').config();
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+// Intergrating apolloserver with express and subscription
+async function startApolloServer() {
+  const PORT = process.env.PORT || 3001;
+  const app = express();
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: authMiddleware,
+    subscriptions: { path: '/' }
+  });
+  await server.start();
+  server.applyMiddleware({ app })
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware
-});
+  const httpServer = http.createServer(app);
 
-server.applyMiddleware({ app });
+  server.installSubscriptionHandlers(httpServer);
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+  // Bodyparser middleware
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+
+  // Make sure to call listen on httpServer, NOT on app.
+  await new Promise(resolve => httpServer.listen(PORT, resolve));
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
+  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
+  return { server, app, httpServer };
+}
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
@@ -28,11 +45,8 @@ if (process.env.NODE_ENV === 'production') {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 // });
 
-
 db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}`)
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
-  });
-
+  startApolloServer();
 });
+
+// Looks fine
