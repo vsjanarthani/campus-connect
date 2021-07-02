@@ -3,6 +3,7 @@ import { useAuthState } from '../../utils/auth';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
+import "./message.css"
 
 const useStyles = makeStyles((theme) => ({
     sent: {
@@ -35,9 +36,18 @@ const Message = ({ message }) => {
                 </Tooltip>
             }
         >
-            <p className={classes.sent} key={message._id}>
-                {message.msg}
-            </p>
+
+            <div className={user ? "message user" : "message"}>
+                <div className="messageTop">
+                    <p className="messageText" key={message._id}>
+                        {message.msg}
+                    </p>
+                </div>
+                {/* <div className="messageBottom">
+                    1 hour ago
+            </div> */}
+            </div>
+
         </BottomNavigation >
     )
 }
