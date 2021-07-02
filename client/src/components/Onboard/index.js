@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: `1.5rem`,
 
     },
+    scroller: {
+        overflow: 'auto'
+  
+      },
     subHeader: {
         fontSize: '1.2rem',
         fontFamily: `Poppins`,
@@ -85,11 +89,13 @@ const Onboard = () => {
                 <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
                 <Grid> <Typography className={classes.textDetail}>Pick a fave tech:</Typography></Grid>
+                <div className={classes.scroller}>
                 <Funavatar avatars={businessLogos} /> 
-
+                </div>
                 <Grid> <Typography className={classes.textDetail}>If you're gonna party, what's your vibe?</Typography></Grid>
-
+                <div className={classes.scroller}>
                 <Funavatar avatars={funLogos} />
+                </div>
                 <Typography className={classes.subHeader}>Social Profiles</Typography>
                 <Box className={classes.boxy}>
                     <form className={classes.root} noValidate autoComplete="off">
