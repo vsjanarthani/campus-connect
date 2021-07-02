@@ -61,11 +61,6 @@ const Chat = () => {
                             <Message user={true} />
                             <Message user={true} />
                             <Message user={true} />
-                            <Message user={true} />
-                            <Message user={true} />
-                            <Message user={true} />
-                            <Message user={true} />
-                            <Message user={true} />
                             <Message user={true} /> */}
                             <ChatBody />
                         </div>

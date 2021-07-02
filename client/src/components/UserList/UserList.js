@@ -17,7 +17,8 @@ const useStyles = makeStyles(() => ({
         background: "whitesmoke",
         flexGrow: 1,
         maxHeight: '100%',
-        overflow: 'auto'
+        overflow: 'auto',
+        padding: "15px"
     },
     listItem: {
         color: "#003262",
@@ -62,7 +63,7 @@ const UserList = () => {
                 <div key={user.username}>
                     <ListItem
                         className="conversation"
-                        // className={classes.listItem}
+                        className={classes.listItem}
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
