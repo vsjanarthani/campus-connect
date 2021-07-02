@@ -29,7 +29,7 @@ const businessLogos = [
         title: `React`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/react_gpcdnf.png`,
         nameStyle: `business`,
-        tip: `Are you Florida during the coronavirus? Because you really need to learn how to manage your state`
+        tip: `Are you Florida during the coronavirus? Because you really need to manage your state...`
 
     },
 
@@ -54,7 +54,7 @@ const businessLogos = [
         title: `CSS`,
         image: `https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/css_rojwbv.png`,
         nameStyle: `business`,
-        tip: `Stylin, fam.`
+        tip: `Stylin', fam.`
     },
 
     {
