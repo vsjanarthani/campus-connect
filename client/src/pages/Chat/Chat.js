@@ -7,7 +7,6 @@ import ChatBody from '../../components/ChatBody/ChatBody';
 // import Paper from '@material-ui/core/Paper';
 import "./chat.css";
 import { MessageProvider } from '../../utils/messagecontext';
-import Conversation from "../../components/Conversation/Conversation";
 import Message from "../../components/Message/Message";
 import Online from "../../components/Online/Online";
 
@@ -50,10 +49,7 @@ const Chat = () => {
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
                         <input className="chatMenuInput" placeholder="Search for Friends" type="text" />
-                        <Conversation />
-                        <Conversation />
-                        <Conversation />
-                        <Conversation />
+                        <UserList />
                     </div>
                 </div>
                 <div className="chatBox">
