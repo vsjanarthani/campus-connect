@@ -10,6 +10,8 @@ type User {
   createdAt: String!
   imageUrl: String
   latestMessage: Message
+  businessLogo: String
+  funLogo: String
 }
 type Message {
   _id: ID!
