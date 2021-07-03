@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
-        padding: "15px"
+        padding: "5px"
     },
     listItem: {
         color: "#003262",
@@ -77,16 +77,10 @@ const UserList = () => {
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
                              <Button href={user.linkedin || "https://www.linkedin.com"}
+          target="_blank" id="social"> 
+                        <LinkedInIcon  className="iconChat" /> </Button>
+                         <Button href={user.instagram || "https://www.instagram.com"}
           target="_blank" id="social"
-
-          > 
-                                           <LinkedInIcon  className="iconChat" /> </Button>
-                                  
-                                   
-                                  
-                                   <Button href={user.instagram || "https://www.instagram.com"}
-          target="_blank" id="social"
-
           >        <InstagramIcon className="iconChat"/></Button>
                     </ListItem>
                     <Divider />

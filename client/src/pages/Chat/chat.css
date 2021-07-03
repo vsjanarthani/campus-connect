@@ -13,7 +13,9 @@
  /* div className="chatBox">
                     <div className="chatBoxWrapper">
  .                       <div className="messagesHere"> */
-  
+  .iconChat {
+      font-size: xx-small;
+  }
  .chatMenuInput {
     font: Poppins;
     width: 90%;
