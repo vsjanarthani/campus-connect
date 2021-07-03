@@ -8,9 +8,8 @@ import ChatBody from '../../components/ChatBody/ChatBody';
 import { MessageProvider } from '../../utils/messagecontext';
 // import Message from "../../components/Message/Message";
 // import Online from "../../components/Online/Online";
-import { TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from '@material-ui/core/InputAdornment';
+
+
 // const useStyles = makeStyles((theme) => ({
 //     root: {
 //         flexGrow: 1,
@@ -48,24 +47,9 @@ const Chat = () => {
             <div className="messenger">
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
-                    <TextField
-                          className="chatMenuInput" variant="outlined"
-                  
-                           label="Find Friends"
-                           type="text"
-                           placeholder="Who do you want to reconnect with?"
-                           InputProps={{
-                               startAdornment: (
-                                   <InputAdornment position="start">
-                                   <SearchIcon />
-                                   </InputAdornment>
-                                  
-                                   ),
-                               }}
-                           />
-                       <UserList />
-                   </div>
-         
+                        <input className="chatMenuInput" placeholder="Search for Friends" type="text" />
+                        <UserList />
+                    </div>
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">

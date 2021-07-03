@@ -10,7 +10,7 @@ const Footer = props => {
 			alignItems: 'center',
 			justifyContent: 'space-evenly',
 			position: 'fixed',
-			background: '#003262',
+			background: props.data.header,
 			bottom: '0',
 			left: '0',
 			width: '100%',

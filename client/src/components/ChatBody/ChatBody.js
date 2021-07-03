@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -11,8 +11,6 @@ import { SEND_MESSAGE } from '../../utils/mutations';
 import { GET_MESSAGES } from '../../utils/queries';
 import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
 import Message from './Message';
- 
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
     field: {
         margin: "1rem 0rem",
-        width: "100%"
-
     },
 }));
 
@@ -137,33 +133,28 @@ const ChatBody = () => {
 
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
 
-            <TextField
-      
-           variant="outlined"
-           name='msg'
-           type='text'
-           value={content}
-           onChange={(e) => setContent(e.target.value)}
-           inputProps={{ className: classes.input }}
-           className={classes.field}
-             label="Send Message"
-                placeholder="Send a message..."
-                 InputProps={{
-                   endAdornment: (
-                                   <InputAdornment position="end">
-                                        <Button
-                 
-                   endIcon={<Send />}
-                   type="submit" >
-                  
-               </Button>
-                  </InputAdornment>
-                      ),
-                    }}
+                <InputField
+                    fullWidth={true}
+                    label="Message"
+                    variant="outlined"
+                    required
+                    name='msg'
+                    type='text'
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    inputProps={{ className: classes.input }}
+                    className={classes.field}
                 />
+                <Button
+                    variant="outlined"
+                    endIcon={<Send />}
+                    type="submit"
+                    className={classes.button}>
+                    Send
+                </Button>
             </Box>
 
-            </div>
+        </div>
     )
 }
 
