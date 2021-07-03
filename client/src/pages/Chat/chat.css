@@ -2,53 +2,75 @@
     height: calc(100vh - 70px);
     display: flex;
     padding-right: 15px;
-}
-
-.chatMenu{
+ }
+  
+ .chatMenu{
     flex: 3.5;
-}
-
-.chatMenuInput {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+ }
+  
+ /* div className="chatBox">
+                    <div className="chatBoxWrapper">
+ .                       <div className="messagesHere"> */
+  
+ .chatMenuInput {
+    font: Poppins;
     width: 90%;
     padding: 10px, 0;
     border: none;
     border-bottom: 3px solid black;
-}
-
-.chatBox{
+ }
+ .chatHeader {
+  
+    font-family: "Poppins";
+  
+ }
+ .chatBox{
     flex: 5.5;
-}
-
-.messagesHere{
+    border: lightgray;
+    margin-top: 2vh;
+    font-family: "Poppins";
+ }
+  
+ .messagesHere{
     height: 100%;
     overflow-y: scroll;
-}
-
-.chatBoxWrapper {
+ }
+  
+ .chatBoxWrapper {
     display: flex;
+    margin-top: 2vh;
     flex-direction: column;
     overflow-y: scroll;
-}
-
-.chatBoxBottom {
+ }
+  
+ .chatBoxBottom {
     margin: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.messageInput {
+ }
+  
+ .messageInput {
     width: 80%;
     height: 80px;
     padding: 15px;
-}
-
-/* .chatOnline{
+ }
+  
+ /* .chatOnline{
     flex: 3;
-} */
-
-.chatMenuWrapper, .chatBoxWrapper, .chatOnline {
+ } */
+  
+ .chatMenuWrapper, .chatBoxWrapper, .chatOnline {
     padding: 10px;
     /* background-color: blueviolet; */
-    height: 100%;
-}
+    max-height: 100%;
+    margin-top: 2vh;
+  
+ }
+ .chatBoxWrapper {
+    margin-top: 5vh;
+ }
+  
+ 
