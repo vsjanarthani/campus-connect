@@ -67,7 +67,7 @@ const UserList = () => {
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
-                        <Avatar alt={user.username} src={user.imageUrl || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
+                        <Avatar alt={user.username} src={user.businessLogo || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
                         <ListItemText primary={user.username} className="conversationName"/>
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
