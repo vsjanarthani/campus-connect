@@ -17,11 +17,15 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
     container: {
-        background: "whitesmoke",
+  
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
-        padding: "5px"
+        borderRadius: "5px",
+padding: "1px",
+marginTop: "2vh",
+background: '#FFFFFF',
+boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
     },
     listItem: {
         color: "#003262",

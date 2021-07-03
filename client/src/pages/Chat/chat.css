@@ -5,7 +5,7 @@
  }
   
  .chatMenu{
-    flex: 3.5;
+    flex: 3;
     margin-top: 3vh;
     margin-bottom: 1vh;
  }
@@ -13,12 +13,10 @@
  /* div className="chatBox">
                     <div className="chatBoxWrapper">
  .                       <div className="messagesHere"> */
-  .iconChat {
-      font-size: xx-small;
-  }
+
  .chatMenuInput {
     font: Poppins;
-    width: 90%;
+    width: 100%;
     padding: 10px, 0;
     border: none;
     border-bottom: 3px solid black;
@@ -29,7 +27,7 @@
   
  }
  .chatBox{
-    flex: 5.5;
+    flex: 6.5;
     border: lightgray;
     margin-top: 2vh;
     font-family: "Poppins";
