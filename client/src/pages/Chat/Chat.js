@@ -5,7 +5,7 @@ import ChatBody from '../../components/ChatBody/ChatBody';
 // import { makeStyles } from '@material-ui/core/styles';
 // import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
-import { MessageProvider } from '../../utils/messagecontext';
+// import { MessageProvider } from '../../utils/messagecontext';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
 import { useMessageDispatch } from '../../utils/messagecontext';
@@ -99,7 +99,7 @@ const Chat = () => {
     // }
 
     return (
-        <MessageProvider>
+        // <MessageProvider>
             <div className="messenger">
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
@@ -132,7 +132,7 @@ const Chat = () => {
                     </div>
                 </div> */}
             </div>
-        </MessageProvider>
+        // </MessageProvider>
     )
 }
 
