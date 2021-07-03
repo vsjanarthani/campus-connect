@@ -10,9 +10,10 @@ const messageReducer = (state, action) => {
         case 'SET_USERS':
             return {
                 ...state,
-                users: action.payload,
+                users: [...action.payload]
             }
         case 'SET_USER_MESSAGES':
+            console.log(state.users)
             usersCopy = [...state.users]
 
             userIndex = usersCopy.findIndex((u) => u.username === username)
@@ -34,17 +35,18 @@ const messageReducer = (state, action) => {
                 users: usersCopy,
             }
         case 'ADD_MESSAGE':
+            console.log(state);
             usersCopy = [...state.users]
-
+            console.log(usersCopy);
             userIndex = usersCopy.findIndex((u) => u.username === username)
-
+    
             message.reactions = []
 
             let newUser = {
                 ...usersCopy[userIndex],
                 messages: usersCopy[userIndex].messages
                     ? [message, ...usersCopy[userIndex].messages]
-                    : null,
+                    : [],
                 latestMessage: message,
             }
 
@@ -107,8 +109,8 @@ const messageReducer = (state, action) => {
 }
 
 export const MessageProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(messageReducer, { users: null })
-
+    const [state, dispatch] = useReducer(messageReducer, { users: [] })
+    console.log(state)
     return (
         <MessageDispatchContext.Provider value={dispatch}>
             <MessageStateContext.Provider value={state}>
