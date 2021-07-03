@@ -11,14 +11,21 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Avatar from '@material-ui/core/Avatar';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
     container: {
-        background: "whitesmoke",
+  
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
-        padding: "15px"
+        borderRadius: "5px",
+padding: "1px",
+marginTop: "2vh",
+background: '#FFFFFF',
+boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
     },
     listItem: {
         color: "#003262",
@@ -67,11 +74,18 @@ const UserList = () => {
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
+                        <FiberManualRecordIcon className="active" />
                         <Avatar alt={user.username} src={user.businessLogo || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
                         <ListItemText primary={user.username} className="conversationName"/>
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
+                             <Button href={user.linkedin || "https://www.linkedin.com"}
+          target="_blank" id="social"> 
+                        <LinkedInIcon  className="iconChat" /> </Button>
+                         <Button href={user.instagram || "https://www.instagram.com"}
+          target="_blank" id="social"
+          >        <InstagramIcon className="iconChat"/></Button>
                     </ListItem>
                     <Divider />
                 </div>
