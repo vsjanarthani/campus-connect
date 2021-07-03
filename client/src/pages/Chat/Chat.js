@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./chat.css";
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 // import { makeStyles } from '@material-ui/core/styles';
 // import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
-import { MessageProvider } from '../../utils/messagecontext';
+// import { MessageProvider } from '../../utils/messagecontext';
+import { useSubscription } from '@apollo/client';
+import { useAuthState } from '../../utils/auth';
+import { useMessageDispatch } from '../../utils/messagecontext';
+import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions'
 // import Message from "../../components/Message/Message";
 // import Online from "../../components/Online/Online";
 import { TextField } from '@material-ui/core';
@@ -24,6 +28,57 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 // }));
 
 const Chat = () => {
+
+
+  const messageDispatch = useMessageDispatch()
+
+  const { user } = useAuthState()
+
+  const { data: messageData, error: messageError } = useSubscription(
+    NEW_MESSAGE
+  )
+
+  const { data: reactionData, error: reactionError } = useSubscription(
+    NEW_REACTION
+  )
+
+  useEffect(() => {
+    if (messageError) console.log(messageError)
+
+    if (messageData) {
+      const message = messageData.newMessage
+      const otherUser = user.username === message.to ? message.from : message.to
+
+      messageDispatch({
+        type: 'ADD_MESSAGE',
+        payload: {
+          username: otherUser,
+          message,
+        },
+      })
+    }
+  }, [messageError, messageData])
+
+  useEffect(() => {
+    if (reactionError) console.log(reactionError)
+
+    if (reactionData) {
+      const reaction = reactionData.newReaction
+      const otherUser =
+        user.username === reaction.message.to
+          ? reaction.message.from
+          : reaction.message.to
+
+      messageDispatch({
+        type: 'ADD_REACTION',
+        payload: {
+          username: otherUser,
+          reaction,
+        },
+      })
+    }
+  }, [reactionError, reactionData])
+
 
     // const classes = useStyles();
 
@@ -44,7 +99,7 @@ const Chat = () => {
     // }
 
     return (
-        <MessageProvider>
+        // <MessageProvider>
             <div className="messenger">
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
@@ -92,7 +147,7 @@ const Chat = () => {
                     </div>
                 </div> */}
             </div>
-        </MessageProvider>
+        // </MessageProvider>
     )
 }
 

@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 const Home = props => {
 	console.log(props.data);
 
-	const user = useAuthState();
+	const { user } = useAuthState();
 	console.log(user);
 	return (
 		<div>
@@ -14,7 +14,7 @@ const Home = props => {
 					<Typography>Welcome to Campus Connect</Typography>
 				</>
 			) : (
-				<>{/* <Typography>Welcome {user.data.username}</Typography> */}</>
+				<> <Typography>Welcome {user.data.username}</Typography> </>
 			)}
 		</div>
 	);
