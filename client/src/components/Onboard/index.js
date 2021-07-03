@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '90vw',
         justifyContent: `center`,
-        margin: `auto`
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        flexDirection: `column`
 
     },
     contain: {
@@ -28,21 +30,25 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: `Poppins`,
         margin: `1vh`,
         marginLeft: `1vw`,
+        marginTop: `5vh`,
         fontWeight: 800,
-        fontSize: `1.5rem`,
+        fontSize: `1.3rem`,
 
     },
     scroller: {
         overflow: 'auto',
+        backgroundColor: `#F5F5F5`,
         paddingTop: `1vh`,
-        paddingBottom: `1vh`
+        paddingBottom: `1vh`,
+        maxWidth: `640px`,
+        justifyItems: `center`
 
     },
     subHeader: {
         fontSize: '1.2rem',
-        fontFamily: `Poppins`,
+        fontFamily: `Roboto`,
         marginLeft: `1vw`,
-        marginTop: `3vh`,
+        marginTop: `2vh`,
         marginBottom: `1vh`,
         weight: `600`
     },
@@ -61,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', // update later w real color scheme
         fontSize: '1.3rem',
         marginTop: `1vh`,
+        maxWidth: `640px`,
 
         height: `56px`,
         textalign: 'center',
@@ -71,7 +78,8 @@ const useStyles = makeStyles((theme) => ({
     field: {
         marginTop: `1vh`,
         margin: `auto`,
-        width: '90vw'
+        width: '90vw',
+        maxWidth: `640px`,
 
     }
 }));
