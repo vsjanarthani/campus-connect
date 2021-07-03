@@ -63,10 +63,9 @@ function App() {
 	}, [currentTheme]);
 
 	const useStyles = makeStyles({
-		testBox: {
-			backgroundColor: currentTheme.testColor,
-			height: '300px',
-			width: '300px'
+		body: {
+			backgroundColor: currentTheme.background,
+			color: currentTheme.text
 		}
 	});
 
@@ -107,12 +106,7 @@ function App() {
 								path="/onboard"
 								component={() => <Onboard data={currentTheme} />}
 							/>
-							<DynamicRoute
-								exact
-								path="/chat"
-								component={() => <Chat data={currentTheme} />}
-								authenticated
-							/>
+							<DynamicRoute exact path="/chat" component={Chat} authenticated />
 							<DynamicRoute component={NoMatch} guest />
 						</Switch>
 					</Router>
