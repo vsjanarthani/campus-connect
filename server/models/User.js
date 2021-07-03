@@ -29,6 +29,14 @@ const userSchema = new Schema(
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
+    funLogo: {
+      type: String,
+      default: "https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png"
+    },
+    businessLogo: {
+      type: String,
+      default: "https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/javascript_uzzfmq.png"
+    },
   },
   {
     toJSON: {
