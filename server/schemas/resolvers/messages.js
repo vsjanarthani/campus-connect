@@ -24,7 +24,7 @@ module.exports = {
                 const msgToGet = await Message.find({
                     to: { $in: [receiver, sender.username] },
                     from: { $in: [receiver, sender.username] }
-                }).sort({ createdAt: -1 });
+                }).sort({ createdAt: 1 });
 
                 return msgToGet;
 

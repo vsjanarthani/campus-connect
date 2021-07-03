@@ -80,7 +80,8 @@ const ChatBody = () => {
         if (selectedUser && !selectedUser.messages) {
             getMsgs({ variables: { from: selectedUser.username } })
         }
-    }, [selectedUser]);
+        console.log(selectedUser);
+    });
 
     useEffect(() => {
         if (msgData) {
@@ -92,7 +93,8 @@ const ChatBody = () => {
                 },
             })
         }
-    }, [msgData]);
+        console.log(msgData);
+    });
 
     const handleFormSubmit = async event => {
         event.preventDefault();
