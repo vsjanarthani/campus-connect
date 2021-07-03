@@ -90,10 +90,29 @@ function App() {
 								component={() => <Home data={currentTheme} />}
 								guest
 							/>
-							<DynamicRoute exact path="/login" component={Login} guest />
-							<DynamicRoute exact path="/signup" component={Signup} guest />
-							<DynamicRoute exact path="/onboard" component={Onboard} />
-							<DynamicRoute exact path="/chat" component={Chat} authenticated />
+							<DynamicRoute
+								exact
+								path="/login"
+								component={() => <Login data={currentTheme} />}
+								guest
+							/>
+							<DynamicRoute
+								exact
+								path="/signup"
+								component={() => <Signup data={currentTheme} />}
+								guest
+							/>
+							<DynamicRoute
+								exact
+								path="/onboard"
+								component={() => <Onboard data={currentTheme} />}
+							/>
+							<DynamicRoute
+								exact
+								path="/chat"
+								component={() => <Chat data={currentTheme} />}
+								authenticated
+							/>
 							<DynamicRoute component={NoMatch} guest />
 						</Switch>
 					</Router>
