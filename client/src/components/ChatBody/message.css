@@ -1,37 +1,38 @@
 .message {
     display: flex;
     flex-direction: column;
-    margin-top: 25px;
-}
-
-.messageTop {
-    display: flex;
-}
-
-/* .messageImg {
+    justify-content: right;
+    margin-top: 10px;
+ }
+  
+  
+  
+ /* .messageImg {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
-} */
-
-.messageText {
-    padding: 10px;
-    border-radius: 25px;
-    background-color: wheat;
-    max-width: 300px;
-}
-
-.messageBottom {
-    font-size: 12px;
-    margin-top: 15px;
-}
-
-.message.user {
-    align-items: flex-end;
-}
-
-.message.user .messageText {
-    background-color: turquoise;
-}
+ } */
+ .info-text {
+    font-family: "Roboto";
+ }
+ .messageText {
+    position: relative;
+    padding: 10px 20px;
+    color: white;
+    background: #0B93F6;
+    border-radius: 20px;
+    float: right;
+    font-family: "Roboto";
+    font-size: 1rem;
+    font-weight: normal;
+ }
+  
+  
+  
+ .message.user {
+    justify-content: flex-end;
+ }
+  
+ 
