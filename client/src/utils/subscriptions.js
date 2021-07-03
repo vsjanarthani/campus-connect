@@ -6,8 +6,22 @@ subscription newMessage {
     _id
     from
     to
-    content
+    msg
     createdAt
   }
 }
+`
+
+export const NEW_REACTION = gql`
+  subscription newReaction {
+    newReaction {
+      _id
+      content
+      message {
+        _id
+        from
+        to
+      }
+    }
+  }
 `
