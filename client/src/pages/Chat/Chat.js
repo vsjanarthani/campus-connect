@@ -55,7 +55,7 @@ const Chat = ({ history }) => {
             })
         }
         console.log(messageError, messageData);
-    })
+    }, [messageError, messageData])
 
     useEffect(() => {
         if (reactionError) console.log(reactionError)
@@ -76,7 +76,7 @@ const Chat = ({ history }) => {
             })
         }
         console.log(reactionError, reactionData);
-    })
+    }, [reactionError, reactionData])
 
     return (
         <MessageProvider>
