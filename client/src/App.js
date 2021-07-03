@@ -73,7 +73,7 @@ function App() {
 	const classes = useStyles();
 
 	return (
-		<ApolloProvider 
+		<ApolloProvider
 		// client={client}
 		>
 			<AuthProvider>
@@ -84,7 +84,12 @@ function App() {
 					/>
 					<Router>
 						<Switch>
-							<DynamicRoute exact path="/" component={Home} guest />
+							<DynamicRoute
+								exact
+								path="/"
+								component={() => <Home data={currentTheme} />}
+								guest
+							/>
 							<DynamicRoute exact path="/login" component={Login} guest />
 							<DynamicRoute exact path="/signup" component={Signup} guest />
 							<DynamicRoute exact path="/onboard" component={Onboard} />
