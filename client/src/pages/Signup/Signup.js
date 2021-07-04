@@ -99,7 +99,7 @@ const Signup = props => {
 		onCompleted(data) {
 			console.log(data);
 			dispatch({ type: 'SIGNUP', payload: data.addUser });
-			window.location.href = '/';
+			window.location.href = '/onboard';
 		}
 	});
 

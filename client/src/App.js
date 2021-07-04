@@ -92,8 +92,9 @@ function App() {
 							/>
 							<DynamicRoute exact path="/login" component={Login} guest />
 							<DynamicRoute exact path="/signup" component={Signup} guest />
-							<DynamicRoute exact path="/onboard" component={Onboard} />
+							<DynamicRoute exact path="/onboard" component={Onboard} authenticated  />
 							<DynamicRoute exact path="/chat" component={Chat} authenticated />
+
 							<DynamicRoute component={NoMatch} guest />
 						</Switch>
 					</Router>
