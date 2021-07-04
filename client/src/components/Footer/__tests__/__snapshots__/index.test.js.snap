@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-bottomNavContainer-3"
+  >
+    <h3
+      class="makeStyles-footer-4"
+    >
+      Made by Team
+    </h3>
+  </div>
+</DocumentFragment>
+`;

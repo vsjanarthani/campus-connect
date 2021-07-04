@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import CreateIcon from '@material-ui/icons/Create';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_USER } from '../utils/mutations';
-
-import Auth from '../utils/auth';
+import { useLazyQuery } from '@apollo/client';
+import { LOGIN_USER } from '../../utils/queries';
+import { useAuthDispatch } from '../../utils/auth';
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -78,21 +77,34 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const Signup = () => {
-
+const Login = () => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const classes = useStyles();
-    const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-    const [addUser, { error }] = useMutation(ADD_USER);
+    const [errors, setErrors] = useState({})
+    const dispatch = useAuthDispatch()
+    const [variables, setVariables] = useState({
+        username: '',
+        password: '',
+    });
+    const [login, { loading }] = useLazyQuery(LOGIN_USER, {
+        onError: (err) => {
+            console.log(err)
+            setErrors(err.graphQLErrors[0].extensions.errors)
+        },
+        onCompleted(data) {
+            dispatch({ type: 'LOGIN', payload: data.login })
+            window.location.href = '/'
+        },
+    })
 
     // update state based on form input changes
     const handleChange = event => {
         const { name, value } = event.target;
 
-        setFormState({
-            ...formState,
+        setVariables({
+            ...variables,
             [name]: value
         });
     };
@@ -100,58 +112,38 @@ const Signup = () => {
     // submit form
     const handleFormSubmit = async event => {
         event.preventDefault();
-
+        console.log(variables);
         try {
-            console.log(formState);
-            const { data } = await addUser({
-                variables: { ...formState }
-
+            await login({
+                variables: { ...variables }
             });
-            console.log(data);
-            // if (userData.status === 200) {
-            //     setOpen(true)
-            //     setAlertMsg('Form submission Success');
-            //     setSeverity('success')
-            // }
-            // else {
-            //     setOpen(true)
-            //     setAlertMsg('Submission Failed, Try again!');
-            //     setSeverity('warning')
-            // }
 
-            Auth.login(data.addUser.token);
-        } catch (e) {
-            console.log(error);
+        } catch (error) {
             setOpen(true)
-            setAlertMsg(e.text);
+            setAlertMsg(error);
             setSeverity('error')
-            console.log("signup error", e);
+            console.error(error);
         }
+
+        // clear form values
+        setVariables({
+            username: '',
+            password: ''
+        });
     };
 
     return (
         <Grid container justify="center">
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
+
                 <InputField
                     fullWidth={true}
-                    variant="outlined"
                     label="Username"
-                    name="username"
-                    type="username"
-                    required
-                    inputProps={{ className: classes.input }}
-                    className={classes.field}
-                    value={formState.username}
-                    onChange={handleChange}
-                />
-                <InputField
-                    fullWidth={true}
-                    label="Email"
                     variant="outlined"
                     required
-                    name='email'
-                    type='email'
-                    value={formState.email}
+                    name='username'
+                    type='username'
+                    value={variables.username}
                     onChange={handleChange}
                     inputProps={{ className: classes.input }}
                     className={classes.field}
@@ -162,26 +154,27 @@ const Signup = () => {
                     name='password'
                     required
                     variant="outlined"
-                    value={formState.password}
+                    value={variables.password}
                     onChange={handleChange}
                     inputProps={{ className: classes.input }}
                 />
                 <Button
                     variant="outlined"
                     fullWidth={true}
-                    endIcon={<CreateIcon />}
+                    endIcon={<DoubleArrowIcon />}
                     type="submit"
                     className={classes.button}>
-                    Signup
+                    {loading ? 'loading..' : 'Login'}
                 </Button>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {error && alertMsg}
+                    {errors && alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>
-    );
-};
 
-export default Signup;
+    )
+}
+
+export default Login

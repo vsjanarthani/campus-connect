@@ -1,9 +1,26 @@
-import React from 'react'
+import React from 'react';
+import { useAuthState } from '../../utils/auth';
+import { Typography } from '@material-ui/core';
+
 
 const Home = () => {
+    const { user } = useAuthState();
+    console.log(user);
     return (
         <div>
-            This is Home page
+            {!user ? (
+                <>
+                    <Typography>
+                        Welcome to Campus Connect
+                    </Typography>
+                </>
+            ) : (
+                <>
+                    <Typography>
+                        Welcome {user.data.username}
+                    </Typography>
+                </>
+            )}
         </div>
     )
 }

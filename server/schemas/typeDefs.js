@@ -3,23 +3,49 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 type User {
+  _id: ID!
+  username: String!
+  email: String
+  token: ID!
+  createdAt: String!
+  imageUrl: String
+  latestMessage: Message
+  businessLogo: String
+  funLogo: String
+}
+type Message {
+  _id: ID!
+  msg: String!
+  from: String!
+  to: String!
+  createdAt: String!
+  reactionCount: Int
+  reactions: [Reaction]
+}
+type Reaction {
     _id: ID!
-    username: String
-    email: String
+    content: String!
+    createdAt: String!
+    message: Message!
+    user: User!
   }
-  type Auth {
-    token: ID!
-    user: User
-}
-
 type Query {
-  user(username: String!): User
+  login(username: String!, password: String!): User!
+  getUsers: [User]!
+  getMsgs(from:String!): [Message]!
 }
-
 type Mutation {
-  login(email: String!, password: String!): Auth
-  addUser(username: String!, email: String!, password: String!): Auth
+  addUser(username: String!, email: String!, password: String!): User!
+  sendMsg(to:String! msg:String!): Message!
+  reactToMessage(messageId: ID!, content: String!): Message!
 }
+type Subscription {
+    newMessage: Message!
+    newReaction: Reaction!
+  }
 `;
 
 module.exports = typeDefs;
+
+// https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/ - Date types for createdAt
+// Should date be formated at the front end? sorting by createdAt could be a problems if its formatted?!
