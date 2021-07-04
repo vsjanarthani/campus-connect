@@ -16,12 +16,17 @@ import Divider from '@material-ui/core/Divider';
 
 import Avatar from '@material-ui/core/Avatar';
 
-const useStyles = makeStyles(() => ({
-	root: {
-		dividerColor: `#F5F5F5`
-	}
-}));
 const Chat = props => {
+	const useStyles = makeStyles(() => ({
+		root: {
+			dividerColor: `#F5F5F5`
+		},
+		text: {
+			color: props.data.text
+		}
+	}));
+	const classes = useStyles();
+
 	const messageDispatch = useMessageDispatch();
 
 	const { user } = useAuthState();
@@ -82,7 +87,9 @@ const Chat = props => {
 								border: '0.1px solid lightgray'
 							}}
 						></Avatar>{' '}
-						<span id="namename">{user.data.username}'s Friends</span>
+						<span id="namename" className={classes.text}>
+							{user.data.username}'s Friends
+						</span>
 					</div>
 					<Divider className="dividerColor" />
 					{/* <TextField
