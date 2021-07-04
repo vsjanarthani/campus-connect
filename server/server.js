@@ -16,8 +16,9 @@ async function startApolloServer() {
     typeDefs,
     resolvers,
     context: authMiddleware,
-    subscriptions: { path: '/' }
+    subscriptions: { path: '/graphql' }
   });
+  
   await server.start();
   server.applyMiddleware({ app })
 

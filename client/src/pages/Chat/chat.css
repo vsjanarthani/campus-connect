@@ -1,0 +1,80 @@
+.messenger{
+    height: calc(100vh - 70px);
+    display: flex;
+    padding-right: 15px;
+ }
+  
+ .chatMenu{
+    flex: 3;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    
+ }
+  
+ /* div className="chatBox">
+                    <div className="chatBoxWrapper">
+ .                       <div className="messagesHere"> */
+
+ .chatMenuInput {
+    font: Poppins;
+    width: 100%;
+    padding: 10px, 0;
+    border: none;
+    border-bottom: 3px solid black;
+ }
+ .chatHeader {
+  
+    font-family: "Poppins";
+  
+ }
+ .chatBox{
+    flex: 6.5;
+    border: lightgray;
+    margin-top: 2vh;
+    font-family: "Poppins";
+ }
+  
+ .messagesHere{
+    max-height: 65vh;
+    overflow-y: scroll;
+    display: flex; 
+    flex-direction: column-reverse;
+    scroll-snap-type: y mandatory;
+ }
+  
+ .chatBoxWrapper {
+    display: flex;
+    margin-top: 2vh;
+    flex-direction: column;
+    overflow-y: scroll;
+ }
+  
+ .chatBoxBottom {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+  
+ .messageInput {
+    width: 80%;
+    height: 80px;
+    padding: 15px;
+ }
+  
+ /* .chatOnline{
+    flex: 3;
+ } */
+  
+ .chatMenuWrapper, .chatBoxWrapper, .chatOnline {
+    padding: 10px;
+    /* background-color: blueviolet; */
+    max-height: 100%;
+    margin-top: 2vh;
+  
+ }
+ .chatBoxWrapper {
+    margin-top: 5vh;
+ }
+  
+ 
