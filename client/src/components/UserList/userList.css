@@ -41,9 +41,4 @@
   
  }
   
- @media screen and (max-width: 768px) {
-    .conversationName {
-        display: none;
-    }
- }
  
