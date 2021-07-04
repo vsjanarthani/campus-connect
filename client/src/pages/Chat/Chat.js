@@ -4,13 +4,24 @@ import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
+
+import ForumIcon from '@material-ui/icons/Forum';
+import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions'
-import { TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from '@material-ui/core/InputAdornment';
+// import { TextField } from '@material-ui/core';
+// import SearchIcon from '@material-ui/icons/Search';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+import Divider from "@material-ui/core/Divider";
 
+import Avatar from '@material-ui/core/Avatar';
 
+const useStyles = makeStyles(() => ({
+    root: {
+        dividerColor: `#F5F5F5`
+    },
+
+}));
 const Chat = () => {
 
 
@@ -69,8 +80,13 @@ const Chat = () => {
     return (
             <div className="messenger">
                 <div className="chatMenu">
-                    <div className="chatMenuWrapper">
-                    <TextField
+                    <div className="chatMenuWrapper"> 
+                        <div className="aligned"><Avatar id="myavatar" src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png" style={{
+             border: '0.1px solid lightgray'
+          }}></Avatar> <span id="namename">{user.data.username}'s Friends</span>
+ </div>
+                    <Divider className="dividerColor"/>
+                    {/* <TextField
                           className="chatMenuInput" variant="outlined"
                   
                            label="Find Friends"
@@ -84,13 +100,14 @@ const Chat = () => {
                                   
                                    ),
                                }}
-                           />
+                           /> */}
                        <UserList />
                    </div>
          
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
+                    <div className="chatBanner"> <ForumIcon></ForumIcon> [CHATFRIEND USERNAME] </div>  
                         <div className="messagesHere">
                             <ChatBody />
                         </div>
@@ -101,3 +118,4 @@ const Chat = () => {
 }
 
 export default Chat
+// need to add dynamic avatar for logged in user, hardcoded image now

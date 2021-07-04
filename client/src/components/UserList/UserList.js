@@ -16,23 +16,30 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
+    root: {
+        dividerColor: `#F5F5F5`
+    },
+    iconChat: {
+        fontsize: '1rem',
+    },
+    socialbtn:  {
+        width: "5px"},
     container: {
 
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
         borderRadius: "5px",
-        padding: "1px",
-        marginTop: "2vh",
-        background: '#FFFFFF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
+paddingBottom: `1vh`,
+background: '#FFFFFF',
+boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`,
     },
     listItem: {
         color: "#003262",
         paddingLeft: '0.5rem',
         textTransform: 'none',
         "&:hover": {
-            color: "orange",
+            color: "#15B313",
         },
         "& .MuiTypography-body1": {
 
@@ -80,14 +87,15 @@ const UserList = () => {
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
-                        <Button href={user.linkedin || "https://www.linkedin.com"}
-                            target="_blank" id="social">
-                            <LinkedInIcon className="iconChat" /> </Button>
-                        <Button href={user.instagram || "https://www.instagram.com"}
-                            target="_blank" id="social"
-                        >        <InstagramIcon className="iconChat" /></Button>
+                             <Button href={user.linkedin || "https://www.linkedin.com"}
+          target="_blank" className={classes.socialbtn}> 
+                        <LinkedInIcon  className="iconChat" /> </Button>
+                         <Button href={user.instagram || "https://www.instagram.com"}
+          target="_blank" id="social"
+          >        <InstagramIcon className={classes.iconChat}/></Button>
+
                     </ListItem>
-                    <Divider />
+                    <Divider classes={{root: classes.dividerColor}}/>
                 </div>
             )
         })

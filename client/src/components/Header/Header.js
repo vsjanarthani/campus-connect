@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	AppBar,
 	Toolbar,
@@ -19,6 +19,13 @@ import CreateIcon from '@material-ui/icons/Create';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
+
+import IconButton from "@material-ui/core/IconButton";
+
+import BackspaceIcon from '@material-ui/icons/Backspace';
+
+import Drawer from "@material-ui/core/Drawer";
+import Rail from '../../components/MobileRail';
 
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
@@ -42,7 +49,7 @@ const Header = props => {
 			marginRight: theme.spacing(2),
 			color: 'whitesmoke',
 			'&:hover': {
-				color: 'orange'
+				color: props.data.navHover
 			},
 			'& .MuiTypography-body1': {
 				'@media (max-width:1200px)': {
@@ -65,7 +72,7 @@ const Header = props => {
 			}
 		}
 	}));
-
+	const [open, setOpen] = useState(false);
 	const classes = useStyles();
 	const authDispatch = useAuthDispatch();
 	const { user } = useAuthState();
@@ -107,7 +114,7 @@ const Header = props => {
 									ticking={true}
 								/>
 								<Switch //https://material-ui.com/components/switches/
-									color="primary"
+									color="default"
 									name="checkedB"
 									inputProps={{ 'aria-label': 'primary checkbox' }}
 									onChange={event => props.onChange(event.target.checked)}
@@ -124,6 +131,13 @@ const Header = props => {
 					</List>
 				</Toolbar>
 			</AppBar>
+			<IconButton onClick={() => setOpen(true)}>
+                           <BackspaceIcon className={classes.opener}>  </BackspaceIcon>
+                            </IconButton>
+			<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
+                <Rail
+                />
+            </Drawer>
 		</Box>
 	);
 };
