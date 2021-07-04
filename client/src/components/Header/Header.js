@@ -42,7 +42,7 @@ const Header = props => {
 			marginRight: theme.spacing(2),
 			color: 'whitesmoke',
 			'&:hover': {
-				color: 'orange'
+				color: props.data.navHover
 			},
 			'& .MuiTypography-body1': {
 				'@media (max-width:1200px)': {
@@ -107,7 +107,7 @@ const Header = props => {
 									ticking={true}
 								/>
 								<Switch //https://material-ui.com/components/switches/
-									color="primary"
+									color="default"
 									name="checkedB"
 									inputProps={{ 'aria-label': 'primary checkbox' }}
 									onChange={event => props.onChange(event.target.checked)}
