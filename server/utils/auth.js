@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
-// const { JWT_SECRET } = require('../config/env.json');
+// require('dotenv').config();
 const pubsub = new PubSub();
 
-JWT_SECRET = "myawesomeproject"
+const secret = 'mysecretsshhhhh';
+const expiration = '2h';
 
 const authMiddleware = (context) => {
 
@@ -15,7 +16,7 @@ const authMiddleware = (context) => {
   }
 
   if (token) {
-    jwt.verify(token, JWT_SECRET, (_err, decodedToken) => {
+    jwt.verify(token, secret, (_err, decodedToken) => {
       context.user = decodedToken;
       // console.log(decodedToken);
       // Decode token exmaple below
@@ -37,7 +38,7 @@ const authMiddleware = (context) => {
 
 const authToken = ({ username, email, _id }) => {
   const payload = { username, email, _id };
-  return jwt.sign({ data: payload }, JWT_SECRET, { expiresIn: '2h' });
+  return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
 }
 
 

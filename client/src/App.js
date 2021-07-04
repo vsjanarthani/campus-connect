@@ -23,35 +23,6 @@ import DynamicRoute from './utils/DynamicRoute';
 // theme stuff
 import { makeStyles } from '@material-ui/core/styles';
 import { workTheme, funTheme } from './utils/themes';
-import ApolloProvider from './Apolloprovider';
-// import {
-// 	ApolloClient,
-// 	InMemoryCache,
-// 	ApolloProvider,
-// 	createHttpLink
-// } from '@apollo/client';
-// import { setContext } from '@apollo/client/link/context';
-
-
-
-// // import ApolloProvider from './Apolloprovider';
-// const httpLink = createHttpLink({
-// 	uri: 'http://localhost:3001/graphql'
-// });
-// const authLink = setContext((_, { headers }) => {
-// 	const token = localStorage.getItem('token');
-// 	console.log({ token });
-// 	return {
-// 		headers: {
-// 			...headers,
-// 			authorization: token ? `Bearer ${token}` : ''
-// 		}
-// 	};
-// });
-// const client = new ApolloClient({
-// 	link: authLink.concat(httpLink),
-// 	cache: new InMemoryCache()
-// });
 
 import ApolloProvider from './Apolloprovider';
 // const httpLink = createHttpLink({
@@ -73,7 +44,6 @@ import ApolloProvider from './Apolloprovider';
 // });
 
 function App() {
-
 	// theme & toggle states
 	const [themeToggle, setThemeToggle] = useState(false);
 	const [currentTheme, setCurrentTheme] = useState(workTheme);

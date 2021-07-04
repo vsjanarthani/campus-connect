@@ -11,6 +11,7 @@ subscription newMessage {
   }
 }
 `
+
 export const NEW_REACTION = gql`
   subscription newReaction {
     newReaction {

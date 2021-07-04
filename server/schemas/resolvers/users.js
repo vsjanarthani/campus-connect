@@ -5,7 +5,6 @@ const { authToken } = require('../../utils/auth');
 module.exports = {
   // Queries
   Query: {
-    
     // get all users
     getUsers: async (_parent, _args, context) => {
       // console.log(context.user);

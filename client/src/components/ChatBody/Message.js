@@ -3,7 +3,8 @@ import { useAuthState } from '../../utils/auth';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-import "./message.css"
+import "./message.css";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
     sent: {
@@ -36,14 +37,14 @@ const Message = ({ message }) => {
 
             <div className={user ? "message user" : "message"}>
                 <div className="messageTop">
-                    <Tooltip title={message.createdAt}>
+                    <Tooltip title={moment(message.createdAt * 1).format('MMMM Do YYYY, h:mm:ss a')}>
                         <p className="messageText" key={message._id}>
                             {message.msg}
                         </p>
 
 
 
-                        </Tooltip>
+                    </Tooltip>
 
                 </div>
                 {/* <div className="messageBottom">

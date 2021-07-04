@@ -11,7 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 
-const Chat = ({ history }) => {
+const Chat = () => {
 
 
   const messageDispatch = useMessageDispatch()
@@ -65,57 +65,6 @@ const Chat = ({ history }) => {
 
 
     
-
-    const messageDispatch = useMessageDispatch()
-
-    const { user } = useAuthState();
-
-    const { data: messageData, error: messageError } = useSubscription(
-        NEW_MESSAGE
-    )
-
-    const { data: reactionData, error: reactionError } = useSubscription(
-        NEW_REACTION
-    )
-
-    useEffect(() => {
-        if (messageError) console.log(messageError)
-
-        if (messageData) {
-            const message = messageData.newMessage
-            const otherUser = user.username === message.to ? message.from : message.to
-
-            messageDispatch({
-                type: 'ADD_MESSAGE',
-                payload: {
-                    username: otherUser,
-                    msg: message,
-                },
-            })
-        }
-        console.log(messageError, messageData);
-    }, [messageError, messageData])
-
-    useEffect(() => {
-        if (reactionError) console.log(reactionError)
-
-        if (reactionData) {
-            const reaction = reactionData.newReaction
-            const otherUser =
-                user.username === reaction.message.to
-                    ? reaction.message.from
-                    : reaction.message.to
-
-            messageDispatch({
-                type: 'ADD_REACTION',
-                payload: {
-                    username: otherUser,
-                    reaction,
-                },
-            })
-        }
-        console.log(reactionError, reactionData);
-    }, [reactionError, reactionData])
 
     return (
             <div className="messenger">
