@@ -5,6 +5,7 @@ import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
 
+import ForumIcon from '@material-ui/icons/Forum';
 import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions'
@@ -19,15 +20,10 @@ const useStyles = makeStyles(() => ({
     root: {
         dividerColor: `#F5F5F5`
     },
-    chatBoxWrapper:
-    {
-        background: '#FFFFFF',
-        boxshadow: "inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)"
-     }
-    
+
 }));
 const Chat = () => {
-    const classes = useStyles();
+
 
   const messageDispatch = useMessageDispatch()
 
@@ -87,7 +83,7 @@ const Chat = () => {
                     <div className="chatMenuWrapper">
                         <div className="aligned"><Avatar id="myavatar" src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png" style={{
              border: '0.1px solid lightgray'
-          }}></Avatar> <span id="namename">FirstName's Friends</span>
+          }}></Avatar> <span id="namename">{user.data.username}'s Friends</span>
  </div>
                     <Divider className="dividerColor"/>
                     {/* <TextField
@@ -111,6 +107,7 @@ const Chat = () => {
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
+                    <div className="chatBanner"> <ForumIcon></ForumIcon> ChatFriend Username </div>  
                         <div className="messagesHere">
                             <ChatBody />
                         </div>
