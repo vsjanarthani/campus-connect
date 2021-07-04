@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import UserList from '../../components/UserList/UserList';
 // import { MessageProvider } from '../../utils/messagecontext';
+import { useAuthState } from '../../utils/auth';
 
 // import ForumIcon from '@material-ui/icons/Forum';
 // import Send from '@material-ui/icons/Send';
@@ -74,12 +75,14 @@ const useStyles = makeStyles(() => ({
 const Rail = ({ navigationLinks }) => {
     const classes = useStyles();
 
+    const { user } = useAuthState()
+    
     return (
         <Box className={classes.menuRail} component="div">
         <Divider />      <Divider /><Grid className="myname" >  
               <Typography className={classes.railname}> <Avatar id="myavatar" src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png" style={{
              border: '0.1px solid lightgray'
-          }}></Avatar> <span id="namename">[ADD NAME VARIABLE]'s Friends</span></Typography>
+          }}></Avatar> <span id="namename">{user.data.username}'s Friends</span></Typography>
               </Grid> <Divider /><Divider />
            
             <div className="messenger">
