@@ -11,37 +11,12 @@ import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Onboard from './components/Onboard';
 import Chat from './pages/Chat/Chat';
-// import { setContext } from '@apollo/client/link/context';
 import DynamicRoute from './utils/DynamicRoute';
-// import {
-// 	ApolloClient,
-// 	InMemoryCache,
-// 	ApolloProvider,
-// 	createHttpLink
-// } from '@apollo/client';
-
 // theme stuff
 import { makeStyles } from '@material-ui/core/styles';
 import { workTheme, funTheme } from './utils/themes';
-
 import ApolloProvider from './Apolloprovider';
-// const httpLink = createHttpLink({
-// 	uri: 'http://localhost:3001/graphql'
-// });
-// const authLink = setContext((_, { headers }) => {
-// 	const token = localStorage.getItem('token');
-// 	console.log({ token });
-// 	return {
-// 		headers: {
-// 			...headers,
-// 			authorization: token ? `Bearer ${token}` : ''
-// 		}
-// 	};
-// });
-// const client = new ApolloClient({
-// 	link: authLink.concat(httpLink),
-// 	cache: new InMemoryCache()
-// });
+import Confetti from 'react-confetti';
 
 function App() {
 	// theme & toggle states
@@ -65,55 +40,69 @@ function App() {
 	const useStyles = makeStyles({
 		body: {
 			backgroundColor: currentTheme.background,
-			color: currentTheme.text
+			minHeight: '100vh'
+		},
+		confetti: {
+			zIndex: '-10'
 		}
 	});
 
 	const classes = useStyles();
 
 	return (
-		<ApolloProvider
-		// client={client}
-		>
-			<AuthProvider>
-				<MessageProvider>
-					<Header
-						onChange={value => setThemeToggle(value)}
-						data={currentTheme}
-					/>
-					<Router>
-						<Switch>
-							<DynamicRoute
-								exact
-								path="/"
-								component={() => <Home data={currentTheme} />}
-								guest
-							/>
-							<DynamicRoute
-								exact
-								path="/login"
-								component={() => <Login data={currentTheme} />}
-								guest
-							/>
-							<DynamicRoute
-								exact
-								path="/signup"
-								component={() => <Signup data={currentTheme} />}
-								guest
-							/>
-							<DynamicRoute
-								exact
-								path="/onboard"
-								component={() => <Onboard data={currentTheme} />}
-							/>
-							<DynamicRoute exact path="/chat" component={Chat} authenticated />
-							<DynamicRoute component={NoMatch} guest />
-						</Switch>
-					</Router>
-					<Footer data={currentTheme} />
-				</MessageProvider>
-			</AuthProvider>
-		</ApolloProvider>
+		<div className={classes.body}>
+			<Confetti
+				className={classes.confetti}
+				numberOfPieces={currentTheme.confetti}
+			/>
+			<ApolloProvider>
+				<AuthProvider>
+					<MessageProvider>
+						<Header
+							onChange={value => setThemeToggle(value)}
+							data={currentTheme}
+						/>
+						<Router>
+							<Switch>
+								<DynamicRoute
+									exact
+									path="/"
+									component={() => <Home data={currentTheme} />}
+									guest
+								/>
+
+								<DynamicRoute
+									exact
+									path="/login"
+									component={() => <Login data={currentTheme} />}
+									guest
+								/>
+								<DynamicRoute
+									exact
+									path="/signup"
+									component={() => <Signup data={currentTheme} />}
+									guest
+								/>
+								<DynamicRoute
+									exact
+									path="/onboard"
+									component={() => <Onboard data={currentTheme} />}
+									authenticated
+								/>
+								<DynamicRoute
+									exact
+									path="/chat"
+									component={() => <Chat data={currentTheme} />}
+									authenticated
+								/>
+								<DynamicRoute component={NoMatch} guest />
+							</Switch>
+						</Router>
+						<Footer data={currentTheme} />
+					</MessageProvider>
+				</AuthProvider>
+			</ApolloProvider>
+		</div>
 	);
 }
 

@@ -1,4 +1,4 @@
-.conversation {
+#conversation {
     display: flex;
     align-items: center;
     padding: 5px;
@@ -41,9 +41,4 @@
   
  }
   
- @media screen and (max-width: 768px) {
-    .conversationName {
-        display: none;
-    }
- }
  

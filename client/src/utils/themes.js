@@ -1,6 +1,8 @@
 const workTheme = {
-	logo: 'work.png',
+	funAvatar: false,
 	background: 'white',
+	confetti: '0',
+	text: 'black',
 	header: '#003262',
 	navHover: 'orange',
 	chatBubble1: '#0B93F6',
@@ -8,8 +10,10 @@ const workTheme = {
 };
 
 const funTheme = {
-	logo: 'fun.png',
-	background: '#474747',
+	funAvatar: true,
+	background: '#427fa5',
+	confetti: '200',
+	text: 'white',
 	header: '#891c69',
 	navHover: '#ffd000',
 	chatBubble1: '',
