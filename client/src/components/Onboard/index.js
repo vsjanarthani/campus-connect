@@ -143,7 +143,7 @@ const Onboard = () => {
                                 ),
                             }}
                         />   <Grid>
-                            <Button className={classes.connectButton}>Connect</Button></Grid>
+                            <Button className={classes.connectButton} onClick={function() {window.location.assign('./chat')}}>Connect</Button></Grid>
                     </Grid></form>
 
             </Box>
