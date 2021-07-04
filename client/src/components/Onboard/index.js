@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         weight: `600`
     },
     textDetail: {
-        fontsize: '.9rem',
+        fontsize: '.8rem',
         fontfamily: 'Roboto',
         margin: `1vh`
     },
@@ -62,9 +62,11 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: `Poppins`,
         width: '90vw',
         borderRadius: `6px`,
+        bordercolor: `grey`,
         border: '1px solid #D9EDFF',
         color: `white`,
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', // update later w real color scheme
+        background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
+        boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         fontSize: '1.3rem',
         marginTop: `1vh`,
         maxWidth: `640px`,
@@ -94,7 +96,7 @@ const Onboard = () => {
 
         <Box className={classes.root}>
             <Grid container >
-                <Typography component='h1' className={classes.header} > Get Connected</Typography>  </Grid>
+                <Typography component='h1' className={classes.header} > Username's Profile </Typography>  </Grid>
 
             <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
