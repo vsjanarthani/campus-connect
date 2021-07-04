@@ -9,6 +9,7 @@ import Funavatar from '../Funavatar';
 import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
 import { useAuthState } from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -76,9 +77,9 @@ const useStyles = makeStyles((theme) => ({
         textalign: 'center',
         lineheight: '50px',
         "&:hover": {
-            transition: `0.5s`,
-            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',  
-            boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',      }
+
+            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
+        }
 
 
     },
@@ -97,7 +98,8 @@ const Onboard = () => {
 
     const classes = useStyles();
     const { user } = useAuthState()
-
+    console.log(user.data.username, user.data.businessLogo, user.data._id)
+   
     return (
 
         <Box className={classes.root}>
@@ -116,7 +118,7 @@ const Onboard = () => {
             </div>
             <Typography className={classes.subHeader}>Social Profiles</Typography>
             <Box className={classes.boxy}>
-                <form  noValidate autoComplete="off">
+                <form noValidate autoComplete="off">
                     <Grid>
 
                         <TextField
@@ -146,7 +148,7 @@ const Onboard = () => {
                                 ),
                             }}
                         />   <Grid>
-                            <Button className={classes.connectButton} onClick={function() {window.location.assign('./chat')}}>Connect</Button></Grid>
+                            <Button className={classes.connectButton} component={Link} to="/chat">Connect</Button></Grid>
                     </Grid></form>
 
             </Box>
@@ -158,6 +160,3 @@ const Onboard = () => {
 }
 
 export default Onboard;
-
-// TO DO: GET THE CONTENT TO CENTER ON PAGE AND BE CONSISTENT WIDTH THE PRIOR LOGIN/SIGN UP PAGES
-// CONNECT THINGS
