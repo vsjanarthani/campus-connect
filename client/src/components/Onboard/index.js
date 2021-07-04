@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         bordercolor: `grey`,
         border: '1px solid #D9EDFF',
         color: `white`,
-        background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
+        background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
         boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         fontSize: '1.3rem',
         marginTop: `1vh`,
@@ -74,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
         height: `56px`,
         textalign: 'center',
         lineheight: '50px',
+        "&:hover": {
+            
+            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',        }
 
 
     },
