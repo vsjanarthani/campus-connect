@@ -7,6 +7,7 @@ import {
 	FormControlLabel,
 	Switch
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -86,7 +87,7 @@ const Header = props => {
 		<Box component="nav">
 			<AppBar position="static" className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
-					<Typography component={Button} href="/">
+					<Typography component={Button} component={ Link } to="/">
 						<span className={classes.title}>Campus Connect</span>
 					</Typography>
 					<List>
@@ -98,10 +99,10 @@ const Header = props => {
 									style={{ fontSize: '1.2em' }}
 									ticking={true}
 								/>
-								<Button className={classes.listItem} href="/login">
+								<Button className={classes.listItem} component={ Link } to="/login">
 									<DoubleArrowIcon /> Login
 								</Button>
-								<Button className={classes.listItem} href="/signup">
+								<Button className={classes.listItem} component={ Link } to="/signup">
 									<CreateIcon /> Signup
 								</Button>
 							</>
@@ -120,7 +121,7 @@ const Header = props => {
 									onChange={event => props.onChange(event.target.checked)}
 								/>
 
-								<Button className={classes.listItem} href="/chat">
+								<Button className={classes.listItem} component={ Link } to="/chat">
 									<ChatIcon /> Chat
 								</Button>
 								<Button className={classes.listItem} href="/" onClick={logout}>
