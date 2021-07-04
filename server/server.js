@@ -18,6 +18,7 @@ async function startApolloServer() {
     context: authMiddleware,
     subscriptions: { path: '/graphql' }
   });
+  
   await server.start();
   server.applyMiddleware({ app })
 
