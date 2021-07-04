@@ -106,7 +106,12 @@ function App() {
 								path="/onboard"
 								component={() => <Onboard data={currentTheme} />}
 							/>
-							<DynamicRoute exact path="/chat" component={Chat} authenticated />
+							<DynamicRoute
+								exact
+								path="/chat"
+								component={() => <Chat data={currentTheme} />}
+								authenticated
+							/>
 							<DynamicRoute component={NoMatch} guest />
 						</Switch>
 					</Router>

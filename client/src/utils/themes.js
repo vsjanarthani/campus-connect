@@ -1,5 +1,5 @@
 const workTheme = {
-	logo: 'work.png',
+	funAvatar: false,
 	background: 'white',
 	header: '#003262',
 	navHover: 'orange',
@@ -8,7 +8,7 @@ const workTheme = {
 };
 
 const funTheme = {
-	logo: 'fun.png',
+	funAvatar: true,
 	background: '#474747',
 	header: '#891c69',
 	navHover: '#ffd000',
