@@ -148,7 +148,7 @@ const Onboard = () => {
                                 ),
                             }}
                         />   <Grid>
-                            <Button className={classes.connectButton} component={Link} to="/chat">Connect</Button></Grid>
+                            <Button className={classes.connectButton} component={ Link } to="/chat">Connect</Button></Grid>
                     </Grid></form>
 
             </Box>
