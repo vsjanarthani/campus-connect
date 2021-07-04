@@ -64,7 +64,7 @@ const InputField = withStyles({
 
 const ChatBody = () => {
     const classes = useStyles();
-    const { users } = useMessageState()
+    const { users } = useMessageState();
     const dispatch = useMessageDispatch();
     const [content, setContent] = useState('')
     const selectedUser = users?.find((u) => u.selected === true)
