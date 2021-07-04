@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
@@ -186,7 +187,7 @@ const Login = () => {
                     className={classes.button}>
                     {loading ? 'loading..' : 'Login'}
                 </Button>
-                <Typography> New here? [Sign up]!</Typography>
+                <Typography> New here? <Link to='./signup'>Sign up</Link>!</Typography>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>

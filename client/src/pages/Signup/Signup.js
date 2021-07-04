@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -200,7 +201,7 @@ const Signup = props => {
 				>
 					{loading ? 'loading..' : 'Signup'}
 				</Button>
-				<Typography>Already have an account? Log in [here].</Typography>
+				<Typography>Already have an account? Log in <Link to='./login'>here</Link>.</Typography>
 			</Box>
 			<Snackbar
 				open={open}
