@@ -16,7 +16,7 @@ import DynamicRoute from './utils/DynamicRoute';
 import { makeStyles } from '@material-ui/core/styles';
 import { workTheme, funTheme } from './utils/themes';
 import ApolloProvider from './Apolloprovider';
-
+import Confetti from 'react-confetti';
 
 function App() {
 	// theme & toggle states
@@ -38,42 +38,71 @@ function App() {
 	}, [currentTheme]);
 
 	const useStyles = makeStyles({
-		testBox: {
-			backgroundColor: currentTheme.testColor,
-			height: '300px',
-			width: '300px'
+		body: {
+			backgroundColor: currentTheme.background,
+			minHeight: '100vh'
+		},
+		confetti: {
+			zIndex: '-10'
 		}
 	});
 
 	const classes = useStyles();
 
 	return (
-		<ApolloProvider>
-			<AuthProvider>
-				<MessageProvider>
-					<Header
-						onChange={value => setThemeToggle(value)}
-						data={currentTheme}
-					/>
-					<Router>
-						<Switch>
-							<DynamicRoute
-								exact
-								path="/"
-								component={() => <Home data={currentTheme} />}
-								guest
-							/>
-							<DynamicRoute exact path="/login" component={Login} guest />
-							<DynamicRoute exact path="/signup" component={Signup} guest />
-							<DynamicRoute exact path="/onboard" component={Onboard} authenticated />
-							<DynamicRoute exact path="/chat" component={Chat} authenticated />
-							<DynamicRoute component={NoMatch} guest />
-						</Switch>
-					</Router>
-					<Footer data={currentTheme} />
-				</MessageProvider>
-			</AuthProvider>
-		</ApolloProvider>
+		<div className={classes.body}>
+			<Confetti
+				className={classes.confetti}
+				numberOfPieces={currentTheme.confetti}
+			/>
+			<ApolloProvider>
+				<AuthProvider>
+					<MessageProvider>
+						<Header
+							onChange={value => setThemeToggle(value)}
+							data={currentTheme}
+						/>
+						<Router>
+							<Switch>
+								<DynamicRoute
+									exact
+									path="/"
+									component={() => <Home data={currentTheme} />}
+									guest
+								/>
+
+								<DynamicRoute
+									exact
+									path="/login"
+									component={() => <Login data={currentTheme} />}
+									guest
+								/>
+								<DynamicRoute
+									exact
+									path="/signup"
+									component={() => <Signup data={currentTheme} />}
+									guest
+								/>
+								<DynamicRoute
+									exact
+									path="/onboard"
+									component={() => <Onboard data={currentTheme} />}
+									authenticated
+								/>
+								<DynamicRoute
+									exact
+									path="/chat"
+									component={() => <Chat data={currentTheme} />}
+									authenticated
+								/>
+								<DynamicRoute component={NoMatch} guest />
+							</Switch>
+						</Router>
+						<Footer data={currentTheme} />
+					</MessageProvider>
+				</AuthProvider>
+			</ApolloProvider>
+		</div>
 	);
 }
 
