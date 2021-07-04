@@ -82,7 +82,6 @@ const Login = () => {
     const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [severity, setSeverity] = useState('');
-    const [errors, setErrors] = useState({})
     const dispatch = useAuthDispatch()
     const [variables, setVariables] = useState({
         username: '',
@@ -90,8 +89,10 @@ const Login = () => {
     });
     const [login, { loading }] = useLazyQuery(LOGIN_USER, {
         onError: (err) => {
-            console.log(err)
-            setErrors(err.graphQLErrors[0].message)
+            console.log(err.graphQLErrors[0].message)
+            setOpen(true);
+            setAlertMsg(err.graphQLErrors[0].message);
+            setSeverity('error');
         },
         onCompleted(data) {
             dispatch({ type: 'LOGIN', payload: data.login })
@@ -169,7 +170,7 @@ const Login = () => {
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>
-                    {errors && alertMsg}
+                    {alertMsg}
                 </Alert>
             </Snackbar>
         </Grid>

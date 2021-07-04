@@ -25,13 +25,11 @@ const useStyles = makeStyles(() => ({
     socialbtn:  {
         width: "5px"},
     container: {
-  
+
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
         borderRadius: "5px",
-
-
 paddingBottom: `1vh`,
 background: '#FFFFFF',
 boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`,
@@ -78,14 +76,14 @@ const UserList = () => {
             return (
                 <div key={user.username}>
                     <ListItem
-                        className="conversation"
+                        id="conversation"
                         className={classes.listItem}
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
                         <FiberManualRecordIcon className="active" />
                         <Avatar alt={user.username} src={user.businessLogo || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
-                        <ListItemText primary={user.username} className="conversationName"/>
+                        <ListItemText primary={user.username} className="conversationName" />
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
@@ -95,6 +93,7 @@ const UserList = () => {
                          <Button href={user.instagram || "https://www.instagram.com"}
           target="_blank" id="social"
           >        <InstagramIcon className={classes.iconChat}/></Button>
+
                     </ListItem>
                     <Divider classes={{root: classes.dividerColor}}/>
                 </div>

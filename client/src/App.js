@@ -11,37 +11,12 @@ import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Onboard from './components/Onboard';
 import Chat from './pages/Chat/Chat';
-// import { setContext } from '@apollo/client/link/context';
 import DynamicRoute from './utils/DynamicRoute';
-// import {
-// 	ApolloClient,
-// 	InMemoryCache,
-// 	ApolloProvider,
-// 	createHttpLink
-// } from '@apollo/client';
-
 // theme stuff
 import { makeStyles } from '@material-ui/core/styles';
 import { workTheme, funTheme } from './utils/themes';
-
 import ApolloProvider from './Apolloprovider';
-// const httpLink = createHttpLink({
-// 	uri: 'http://localhost:3001/graphql'
-// });
-// const authLink = setContext((_, { headers }) => {
-// 	const token = localStorage.getItem('token');
-// 	console.log({ token });
-// 	return {
-// 		headers: {
-// 			...headers,
-// 			authorization: token ? `Bearer ${token}` : ''
-// 		}
-// 	};
-// });
-// const client = new ApolloClient({
-// 	link: authLink.concat(httpLink),
-// 	cache: new InMemoryCache()
-// });
+
 
 function App() {
 	// theme & toggle states
@@ -72,9 +47,7 @@ function App() {
 	const classes = useStyles();
 
 	return (
-		<ApolloProvider
-		// client={client}
-		>
+		<ApolloProvider>
 			<AuthProvider>
 				<MessageProvider>
 					<Header
@@ -89,6 +62,7 @@ function App() {
 								component={() => <Home data={currentTheme} />}
 								guest
 							/>
+
 							<DynamicRoute
 								exact
 								path="/login"
@@ -105,6 +79,7 @@ function App() {
 								exact
 								path="/onboard"
 								component={() => <Onboard data={currentTheme} />}
+                authenticated
 							/>
 							<DynamicRoute exact path="/chat" component={Chat} authenticated />
 							<DynamicRoute component={NoMatch} guest />
