@@ -107,7 +107,7 @@ const Chat = props => {
 				<div className="chatBoxWrapper">
 					<div className="chatBanner">
 						{' '}
-						<ForumIcon></ForumIcon> ChatFriend Username{' '}
+						<ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '}
 					</div>
 					<div className="messagesHere">
 						<ChatBody />
@@ -119,3 +119,4 @@ const Chat = props => {
 };
 
 export default Chat;
+// need to add dynamic avatar for logged in user, hardcoded image now

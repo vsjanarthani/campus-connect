@@ -8,6 +8,7 @@ import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
 import Funavatar from '../Funavatar';
 import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
+import { useAuthState } from '../../utils/auth';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         bordercolor: `grey`,
         border: '1px solid #D9EDFF',
         color: `white`,
-        background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
+        background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
         boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         fontSize: '1.3rem',
         marginTop: `1vh`,
@@ -74,6 +75,10 @@ const useStyles = makeStyles((theme) => ({
         height: `56px`,
         textalign: 'center',
         lineheight: '50px',
+        "&:hover": {
+            transition: `0.5s`,
+            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',  
+            boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',      }
 
 
     },
@@ -91,12 +96,13 @@ const avatars = [];
 const Onboard = () => {
 
     const classes = useStyles();
+    const { user } = useAuthState()
 
     return (
 
         <Box className={classes.root}>
             <Grid container >
-                <Typography component='h1' className={classes.header} > Username's Profile </Typography>  </Grid>
+                <Typography component='h1' className={classes.header} > {user.data.username}'s Profile </Typography>  </Grid>
 
             <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
@@ -140,7 +146,7 @@ const Onboard = () => {
                                 ),
                             }}
                         />   <Grid>
-                            <Button className={classes.connectButton}>Connect</Button></Grid>
+                            <Button className={classes.connectButton} onClick={function() {window.location.assign('./chat')}}>Connect</Button></Grid>
                     </Grid></form>
 
             </Box>
@@ -152,3 +158,6 @@ const Onboard = () => {
 }
 
 export default Onboard;
+
+// TO DO: GET THE CONTENT TO CENTER ON PAGE AND BE CONSISTENT WIDTH THE PRIOR LOGIN/SIGN UP PAGES
+// CONNECT THINGS

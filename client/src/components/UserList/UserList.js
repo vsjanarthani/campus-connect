@@ -33,7 +33,6 @@ const useStyles = makeStyles(() => ({
 		maxHeight: '100%',
 		overflow: 'auto',
 		borderRadius: '5px',
-
 		paddingBottom: `1vh`,
 		background: '#FFFFFF',
 		boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`
@@ -57,7 +56,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 const UserList = props => {
-	console.log(props);
 	const classes = useStyles();
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
@@ -83,11 +81,10 @@ const UserList = props => {
 			} else {
 				avatar = user.businessLogo;
 			}
-
 			return (
 				<div key={user.username}>
 					<ListItem
-						className="conversation"
+						id="conversation"
 						className={classes.listItem}
 						onClick={() =>
 							dispatch({ type: 'SET_SELECTED_USER', payload: user.username })
@@ -107,8 +104,8 @@ const UserList = props => {
 							className="conversationName"
 						/>
 						{/* <ListItemText secondary={user.latestMessage
-                            ? user.latestMessage.content
-                            : 'Connected..'} /> */}
+							? user.latestMessage.content
+							: 'Connected..'} /> */}
 						<Button
 							href={user.linkedin || 'https://www.linkedin.com'}
 							target="_blank"

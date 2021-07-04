@@ -131,7 +131,7 @@ const ChatBody = () => {
     } else if (messages.length === 0) {
         selectedChatMarkup = (
             <p className="info-text">
-                You are now connected! send your first message!
+                You are now connected to [ADD CHATFRIEND NAME VARIABLE]! Send them a message.
             </p>
         )
     }
