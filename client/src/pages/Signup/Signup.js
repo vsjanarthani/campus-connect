@@ -9,7 +9,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
-import { LOGIN_USER } from '../../utils/queries';
 import { useAuthDispatch } from '../../utils/auth';
 
 const useStyles = makeStyles(_theme => ({
@@ -87,12 +86,11 @@ const Signup = props => {
 		email: '',
 		password: ''
 	});
-	// const [errors, setErrors] = useState("");
+
 
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
 			console.log(err.graphQLErrors[0].message);
-			// setErrors();
 			setOpen(true);
 			setAlertMsg(err.graphQLErrors[0].message);
 			setSeverity('error');
@@ -123,7 +121,8 @@ const Signup = props => {
 		// clear form values
 		setVariables({
 			username: '',
-			password: ''
+			password: '',
+			email: '',
 		});
 	};
 

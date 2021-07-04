@@ -17,15 +17,15 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
     container: {
-  
+
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
         borderRadius: "5px",
-padding: "1px",
-marginTop: "2vh",
-background: '#FFFFFF',
-boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
+        padding: "1px",
+        marginTop: "2vh",
+        background: '#FFFFFF',
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
     },
     listItem: {
         color: "#003262",
@@ -69,23 +69,23 @@ const UserList = () => {
             return (
                 <div key={user.username}>
                     <ListItem
-                        className="conversation"
+                        id="conversation"
                         className={classes.listItem}
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
                         <FiberManualRecordIcon className="active" />
                         <Avatar alt={user.username} src={user.businessLogo || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
-                        <ListItemText primary={user.username} className="conversationName"/>
+                        <ListItemText primary={user.username} className="conversationName" />
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
-                             <Button href={user.linkedin || "https://www.linkedin.com"}
-          target="_blank" id="social"> 
-                        <LinkedInIcon  className="iconChat" /> </Button>
-                         <Button href={user.instagram || "https://www.instagram.com"}
-          target="_blank" id="social"
-          >        <InstagramIcon className="iconChat"/></Button>
+                        <Button href={user.linkedin || "https://www.linkedin.com"}
+                            target="_blank" id="social">
+                            <LinkedInIcon className="iconChat" /> </Button>
+                        <Button href={user.instagram || "https://www.instagram.com"}
+                            target="_blank" id="social"
+                        >        <InstagramIcon className="iconChat" /></Button>
                     </ListItem>
                     <Divider />
                 </div>
