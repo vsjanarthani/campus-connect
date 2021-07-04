@@ -58,11 +58,12 @@ function App() {
 			<ApolloProvider>
 				<AuthProvider>
 					<MessageProvider>
-						<Header
-							onChange={value => setThemeToggle(value)}
-							data={currentTheme}
-						/>
 						<Router>
+							<Header
+								onChange={value => setThemeToggle(value)}
+								data={currentTheme}
+							/>
+
 							<Switch>
 								<DynamicRoute
 									exact
