@@ -80,7 +80,7 @@ const Chat = () => {
     return (
             <div className="messenger">
                 <div className="chatMenu">
-                    <div className="chatMenuWrapper">
+                    <div className="chatMenuWrapper"> 
                         <div className="aligned"><Avatar id="myavatar" src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png" style={{
              border: '0.1px solid lightgray'
           }}></Avatar> <span id="namename">{user.data.username}'s Friends</span>
@@ -107,7 +107,7 @@ const Chat = () => {
                 </div>
                 <div className="chatBox">
                     <div className="chatBoxWrapper">
-                    <div className="chatBanner"> <ForumIcon></ForumIcon> ChatFriend Username </div>  
+                    <div className="chatBanner"> <ForumIcon></ForumIcon> [CHATFRIEND USERNAME] </div>  
                         <div className="messagesHere">
                             <ChatBody />
                         </div>
@@ -118,3 +118,4 @@ const Chat = () => {
 }
 
 export default Chat
+// need to add dynamic avatar for logged in user, hardcoded image now
