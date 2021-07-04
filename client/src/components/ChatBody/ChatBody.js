@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(2),
         height: "100vh",
+        
     },
     input: {
         color: "#003262",
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginTop: "1rem",
         color: "#003262",
+  
         borderColor: "grey",
     },
     field: {
@@ -107,6 +109,12 @@ const ChatBody = () => {
     let selectedChatMarkup
     if (!messages && !msgLoading) {
         selectedChatMarkup = <p className="info-text">Select a friend</p>
+  
+
+      
+
+
+
     } else if (msgLoading) {
         selectedChatMarkup = <p className="info-text">Loading..</p>
     } else if (messages.length > 0) {

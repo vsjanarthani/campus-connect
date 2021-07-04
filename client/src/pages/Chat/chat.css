@@ -11,31 +11,45 @@
     
  }
   
- /* div className="chatBox">
-                    <div className="chatBoxWrapper">
- .                       <div className="messagesHere"> */
+/*things related to avatar above left side menu */
+ .aligned {
+    display: flex;
+    align-items: center;
+}
 
+#myavatar {
+    margin-bottom: 5px;
+  
+}
+#namename {
+    /* padding: 10px; */
+    margin-left: 5px;
+    margin-bottom: 2px;
+    padding-left: 3px;
+    font-family: 'Roboto';
+}
  .chatMenuInput {
-    font: Poppins;
     width: 100%;
     padding: 10px, 0;
-    border: none;
+
     border-bottom: 3px solid black;
  }
- .chatHeader {
-  
-    font-family: "Poppins";
-  
- }
- .chatBox{
+
+.chatBox{
     flex: 6.5;
-    border: lightgray;
+  
     margin-top: 2vh;
     font-family: "Poppins";
+     background: '#FFFFFF';
+ 
+    box-shadow: "inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)";
  }
-  
+  .friends {
+      margin-bottom: 2px;
+  }
  .messagesHere{
     max-height: 65vh;
+    border-radius: 6px;
     overflow-y: scroll;
     display: flex; 
     flex-direction: column-reverse;
@@ -45,8 +59,10 @@
  .chatBoxWrapper {
     display: flex;
     margin-top: 2vh;
+    border-radius: 6px;
     flex-direction: column;
     overflow-y: scroll;
+    background-color: #F5F5F5;
  }
   
  .chatBoxBottom {
@@ -75,6 +91,7 @@
  }
  .chatBoxWrapper {
     margin-top: 5vh;
+
  }
   
  
