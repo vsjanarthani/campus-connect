@@ -87,19 +87,20 @@ const Signup = props => {
 		email: '',
 		password: ''
 	});
-	const [errors, setErrors] = useState({});
+	// const [errors, setErrors] = useState("");
 
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
-			setErrors(err.graphQLErrors[0].extensions.errors);
+			console.log(err.graphQLErrors[0].message);
+			// setErrors();
 			setOpen(true);
-			setAlertMsg(errors);
+			setAlertMsg(err.graphQLErrors[0].message);
 			setSeverity('error');
 		},
 		onCompleted(data) {
 			console.log(data);
 			dispatch({ type: 'SIGNUP', payload: data.addUser });
-			window.location.href = '/';
+			window.location.href = '/onboard';
 		}
 	});
 

@@ -91,7 +91,7 @@ const Login = () => {
     const [login, { loading }] = useLazyQuery(LOGIN_USER, {
         onError: (err) => {
             console.log(err)
-            setErrors(err.graphQLErrors[0].extensions.errors)
+            setErrors(err.graphQLErrors[0].message)
         },
         onCompleted(data) {
             dispatch({ type: 'LOGIN', payload: data.login })

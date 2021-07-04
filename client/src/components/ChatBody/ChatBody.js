@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -19,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(2),
         height: "100vh",
+        
     },
     input: {
         color: "#003262",
@@ -29,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginTop: "1rem",
         color: "#003262",
+  
         borderColor: "grey",
     },
     field: {
@@ -109,6 +109,12 @@ const ChatBody = () => {
     let selectedChatMarkup
     if (!messages && !msgLoading) {
         selectedChatMarkup = <p className="info-text">Select a friend</p>
+  
+
+      
+
+
+
     } else if (msgLoading) {
         selectedChatMarkup = <p className="info-text">Loading..</p>
     } else if (messages.length > 0) {

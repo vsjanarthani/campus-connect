@@ -3,7 +3,8 @@ import { useAuthState } from '../../utils/auth';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
-import "./message.css"
+import "./message.css";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
     sent: {
@@ -28,20 +29,23 @@ const Message = ({ message }) => {
     const sent = message.from === user.username
     // const received = !sent
     return (
-        <BottomNavigation
-            placement={sent ? 'right' : 'left'}
-            overlay={
-                <Tooltip>
-                    {message.createdAt}
-                </Tooltip>
-            }
-        >
+        <BottomNavigation >
+
+            {/* placement={sent ? 'right' : 'left'} */}
+
+
 
             <div className={user ? "message user" : "message"}>
                 <div className="messageTop">
-                    <p className="messageText" key={message._id}>
-                        {message.msg}
-                    </p>
+                    <Tooltip title={moment(message.createdAt * 1).format('MMMM Do YYYY, h:mm:ss a')}>
+                        <p className="messageText" key={message._id}>
+                            {message.msg}
+                        </p>
+
+
+
+                    </Tooltip>
+
                 </div>
                 {/* <div className="messageBottom">
                     1 hour ago

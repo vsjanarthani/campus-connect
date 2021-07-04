@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '90vw',
         justifyContent: `center`,
-        margin: `auto`
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        flexDirection: `column`
 
     },
     contain: {
@@ -28,26 +30,30 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: `Poppins`,
         margin: `1vh`,
         marginLeft: `1vw`,
+        marginTop: `5vh`,
         fontWeight: 800,
-        fontSize: `1.5rem`,
+        fontSize: `1.3rem`,
 
     },
     scroller: {
         overflow: 'auto',
+        backgroundColor: `#F5F5F5`,
         paddingTop: `1vh`,
-        paddingBottom: `1vh`
+        paddingBottom: `1vh`,
+        maxWidth: `640px`,
+        justifyItems: `center`
 
     },
     subHeader: {
         fontSize: '1.2rem',
-        fontFamily: `Poppins`,
+        fontFamily: `Roboto`,
         marginLeft: `1vw`,
-        marginTop: `3vh`,
+        marginTop: `2vh`,
         marginBottom: `1vh`,
         weight: `600`
     },
     textDetail: {
-        fontsize: '.9rem',
+        fontsize: '.8rem',
         fontfamily: 'Roboto',
         margin: `1vh`
     },
@@ -56,11 +62,14 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: `Poppins`,
         width: '90vw',
         borderRadius: `6px`,
+        bordercolor: `grey`,
         border: '1px solid #D9EDFF',
         color: `white`,
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', // update later w real color scheme
+        background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
+        boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         fontSize: '1.3rem',
         marginTop: `1vh`,
+        maxWidth: `640px`,
 
         height: `56px`,
         textalign: 'center',
@@ -71,7 +80,8 @@ const useStyles = makeStyles((theme) => ({
     field: {
         marginTop: `1vh`,
         margin: `auto`,
-        width: '90vw'
+        width: '90vw',
+        maxWidth: `640px`,
 
     }
 }));
@@ -86,7 +96,7 @@ const Onboard = () => {
 
         <Box className={classes.root}>
             <Grid container >
-                <Typography component='h1' className={classes.header} > Get Connected</Typography>  </Grid>
+                <Typography component='h1' className={classes.header} > Username's Profile </Typography>  </Grid>
 
             <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 

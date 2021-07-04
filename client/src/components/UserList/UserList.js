@@ -11,21 +11,37 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Avatar from '@material-ui/core/Avatar';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
+    root: {
+        dividerColor: `#F5F5F5`
+    },
+    iconChat: {
+        fontsize: '1rem',
+    },
+    socialbtn:  {
+        width: "5px"},
     container: {
-        background: "whitesmoke",
+  
         flexGrow: 1,
         maxHeight: '100%',
         overflow: 'auto',
-        padding: "15px"
+        borderRadius: "5px",
+
+
+paddingBottom: `1vh`,
+background: '#FFFFFF',
+boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`,
     },
     listItem: {
         color: "#003262",
         paddingLeft: '0.5rem',
         textTransform: 'none',
         "&:hover": {
-            color: "orange",
+            color: "#15B313",
         },
         "& .MuiTypography-body1": {
 
@@ -67,13 +83,20 @@ const UserList = () => {
                         onClick={() =>
                             dispatch({ type: 'SET_SELECTED_USER', payload: user.username })}
                         component={Button}>
+                        <FiberManualRecordIcon className="active" />
                         <Avatar alt={user.username} src={user.businessLogo || "https://res.cloudinary.com/janarthani/image/upload/v1620088367/007_ooqqgu.png"} />
                         <ListItemText primary={user.username} className="conversationName"/>
                         {/* <ListItemText secondary={user.latestMessage
                             ? user.latestMessage.content
                             : 'Connected..'} /> */}
+                             <Button href={user.linkedin || "https://www.linkedin.com"}
+          target="_blank" className={classes.socialbtn}> 
+                        <LinkedInIcon  className="iconChat" /> </Button>
+                         <Button href={user.instagram || "https://www.instagram.com"}
+          target="_blank" id="social"
+          >        <InstagramIcon className={classes.iconChat}/></Button>
                     </ListItem>
-                    <Divider />
+                    <Divider classes={{root: classes.dividerColor}}/>
                 </div>
             )
         })
