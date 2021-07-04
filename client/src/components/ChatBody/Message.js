@@ -5,6 +5,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 import "./message.css"
 
+const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
+
 const useStyles = makeStyles((theme) => ({
     sent: {
 
