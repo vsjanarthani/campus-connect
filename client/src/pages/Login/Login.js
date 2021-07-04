@@ -10,6 +10,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/queries';
 import { useAuthDispatch } from '../../utils/auth';
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((_theme) => ({
     container: {
@@ -37,9 +38,26 @@ const useStyles = makeStyles((_theme) => ({
         },
     },
     button: {
-        marginTop: "1rem",
-        color: "#003262",
-        borderColor: "grey",
+        fontFamily: `Poppins`,
+			width:`100%`,
+			borderRadius: `6px`,
+			bordercolor: `grey`,
+			border: '1px solid #D9EDFF',
+			color: `white`,
+			background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
+			boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+			fontSize: '1.3rem',
+			marginTop: `1vh`,
+			maxWidth: `640px`,
+	
+			height: `56px`,
+			textalign: 'center',
+			lineheight: '50px',
+			"&:hover": {
+				transition: `0.5s`,
+				background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',  
+				boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',      }
+	
     },
     field: {
         margin: "1rem 0rem",
@@ -135,8 +153,9 @@ const Login = () => {
 
     return (
         <Grid container justify="center">
+           
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
-
+            <Typography> Welcome to Campus Connect!</Typography>
                 <InputField
                     fullWidth={true}
                     label="Username"
@@ -167,6 +186,7 @@ const Login = () => {
                     className={classes.button}>
                     {loading ? 'loading..' : 'Login'}
                 </Button>
+                <Typography> New here? [Sign up]!</Typography>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>

@@ -76,8 +76,9 @@ const useStyles = makeStyles((theme) => ({
         textalign: 'center',
         lineheight: '50px',
         "&:hover": {
-            
-            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',        }
+            transition: `0.5s`,
+            background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',  
+            boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',      }
 
 
     },
@@ -157,3 +158,6 @@ const Onboard = () => {
 }
 
 export default Onboard;
+
+// TO DO: GET THE CONTENT TO CENTER ON PAGE AND BE CONSISTENT WIDTH THE PRIOR LOGIN/SIGN UP PAGES
+// CONNECT THINGS
