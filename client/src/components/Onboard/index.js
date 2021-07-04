@@ -8,6 +8,7 @@ import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
 import Funavatar from '../Funavatar';
 import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
+import { useAuthState } from '../../utils/auth';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -94,12 +95,13 @@ const avatars = [];
 const Onboard = () => {
 
     const classes = useStyles();
+    const { user } = useAuthState()
 
     return (
 
         <Box className={classes.root}>
             <Grid container >
-                <Typography component='h1' className={classes.header} > Username's Profile </Typography>  </Grid>
+                <Typography component='h1' className={classes.header} > {user.data.username}'s Profile </Typography>  </Grid>
 
             <Grid><Typography className={classes.subHeader}>Avatar Alter Egos</Typography></Grid>
 
