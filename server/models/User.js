@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const profileSchema = require('./Profile');
 const dateFormat = require('../utils/dateFormat');
 
 const userSchema = new Schema(
@@ -21,22 +22,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    imageUrl: {
-      type: String,
-    },
     createdAt: {
       type: Date,
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
-    funLogo: {
-      type: String,
-      default: "https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png"
-    },
-    businessLogo: {
-      type: String,
-      default: "https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625021118/javascript_uzzfmq.png"
-    },
+    profile: [profileSchema]
   },
   {
     toJSON: {
