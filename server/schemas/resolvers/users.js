@@ -85,6 +85,27 @@ module.exports = {
         throw error
       }
     },
+
+    // update user
+    createProfile: async (_parent, args, context) => {
+      try {
+        // throw error if the user is not logged in
+        if (!context.user) throw new AuthenticationError('Not logged in');
+        const user = context.user.data.username;
+        // console.log(user);
+        const { businessLogo, funLogo } = args;
+        const updatedUser = await User.findOneAndUpdate(
+          { username: user },
+          { $set: { profile: { businessLogo, funLogo } } },
+          { new: true }
+        );
+        console.log(updatedUser);
+        return updatedUser;
+      } catch (error) {
+        console.log(error)
+        throw error
+      }
+    },
   },
 
 };
