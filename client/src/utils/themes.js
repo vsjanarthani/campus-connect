@@ -12,7 +12,7 @@ const workTheme = {
 const funTheme = {
 	funAvatar: true,
 	background: '#427fa5',
-	confetti: '200',
+	confetti: '300',
 	text: 'white',
 	header: '#891c69',
 	navHover: '#ffd000',
