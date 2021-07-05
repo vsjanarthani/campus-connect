@@ -97,7 +97,7 @@ const Message = ({ message }) => {
                             <Typography className={classes.typography}>
                                 {reactions.map((reaction) => (
                                     <Button
-                                        variant="link"
+                                        // variant="link"
                                         // className="react-icon-button"
                                         key={reaction}
                                     // onClick={() => react(reaction)}
