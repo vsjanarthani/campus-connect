@@ -44,8 +44,9 @@ const messageReducer = (state, action) => {
 
             let newUser = {
                 ...usersCopy[userIndex],
+                updated: new Date(),
                 messages: usersCopy[userIndex].messages
-                    ? [message, ...usersCopy[userIndex].messages]
+                    ? [ ...usersCopy[userIndex].messages, message]
                     : [],
                 latestMessage: message,
             }

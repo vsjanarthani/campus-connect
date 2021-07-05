@@ -11,7 +11,7 @@ import BackspaceIcon from '@material-ui/icons/Backspace';
 import Drawer from "@material-ui/core/Drawer";
 import Rail from '../../components/MobileRail';
 import ForumIcon from '@material-ui/icons/Forum';
-import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
 // import { TextField } from '@material-ui/core';

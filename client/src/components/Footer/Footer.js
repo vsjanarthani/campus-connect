@@ -15,10 +15,10 @@ const Footer = props => {
 			flexDirection: 'column',
 			alignItems: 'center',
 			justifyContent: 'center',
-			position: 'fixed',
+			// position: 'fixed',
 			background: props.data.header,
 			paddingBottom: '1rem',
-			bottom: '0',
+			// bottom: '0',
 			left: '0',
 			width: '100%',
 			borderTop: '2px',
@@ -64,7 +64,7 @@ const Footer = props => {
 			justifyContent: 'space-evenly',
 			flexDirection: 'row',
 			paddingBottm: '0.5rem',
-			boxShadow: '4px 2px 2px 2px #073057d4',
+			// boxShadow: '4px 2px 2px 2px #073057d4',
 
 		},
 		avatar: {
