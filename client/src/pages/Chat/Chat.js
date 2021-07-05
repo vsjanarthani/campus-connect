@@ -6,7 +6,7 @@ import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
 
 import ForumIcon from '@material-ui/icons/Forum';
-import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
 // import { TextField } from '@material-ui/core';

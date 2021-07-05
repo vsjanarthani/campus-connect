@@ -21,18 +21,26 @@
     position: relative;
     padding: 10px 20px;
     color: white;
-    background: #0B93F6;
+    background: #880dc2;
     border-radius: 20px;
     float: right;
     font-family: "Roboto";
     font-size: 1rem;
     font-weight: normal;
  }
+
+ .message.user .messageText {
+   background-color: #0B93F6;
+}
   
   
   
  .message.user {
-    justify-content: flex-end;
- }
+   align-items: flex-end;
+}
+
+.messageTop {
+   display: flex;
+}
   
  
