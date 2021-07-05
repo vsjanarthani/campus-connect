@@ -97,5 +97,9 @@
     margin-top: 5vh;
 
  }
+
+ .chatMenuWrapper {
+   overflow-y: scroll;
+ }
   
  
