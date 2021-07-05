@@ -21,12 +21,7 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
 
-import IconButton from "@material-ui/core/IconButton";
 
-import BackspaceIcon from '@material-ui/icons/Backspace';
-
-import Drawer from "@material-ui/core/Drawer";
-import Rail from '../../components/MobileRail';
 
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
@@ -73,7 +68,7 @@ const Header = props => {
 			}
 		}
 	}));
-	const [open, setOpen] = useState(false);
+	
 	const classes = useStyles();
 	const authDispatch = useAuthDispatch();
 	const { user } = useAuthState();
@@ -132,13 +127,6 @@ const Header = props => {
 					</List>
 				</Toolbar>
 			</AppBar>
-			<IconButton onClick={() => setOpen(true)}>
-                           <BackspaceIcon className={classes.opener}>  </BackspaceIcon>
-                            </IconButton>
-			<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
-                <Rail
-                />
-            </Drawer>
 		</Box>
 	);
 };
