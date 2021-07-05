@@ -44,6 +44,7 @@ function App() {
 		},
 		confetti: {
 			zIndex: -1,
+			top: 0,
 			backgroundColor: currentTheme.background,
 			position: 'fixed'
 		}
@@ -62,7 +63,7 @@ function App() {
 						/>
 
 						<div className={classes.confetti}>
-							<Confetti numberOfPieces={currentTheme.confetti} />
+							<Confetti numberOfPieces={currentTheme.confetti} width="5000px" />
 						</div>
 
 						<Switch>
