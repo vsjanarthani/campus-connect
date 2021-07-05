@@ -7,7 +7,6 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
         _id
         username
     email
-    imageUrl
     createdAt
     }
   }
@@ -34,6 +33,20 @@ mutation sendMsg($to: String!, $msg: String!) {
     to
     msg
     createdAt
+  }
+}
+`
+export const CREATE_PROFILE = gql`
+mutation createProfile($businessLogo: String, $funLogo: String, $imageUrl: String, $linkedin: String, $Instagram: String ) {
+  createProfile(businessLogo: $businessLogo, funLogo: $funLogo, imageUrl: $imageUrl, linkedin: $linkedin, Instagram:$Instagram){  
+    username
+    profile{
+      imageUrl
+      businessLogo
+      funLogo
+      Instagram
+      linkedin
+    }
   }
 }
 `

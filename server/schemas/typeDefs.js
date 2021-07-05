@@ -8,7 +8,6 @@ type User {
   email: String
   token: ID!
   createdAt: String!
-  imageUrl: String
   latestMessage: Message
   profile: [Profile]
 }
@@ -29,10 +28,11 @@ type Reaction {
     user: User!
   }
   type Profile {
-    funLogo: String,
-    businessLogo: String,
-    linkedin: String,
-    Instagram: String,
+    imageUrl: String
+    funLogo: String
+    businessLogo: String
+    linkedin: String
+    Instagram: String
   }
 type Query {
   login(username: String!, password: String!): User!
@@ -43,7 +43,7 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): User!
   sendMsg(to:String! msg:String!): Message!
   reactToMessage(messageId: ID!, content: String!): Message!
-  createProfile(businessLogo: String!, funLogo: String!): User!
+  createProfile(businessLogo: String, funLogo: String, imageUrl: String, linkedin: String, Instagram: String): User!
 }
 type Subscription {
     newMessage: Message!
