@@ -77,9 +77,9 @@ const UserList = props => {
 			// const selected = selectedUser === user.username
 			let avatar;
 			if (props.data.funAvatar) {
-				avatar = user.funLogo;
+				avatar = user.profile.funLogo;
 			} else {
-				avatar = user.businessLogo;
+				avatar = user.profile.businessLogo;
 			}
 			return (
 				<div key={user.username}>

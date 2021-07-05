@@ -13,7 +13,7 @@ const funTheme = {
 	funAvatar: true,
 	background: '#427fa5',
 	confetti: '300',
-	text: 'white',
+	text: 'red',
 	header: '#891c69',
 	navHover: '#ffd000',
 	chatBubble1: '',
