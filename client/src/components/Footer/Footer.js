@@ -64,7 +64,7 @@ const Footer = props => {
 			justifyContent: 'space-evenly',
 			flexDirection: 'row',
 			paddingBottm: '0.5rem',
-			boxShadow: '4px 2px 2px 2px #073057d4',
+			// boxShadow: '4px 2px 2px 2px #073057d4',
 
 		},
 		avatar: {

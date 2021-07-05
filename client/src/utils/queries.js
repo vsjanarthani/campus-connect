@@ -5,9 +5,6 @@ export const LOGIN_USER = gql`
     login(username: $username, password: $password) {
       username
       email
-      createdAt
-      businessLogo
-      funLogo
       token
     }
   }
@@ -19,14 +16,19 @@ query getUsers {
     username
     email
     createdAt
-    businessLogo
-    funLogo
     latestMessage {
       _id
       from
       to
       msg
       createdAt
+    }
+    profile {
+    imageUrl
+      funLogo
+      businessLogo
+      linkedin
+      Instagram
     }
   }
 }
