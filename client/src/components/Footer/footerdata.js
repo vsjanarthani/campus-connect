@@ -20,13 +20,13 @@ const footerData = {
         },
         {
             name: "Graham Hall",
-            imageUrl: "https://avatars.githubusercontent.com/u/3074410?v=4",
+            imageUrl: "https://res.cloudinary.com/actionfdfds/image/upload/v1625447379/graham_vptmbw.png",
             linkedin: "https://www.linkedin.com/in/graham-hall-89baab1a8/",
             GitHub: "https://github.com/ghall89",
         },
         {
             name: "Clayton Goff",
-            imageUrl: "https://avatars.githubusercontent.com/u/76272730?v=4",
+            imageUrl: "https://res.cloudinary.com/actionfdfds/image/upload/v1625447379/clayton_wmu5od.png",
             linkedin: "https://www.linkedin.com/in/clayton-goff-8545b31b2/",
             GitHub: "https://github.com/Clayto30",
         },
