@@ -28,7 +28,9 @@ import {
 import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const Chat = props => {
+
 	const useStyles = makeStyles(theme => ({
+
 		root: {
 			dividerColor: `#F5F5F5`
 		},
@@ -135,7 +137,7 @@ const Chat = props => {
 
 						<Divider className="dividerColor" />
 						{/* <TextField
->>>>>>> thank-you
+
                           className="chatMenuInput" variant="outlined"
                   
                            label="Find Friends"

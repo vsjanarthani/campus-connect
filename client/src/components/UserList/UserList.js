@@ -76,7 +76,8 @@ const UserList = props => {
 		usersMarkup = users.map(user => {
 			// const selected = selectedUser === user.username
 			let avatar
-			console.log(user.profile[0].businessLogo)
+			console.log(user.profile)
+			// console.log(user.profile[0].businessLogo)
 
 			if (props.data.funAvatar) {
 				avatar = user.profile[0].funLogo;
