@@ -1,7 +1,7 @@
 ![Frame 18](https://user-images.githubusercontent.com/77648727/123899304-c78a3500-d91b-11eb-8cad-3b7b7db0aac7.png)
 
 ## Description
-This is an app to connect bootcamp alumni for networking purposes.
+This is an app to connect Coding Bootcamp Alumni for networking purposes. Find a friend, a reference, talk tech stacks or chat about the good ol' bootcamp days. Celebrate, we made it!
 
 ## Built Using 
 - [x] JavaScript
@@ -23,7 +23,7 @@ This is an app to connect bootcamp alumni for networking purposes.
 * [Questions](#Questions)
 
 ### Installation
-To clone the repo run ```git clone https://github.com/vsjanarthani/Campus-Connect-MERN.git ``` in your terminal
+To clone the repo run ```git clone https://github.com/Clayto30/campus-connect.git ``` in your terminal      
 Run ```npm install``` to install the necessary dependencies.
 
 ### Usage
@@ -35,20 +35,39 @@ After installing all the dependencies, run ```npm start``` in your terminal to s
 > SO THAT I can maintain professional and personal relationships       
 
 ### Acceptance-Criteria
-> ADD       
-> Acceptance       
-> Criteria       
+
+> GIVEN an application with a React front end     
+> WHEN I review technologies used     
+> THEN I see GraphQL with a Node.js and Express.js server are used     
+> AND MongoDB and the Mongoose ODM are used for the database     
+> AND queries and mutations for retrieving, adding, updating, and deleting data are incorporated     
+> WHEN I see the application          
+> THEN I see tt is deployed on a Heroku link with data     
+> WHEN I see the application's polished UI     
+> THEN I see it is responsive and interative     
+> WHEN I review the application code for authentication     
+> THEN I see JWT has been used     
+> WHEN sensitive API KEY Informaiton is stored     
+> THEN I can verify it is protected from public view
+> WHEN I review the repository     
+> THEN I see meets quality coding standards for file structure, naming conventions and descriptive comments     
+> WHEN I review the README     
+> THEN I see the repository has aunique name, description, technologies used, screenshot, and link to deployed application     
+
+
  
 ### License
 This application is covered under **MIT** license.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+
+
 ### Contributing 
-[Clayton Goff]()
-[Janarthani V S]()
-[Megan Close]()
-[Graham Hall]()
-[Sarah Durkin]()
+- [Clayton Goff](https://github.com/Clayto30)         
+- [Janarthani V S](https://github.com/vsjanarthani)         
+- [Megan Close](https://github.com/MeganClo)         
+- [Graham Hall](https://github.com/ghall89)         
+- [Sarah Durkin](https://github.com/sarahdurks)         
 
 ### Screenshot
 ![webpage](./assets/images/screenshot.png)
@@ -60,4 +79,6 @@ The application is deployed on  [https:///](https:///)
 If you have any questions, please reach out to any of the contributors.
 
 ### Resources 
+[Confetti Animation](https://www.cssscript.com/demo/confetti-falling-animation/)
 
+![Frame 19](https://user-images.githubusercontent.com/77648727/124679094-ae800780-de78-11eb-828b-f19ba5e9553b.png)
