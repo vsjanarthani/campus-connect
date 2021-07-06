@@ -4,11 +4,11 @@ import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from '@material-ui/core/IconButton';
 
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
-import Drawer from "@material-ui/core/Drawer";
+import Drawer from '@material-ui/core/Drawer';
 import Rail from '../../components/MobileRail';
 import ForumIcon from '@material-ui/icons/Forum';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,9 +17,7 @@ import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
 // import { TextField } from '@material-ui/core';
 // import SearchIcon from '@material-ui/icons/Search';
 // import InputAdornment from '@material-ui/core/InputAdornment';
-import Divider from '@material-ui/core/Divider';
-
-import Avatar from '@material-ui/core/Avatar';
+import { Divider, Avatar, useMediaQuery } from '@material-ui/core';
 
 const Chat = props => {
 	const useStyles = makeStyles(() => ({
@@ -90,16 +88,14 @@ const Chat = props => {
 	}, [reactionError, reactionData]);
 	const [open, setOpen] = useState(false);
 	return (
-
 		<div className="messenger">
 			<div className="chatMenu">
 				<div className="chatMenuWrapper">
 					<IconButton onClick={() => setOpen(true)}>
-						<BackspaceIcon className={classes.opener}>  </BackspaceIcon>
+						<BackspaceIcon className={classes.opener}> </BackspaceIcon>
 					</IconButton>
 					<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
-						<Rail
-						/>
+						<Rail />
 					</Drawer>
 					<div className="aligned">
 						<Avatar
