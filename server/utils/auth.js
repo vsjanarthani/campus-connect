@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
-// require('dotenv').config();
+require('dotenv').config();
 const pubsub = new PubSub();
 
 const secret = 'mysecretsshhhhh';

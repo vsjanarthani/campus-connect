@@ -20,6 +20,7 @@ import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
 import { Divider, Avatar, useMediaQuery } from '@material-ui/core';
 
 const Chat = props => {
+	console.log(props)
 	const useStyles = makeStyles(() => ({
 		root: {
 			dividerColor: `#F5F5F5`
