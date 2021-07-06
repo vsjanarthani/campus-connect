@@ -47,13 +47,16 @@ const Chat = props => {
 
 		if (messageData) {
 			const message = messageData.newMessage;
-			const otherUser =
+			const user1 =
 				user.username === message.to ? message.from : message.to;
+			const user2 =
+				user.username === message.to ? message.to : message.from;
 
 			messageDispatch({
 				type: 'ADD_MESSAGE',
 				payload: {
-					username: otherUser,
+					username: user1,
+					self: user2,
 					message
 				}
 			});
@@ -61,19 +64,25 @@ const Chat = props => {
 	}, [messageError, messageData]);
 
 	useEffect(() => {
+		console.log("useeffect for reaction");
 		if (reactionError) console.log(reactionError);
 
 		if (reactionData) {
+			console.log("useeffect for  2");
 			const reaction = reactionData.newReaction;
-			const otherUser =
+			const user1 =
 				user.username === reaction.message.to
 					? reaction.message.from
 					: reaction.message.to;
-
+			const user2 =
+				user.username === reaction.message.to
+					? reaction.message.to
+					: reaction.message.from;
 			messageDispatch({
 				type: 'ADD_REACTION',
 				payload: {
-					username: otherUser,
+					username: user1,
+					self: user2,
 					reaction
 				}
 			});
@@ -81,17 +90,17 @@ const Chat = props => {
 	}, [reactionError, reactionData]);
 	const [open, setOpen] = useState(false);
 	return (
-		
+
 		<div className="messenger">
 			<div className="chatMenu">
 				<div className="chatMenuWrapper">
-				<IconButton onClick={() => setOpen(true)}>
-                           <BackspaceIcon className={classes.opener}>  </BackspaceIcon>
-                            </IconButton>
-			<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
-                <Rail
-                />
-            </Drawer>
+					<IconButton onClick={() => setOpen(true)}>
+						<BackspaceIcon className={classes.opener}>  </BackspaceIcon>
+					</IconButton>
+					<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
+						<Rail
+						/>
+					</Drawer>
 					<div className="aligned">
 						<Avatar
 							id="myavatar"

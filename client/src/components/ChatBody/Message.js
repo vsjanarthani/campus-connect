@@ -56,10 +56,8 @@ const Message = ({ message }) => {
     const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
         onError: (err) => console.log(err),
         onCompleted: (data) => {
-            console.log(data)
-            // const emoticons =  
+            console.log(data);
         },
-        // Display the data in a pop over.
     });
 
     // Adding reaction
