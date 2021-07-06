@@ -15,14 +15,12 @@ import Badge from '@material-ui/core/Badge';
 import "./message.css";
 import moment from "moment";
 
+// reactions to messages
 const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
 
 const useStyles = makeStyles((theme) => ({
     // sent: {
     //     backgroundColor: "red",
-    // },
-    // received: {
-    //     backgroundColor: "blue",
     // },
     button: {
         marginTop: "1rem",

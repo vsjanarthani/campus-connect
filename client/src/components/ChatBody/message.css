@@ -5,9 +5,7 @@
     margin-top: 10px;
  }
   
-  
-  
- /* .messageImg {
+   /* .messageImg {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -29,13 +27,13 @@
     font-weight: normal;
  }
 
- .message.user .messageText {
+.message.user .messageText {
    background-color: #0B93F6;
 }
   
   
   
- .message.user {
+.message.user {
    align-items: flex-end;
 }
 
@@ -43,4 +41,8 @@
    display: flex;
 }
   
+
+.chatter {
+   display: none;
+}
  
