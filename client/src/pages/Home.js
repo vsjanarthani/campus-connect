@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthState } from '../../utils/auth';
-import { Typography, makeStyles } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const Home = () => {
 	const { user } = useAuthState();

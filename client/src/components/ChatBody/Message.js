@@ -2,8 +2,6 @@ import React from 'react';
 import { useAuthState } from '../../utils/auth';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import { useMutation } from '@apollo/client';
-// do we need to use subscription here?
-// import { useSubscription } from '@apollo/client';
 import { REACT_TO_MESSAGE } from '../../utils/mutations';
 import Tooltip from '@material-ui/core/Tooltip';
 import Popover from '@material-ui/core/Popover';
@@ -12,9 +10,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
 import "./message.css";
 import moment from "moment";
-
 
 const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
 
@@ -40,14 +39,33 @@ const useStyles = makeStyles((theme) => ({
     typography: {
         padding: theme.spacing(2),
     },
+    shapeCircle: {
+        borderRadius: '50%',
+    },
 }));
 
 const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
-    // something with sent/recieved not working;
+
+    const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
+    // assigning variables to differentiate message style of sender and receiver
     const sent = message.from === user.username;
     const received = !sent;
+    const reactionIcons = [...new Set(message.reactions.map((r) => r.content))]
+    const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
+        onError: (err) => console.log(err),
+        onCompleted: (data) => {
+            console.log(data);
+        },
+    });
+
+    // Adding reaction
+    const sendReaction = (event) => {
+        let content = event.target.innerText;
+        let messageId = event.target.parentElement.id;
+        reactToMessage({ variables: { messageId, content } })
+    }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -63,16 +81,14 @@ const Message = ({ message }) => {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <BottomNavigation >
+        <BottomNavigation key={message._id}>
 
             {/* placement={sent ? 'right' : 'left'} */}
-
-
 
             <div className={sent ? "message user" : "message"}>
                 <div className="messageTop">
                     <Tooltip title={moment(message.createdAt * 1).format('MMMM Do YYYY, h:mm:ss a')}>
-                        <p className="messageText" key={message._id}>
+                        <p className="messageText">
                             {message.msg}
                         </p>
                     </Tooltip>
@@ -99,14 +115,19 @@ const Message = ({ message }) => {
                                     <Button
                                         // variant="link"
                                         // className="react-icon-button"
-                                        key={reaction}
-                                    // onClick={() => react(reaction)}
+                                        key={message.reaction}
+                                        id={message._id}
+                                        value={reaction}
+                                        onClick={sendReaction}
                                     >
                                         {reaction}
                                     </Button>
                                 ))}
                             </Typography>
                         </Popover>
+                        <Badge color="primary" overlap="circle" badgeContent={message.reactions.length}>
+                            {reactionIcons}
+                        </Badge>
                     </div>
                 </div>
                 {/* <div className="messageBottom">

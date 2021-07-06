@@ -39,19 +39,22 @@ const Chat = props => {
 
 	const { data: reactionData, error: reactionError } =
 		useSubscription(NEW_REACTION);
-
+	console.log(reactionData);
 	useEffect(() => {
 		if (messageError) console.log(messageError);
 
 		if (messageData) {
 			const message = messageData.newMessage;
-			const otherUser =
+			const user1 =
 				user.username === message.to ? message.from : message.to;
+			const user2 =
+				user.username === message.to ? message.to : message.from;
 
 			messageDispatch({
 				type: 'ADD_MESSAGE',
 				payload: {
-					username: otherUser,
+					username: user1,
+					self: user2,
 					message
 				}
 			});
@@ -59,19 +62,25 @@ const Chat = props => {
 	}, [messageError, messageData]);
 
 	useEffect(() => {
+		console.log("useeffect for reaction");
 		if (reactionError) console.log(reactionError);
-
+		console.log(reactionData);
 		if (reactionData) {
+			console.log("useeffect for  2");
 			const reaction = reactionData.newReaction;
-			const otherUser =
+			const user1 =
 				user.username === reaction.message.to
 					? reaction.message.from
 					: reaction.message.to;
-
+			const user2 =
+				user.username === reaction.message.to
+					? reaction.message.to
+					: reaction.message.from;
 			messageDispatch({
 				type: 'ADD_REACTION',
 				payload: {
-					username: otherUser,
+					username: user1,
+					self: user2,
 					reaction
 				}
 			});
