@@ -12,20 +12,26 @@ import { useAuthState } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-
+ 
     root: {
         width: '90vw',
         justifyContent: `center`,
         marginLeft: `auto`,
         marginRight: `auto`,
-        flexDirection: `column`
-
+        flexDirection: `column`,
+        '@media (min-width:1200px)': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            position: 'absolute',
+            maxWidth: 750}
     },
     contain: {
-        marginTop: `5vh`,
-        marginLeft: `2vw`,
-        marginRight: `2vw`,
+   
         width: `70vw`
+       
+    
+
     },
     header: {
         justifyContent: 'center',
