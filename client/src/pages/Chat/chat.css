@@ -1,6 +1,4 @@
-
-
- .mobileMenu {
+.mobileMenu {
    display: block
 }
 
@@ -35,17 +33,18 @@
     
  }
   
+
 /*things related to avatar above left side menu */
- .aligned {
-    display: flex;
-    align-items: center;
+.aligned {
+	display: flex;
+	align-items: center;
 }
 
 #myavatar {
-    margin-bottom: 5px;
-  
+	margin-bottom: 5px;
 }
 #namename {
+<<<<<<< HEAD
     /* padding: 10px; */
     margin-left: 5px;
     margin-bottom: 2px;
@@ -105,21 +104,25 @@
  /* .chatOnline{
     flex: 3;
  } */
-  
- .chatMenuWrapper, .chatBoxWrapper, .chatOnline {
-    padding: 10px;
-    /* background-color: blueviolet; */
-    max-height: 100%;
-    margin-top: 2vh;
-  
- }
- .chatBoxWrapper {
-    margin-top: 5vh;
 
- }
+.chatMenuWrapper,
+.chatBoxWrapper,
+.chatOnline {
+	padding: 10px;
+	/* background-color: blueviolet; */
+	max-height: 100%;
+	margin-top: 2vh;
+}
+.chatBoxWrapper {
+	margin-top: 5vh;
+}
 
- .chatMenuWrapper {
-   overflow-y: scroll;
- }
-  
- 
+.chatMenuWrapper {
+	overflow-y: scroll;
+}
+
+@media screen and (min-width: 480px) {
+	.mobile-hide {
+		display: none;
+	}
+}
