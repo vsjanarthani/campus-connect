@@ -132,7 +132,7 @@ const ChatBody = () => {
         )
     }
     let friend
-    if (selectedUser) friend = selectedUser.username;
+    if (selectedUser) friend = (selectedUser.username).toUpperCase();
     else {friend = ""};
     
     return (
@@ -141,7 +141,7 @@ const ChatBody = () => {
             <div className="chatBanner">
                 {' '}
                 {/* <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '} */}
-                <ForumIcon></ForumIcon> {friend}
+                <ForumIcon></ForumIcon> {friend}{' '}
             </div>
             {selectedChatMarkup}
 
