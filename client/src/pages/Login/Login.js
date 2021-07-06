@@ -115,7 +115,7 @@ const Login = () => {
         },
         onCompleted(data) {
             dispatch({ type: 'LOGIN', payload: data.login })
-            window.location.href = '/chat'
+            window.location.href = '/onboard'
         },
     })
 
