@@ -18,12 +18,12 @@ import moment from "moment";
 const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
 
 const useStyles = makeStyles((theme) => ({
-    sent: {
-
-    },
-    received: {
-
-    },
+    // sent: {
+    //     backgroundColor: "red",
+    // },
+    // received: {
+    //     backgroundColor: "blue",
+    // },
     button: {
         marginTop: "1rem",
     },
@@ -47,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
 const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
-
+    console.log(user.data.username)
     const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     // assigning variables to differentiate message style of sender and receiver
-    const sent = message.from === user.username;
+    const sent = message.from === user.data.username;
     const received = !sent;
     const reactionIcons = [...new Set(message.reactions.map((r) => r.content))]
     const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
