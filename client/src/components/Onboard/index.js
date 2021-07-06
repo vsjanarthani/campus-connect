@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -10,6 +10,8 @@ import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
 import { useAuthState } from '../../utils/auth';
 import { Link } from 'react-router-dom';
+import { CREATE_PROFILE } from '../../utils/mutations';
+import { useLazyQuery, useMutation } from '@apollo/client';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -88,19 +90,50 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const handleClick = function (avatar, type) {
-	if (type == 'business') {
-		console.log('get down to business');
-	} else if (type == 'funlogo') {
-		console.log('let loose');
-	}
-};
+
 
 const avatars = [];
 
 const Onboard = () => {
 	const classes = useStyles();
 	const { user } = useAuthState();
+	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
+	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
+
+	const handleClick = function (avatar, type) {
+		if (type === 'business') {
+			setFormState({
+				...formState,
+				businessLogo: avatar
+			})
+			console.log('get down to business');
+		} else if (type === 'funlogo') {
+			setFormState({
+				...formState,
+				funLogo: avatar
+			})
+			console.log('let loose');
+		}
+	}
+	const connectButtonClick = function () {
+		try {
+			createProfile({
+				variables: { businessLogo: formState.businessLogo, funLogo: formState.funLogo, Instagram: formState.Instagram, linkedin: formState.linkedin },
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		setFormState({
+			...formState,
+			[name]: value,
+		});
+	};
+
+
 	// console.log(user.data.username, user.data.businessLogo, user.data._id)
 	console.log(user);
 	return (
@@ -148,8 +181,10 @@ const Onboard = () => {
 							className={classes.field}
 							variant="outlined"
 							id="input-with-icon-textfield"
+							name="linkedin"
 							label="LinkedIn Profile"
 							placeholder="/in/LinkedInName"
+							onChange={handleChange}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -166,6 +201,8 @@ const Onboard = () => {
 							id="input-with-icon-textfield"
 							label="Instragram Handle"
 							placeholder="@YourInstagram"
+							name="Instagram"
+							onChange={handleChange}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -177,6 +214,7 @@ const Onboard = () => {
 						<Grid>
 							<Button
 								className={classes.connectButton}
+								onClick={connectButtonClick}
 								component={Link}
 								to="/chat"
 							>
