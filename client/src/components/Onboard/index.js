@@ -98,8 +98,8 @@ const Onboard = () => {
 
     const classes = useStyles();
     const { user } = useAuthState()
-    console.log(user.data.username, user.data.businessLogo, user.data._id)
-   
+    // console.log(user.data.username, user.data.businessLogo, user.data._id)
+    console.log(user);
     return (
 
         <Box className={classes.root}>
