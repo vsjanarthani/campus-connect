@@ -5,7 +5,8 @@ import {
 	List,
 	Typography,
 	FormControlLabel,
-	Switch
+	Switch,
+	Hidden
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
@@ -20,8 +21,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
-
-
 
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
@@ -68,7 +67,7 @@ const Header = props => {
 			}
 		}
 	}));
-	
+
 	const classes = useStyles();
 	const authDispatch = useAuthDispatch();
 	const { user } = useAuthState();
@@ -82,22 +81,34 @@ const Header = props => {
 		<Box component="nav">
 			<AppBar position="static" className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
-					<Typography component={Button} component={ Link } to="/">
-						<span className={classes.title}>Campus Connect</span>
-					</Typography>
+					<Hidden smDown>
+						<Typography component={Button} component={Link} to="/">
+							<span className={classes.title}>Campus Connect</span>
+						</Typography>
+					</Hidden>
 					<List>
 						{!user ? (
 							<>
-								<Clock
-									className={classes.clock}
-									format={'h:mm a'}
-									style={{ fontSize: '1.2em' }}
-									ticking={true}
-								/>
-								<Button className={classes.listItem} component={ Link } to="/login">
+								<Hidden mdDown>
+									<Clock
+										className={classes.clock}
+										format={'h:mm a'}
+										style={{ fontSize: '1.2em' }}
+										ticking={true}
+									/>
+								</Hidden>
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/login"
+								>
 									<DoubleArrowIcon /> Login
 								</Button>
-								<Button className={classes.listItem} component={ Link } to="/signup">
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/signup"
+								>
 									<CreateIcon /> Signup
 								</Button>
 							</>
@@ -116,7 +127,11 @@ const Header = props => {
 									onChange={event => props.onChange(event.target.checked)}
 								/>
 
-								<Button className={classes.listItem} component={ Link } to="/chat">
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/chat"
+								>
 									<ChatIcon /> Chat
 								</Button>
 								<Button className={classes.listItem} href="/" onClick={logout}>
