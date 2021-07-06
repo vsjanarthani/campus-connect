@@ -1,3 +1,27 @@
+
+
+ .mobileMenu {
+   display: block
+}
+
+@media only screen and (min-width: 767px) {
+   .mobileMenu { 
+     display: none; /* it will hide larger than 765px eg: laptop and desktop */
+   }
+ }
+
+
+ .desktopMenu {
+   display: none
+}
+
+@media only screen and (min-width: 767px) {
+   .desktopMenu { 
+     display: block; /* it will hide larger than 765px eg: laptop and desktop */
+   }
+ }
+
+
 .messenger{
     height: calc(100vh - 70px);
     display: flex;

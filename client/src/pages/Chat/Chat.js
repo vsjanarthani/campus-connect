@@ -91,12 +91,15 @@ const Chat = props => {
 		<div className="messenger">
 			<div className="chatMenu">
 				<div className="chatMenuWrapper">
+					<div className="mobileMenu">
 					<IconButton onClick={() => setOpen(true)}>
 						<BackspaceIcon className={classes.opener}> </BackspaceIcon>
 					</IconButton>
 					<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
 						<Rail />
 					</Drawer>
+					</div>
+					<div className="desktopMenu">
 					<div className="aligned">
 						<Avatar
 							id="myavatar"
@@ -127,6 +130,7 @@ const Chat = props => {
                            /> */}
 					<UserList data={props.data} />
 				</div>
+			</div>
 			</div>
 			<div className="chatBox">
 				<div className="chatBoxWrapper">
