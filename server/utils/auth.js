@@ -4,6 +4,7 @@ const { PubSub } = require('apollo-server-express');
 const pubsub = new PubSub();
 
 const secret = 'mysecretsshhhhh';
+// const secret = process.env.SESSION_KEY;
 const expiration = '2h';
 
 const authMiddleware = (context) => {

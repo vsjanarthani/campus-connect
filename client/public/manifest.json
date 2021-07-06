@@ -35,7 +35,7 @@
     "short_name": "connect",
     "orientation": "portrait",
     "display": "standalone",
-    "start_url": "ourStartUrlWillGoHere",
+    "start_url": ".",
     "description": "An app that allows you to chat with fellow bootcamp coders.",
     "background_color": "#01579b",
     "theme_color": "#ffffff"
