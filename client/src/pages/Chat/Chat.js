@@ -10,7 +10,7 @@ import BackspaceIcon from '@material-ui/icons/Backspace';
 
 import Drawer from '@material-ui/core/Drawer';
 import Rail from '../../components/MobileRail';
-import ForumIcon from '@material-ui/icons/Forum';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
@@ -130,10 +130,7 @@ const Chat = props => {
 			</div>
 			<div className="chatBox">
 				<div className="chatBoxWrapper">
-					<div className="chatBanner">
-						{' '}
-						<ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '}
-					</div>
+					
 					<div className="messagesHere">
 						<ChatBody />
 					</div>

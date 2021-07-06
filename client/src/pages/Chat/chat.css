@@ -34,11 +34,7 @@
     padding: 10px, 0;
     border-bottom: 3px solid black;
  }
-.chatBanner {
-    font-family: "Roboto";
-    align-self: center;
-    margin-bottom: 1vh;
-}
+
 .chatBox{
     flex: 6.5;
   

@@ -9,7 +9,7 @@ import { SEND_MESSAGE } from '../../utils/mutations';
 import { GET_MESSAGES } from '../../utils/queries';
 import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
 import Message from './Message';
-
+import ForumIcon from '@material-ui/icons/Forum';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +71,7 @@ const ChatBody = () => {
     const [content, setContent] = useState('');
     const selectedUser = users?.find((u) => u.selected === true)
     const messages = selectedUser?.messages
-     
+
 
     const [getMsgs, {
         loading: msgLoading, data: msgData },
@@ -134,7 +134,11 @@ const ChatBody = () => {
     return (
 
         <div>
-
+            <div className="chatBanner">
+                {' '}
+                <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '}
+                {/* <ForumIcon></ForumIcon> {selectedUser.username} */}
+            </div>
             {selectedChatMarkup}
 
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
