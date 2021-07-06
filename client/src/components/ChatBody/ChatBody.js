@@ -123,7 +123,7 @@ const ChatBody = () => {
                     </div>
                 )}
             </Fragment>
-        ))
+        )) 
     } else if (messages.length === 0) {
         selectedChatMarkup = (
             <p className="info-text">
@@ -131,13 +131,17 @@ const ChatBody = () => {
             </p>
         )
     }
+    let friend
+    if (selectedUser) friend = selectedUser.username;
+    else {friend = ""};
+    
     return (
 
         <div>
             <div className="chatBanner">
                 {' '}
-                <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '}
-                {/* <ForumIcon></ForumIcon> {selectedUser.username} */}
+                {/* <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '} */}
+                <ForumIcon></ForumIcon> {friend}
             </div>
             {selectedChatMarkup}
 

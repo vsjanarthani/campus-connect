@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
-    console.log(user.data.username)
+    // console.log(user.data.username)
     const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     // assigning variables to differentiate message style of sender and receiver
     const sent = message.from === user.data.username;
