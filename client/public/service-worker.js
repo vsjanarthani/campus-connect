@@ -1,5 +1,10 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = [ 'index.html', 'offline.html' ];
+
+
+const APP_PREFIX = 'CampusConnect-';
+const VERSION = 'version_1';
+const CACHE_NAME = APP_PREFIX + VERSION;
+
+const urlsToCache = [ 'index.html', 'offline.html', 'assets/icons/192.png' ];
 
 const self = this;
 
