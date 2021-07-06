@@ -2,8 +2,6 @@ import React from 'react';
 import { useAuthState } from '../../utils/auth';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import { useMutation } from '@apollo/client';
-// do we need to use subscription here?
-// import { useSubscription } from '@apollo/client';
 import { REACT_TO_MESSAGE } from '../../utils/mutations';
 import Tooltip from '@material-ui/core/Tooltip';
 import Popover from '@material-ui/core/Popover';
@@ -45,9 +43,25 @@ const useStyles = makeStyles((theme) => ({
 const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
-    // something with sent/recieved not working;
+    // assigning variables to differentiate message style of sender and receiver
     const sent = message.from === user.username;
     const received = !sent;
+
+    const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
+        onError: (err) => console.log(err),
+        onCompleted: (data) => console.log(data),
+        // Display the data in a pop over.
+    });
+
+    // Figure out how to get the messageId to pass here
+    const sendReaction = (event) => {
+        console.log(event);
+        let content = event.target.innerText;
+        console.log(content);
+        let messageId = event.target.parentElement.id;
+        console.log(messageId);
+        reactToMessage({ variables: { messageId, content } })
+    }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -66,8 +80,6 @@ const Message = ({ message }) => {
         <BottomNavigation >
 
             {/* placement={sent ? 'right' : 'left'} */}
-
-
 
             <div className={sent ? "message user" : "message"}>
                 <div className="messageTop">
@@ -99,8 +111,10 @@ const Message = ({ message }) => {
                                     <Button
                                         // variant="link"
                                         // className="react-icon-button"
-                                        key={reaction}
-                                    // onClick={() => react(reaction)}
+                                        key={message.reaction}
+                                        id={message._id}
+                                        value={reaction}
+                                        onClick={sendReaction}
                                     >
                                         {reaction}
                                     </Button>
