@@ -41,7 +41,7 @@ const Chat = props => {
 
 	const { data: reactionData, error: reactionError } =
 		useSubscription(NEW_REACTION);
-
+	console.log(reactionData);
 	useEffect(() => {
 		if (messageError) console.log(messageError);
 
@@ -66,7 +66,7 @@ const Chat = props => {
 	useEffect(() => {
 		console.log("useeffect for reaction");
 		if (reactionError) console.log(reactionError);
-
+		console.log(reactionData);
 		if (reactionData) {
 			console.log("useeffect for  2");
 			const reaction = reactionData.newReaction;
