@@ -12,8 +12,8 @@ const workTheme = {
 const funTheme = {
 	funAvatar: true,
 	background: '#427fa5',
-	confetti: '200',
-	text: 'white',
+	confetti: '300',
+	text: 'red',
 	header: '#891c69',
 	navHover: '#ffd000',
 	chatBubble1: '',
