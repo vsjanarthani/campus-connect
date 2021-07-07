@@ -214,7 +214,7 @@ const Onboard = () => {
 									</InputAdornment>
 								)
 							}}
-						/>{' '}
+						/>
 						<Grid>
 							<Button
 								className={classes.connectButton}
@@ -224,11 +224,7 @@ const Onboard = () => {
 							>
 								Connect
 							</Button>
-							{error ? (
-          <div>
-            <p>Please enter a Fun Logo, Business Logo, your Insta handle and LinkedIn</p>
-          </div>
-        ) : null}
+							
 						</Grid>
 					</Grid>
 				</form>
