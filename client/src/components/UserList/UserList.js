@@ -7,6 +7,7 @@ import {
 	useMessageDispatch,
 	useMessageState
 } from '../../utils/messagecontext';
+import { useAuthState } from '../../utils/auth';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -60,6 +61,7 @@ const UserList = props => {
 	const classes = useStyles();
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
+	const { user } = useAuthState();
 	// const selectedUser = users?.find((u) => u.selected === true)?.username
 
 	const { loading } = useQuery(GET_USERS, {
@@ -87,13 +89,9 @@ const UserList = props => {
 	} else if (users.length === 0) {
 		usersMarkup = <p>No users have joined yet</p>;
 	} else if (users.length > 0) {
-		usersMarkup = users.map(user => {
-			// const selected = selectedUser === user.username
-			let avatar
-		
-			console.log(user.profile)
-			// console.log(user.profile[0].businessLogo)
-
+		const userList = users.filter(list => list.username !== user.data.username);
+		usersMarkup = userList.map(user => {
+			let avatar;
 			if (props.data.funAvatar) {
 				avatar = user.profile[0]?.funLogo;
 			} else {
