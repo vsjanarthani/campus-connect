@@ -116,9 +116,9 @@ const Chat = props => {
 			<Hidden smDown>
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-						<IconButton onClick={() => setOpen(true)}>
+						{/* <IconButton onClick={() => setOpen(true)}>
 							<BackspaceIcon className={classes.opener}> </BackspaceIcon>
-						</IconButton>
+						</IconButton> */}
 						<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
 							<Rail />
 						</Drawer>
