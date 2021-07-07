@@ -93,7 +93,8 @@ module.exports = {
                     return context.pubsub.asyncIterator('NEW_MESSAGE')
                 },
                 ({ newMessage }, _args, { user }) => {
-                    console.log(user.data.username);
+                    // console.log("96 message")
+                    // console.log(user.data.username);
                     if (
                         newMessage.from === user.data.username ||
                         newMessage.to === user.data.username

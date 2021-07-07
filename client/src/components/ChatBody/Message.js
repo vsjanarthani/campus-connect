@@ -19,9 +19,9 @@ import moment from "moment";
 const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
 
 const useStyles = makeStyles((theme) => ({
-    // sent: {
-    //     backgroundColor: "red",
-    // },
+    container: {
+        display: "block",
+    },
     button: {
         marginTop: "1rem",
     },
@@ -79,7 +79,7 @@ const Message = ({ message }) => {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <BottomNavigation key={message._id}>
+        <BottomNavigation className={classes.container} key={message._id}>
 
             {/* placement={sent ? 'right' : 'left'} */}
 

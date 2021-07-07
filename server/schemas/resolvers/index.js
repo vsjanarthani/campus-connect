@@ -12,6 +12,7 @@ const resolvers = {
     },
     Subscription: {
         ...messageResolvers.Subscription,
+        ...userResolvers.Subscription
     },
 }
 
