@@ -214,7 +214,7 @@ const Onboard = () => {
 									</InputAdornment>
 								)
 							}}
-						/>
+						/>{' '}
 						<Grid>
 							<Button
 								className={classes.connectButton}
