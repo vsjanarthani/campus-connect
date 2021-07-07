@@ -80,9 +80,9 @@ const UserList = props => {
 			// console.log(user.profile[0].businessLogo)
 
 			if (props.data.funAvatar) {
-				avatar = user.profile[0].funLogo;
+				avatar = user.profile[0]?.funLogo;
 			} else {
-				avatar = user.profile[0].businessLogo;
+				avatar = user.profile[0]?.businessLogo;
 			}
 			return (
 				<div key={user.username}>
