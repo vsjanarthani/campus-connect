@@ -1,3 +1,25 @@
+.mobileMenu {
+   display: block
+}
+
+@media only screen and (min-width: 767px) {
+   .mobileMenu { 
+     display: none; /* it will hide larger than 765px eg: laptop and desktop */
+   }
+ }
+
+
+ .desktopMenu {
+   display: none
+}
+
+@media only screen and (min-width: 767px) {
+   .desktopMenu { 
+     display: block; /* it will hide larger than 765px eg: laptop and desktop */
+   }
+ }
+
+
 .messenger{
     height: calc(100vh - 70px);
     display: flex;
@@ -11,15 +33,15 @@
     
  }
   
+
 /*things related to avatar above left side menu */
- .aligned {
-    display: flex;
-    align-items: center;
+.aligned {
+	display: flex;
+	align-items: center;
 }
 
 #myavatar {
-    margin-bottom: 5px;
-  
+	margin-bottom: 5px;
 }
 #namename {
     /* padding: 10px; */
@@ -34,11 +56,7 @@
     padding: 10px, 0;
     border-bottom: 3px solid black;
  }
-.chatBanner {
-    font-family: "Roboto";
-    align-self: center;
-    margin-bottom: 1vh;
-}
+
 .chatBox{
     flex: 6.5;
   
@@ -85,21 +103,25 @@
  /* .chatOnline{
     flex: 3;
  } */
-  
- .chatMenuWrapper, .chatBoxWrapper, .chatOnline {
-    padding: 10px;
-    /* background-color: blueviolet; */
-    max-height: 100%;
-    margin-top: 2vh;
-  
- }
- .chatBoxWrapper {
-    margin-top: 5vh;
 
- }
+.chatMenuWrapper,
+.chatBoxWrapper,
+.chatOnline {
+	padding: 10px;
+	/* background-color: blueviolet; */
+	max-height: 100%;
+	margin-top: 2vh;
+}
+.chatBoxWrapper {
+	margin-top: 5vh;
+}
 
- .chatMenuWrapper {
-   overflow-y: scroll;
- }
-  
- 
+.chatMenuWrapper {
+	overflow-y: scroll;
+}
+
+@media screen and (min-width: 480px) {
+	.mobile-hide {
+		display: none;
+	}
+}

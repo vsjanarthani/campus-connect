@@ -9,16 +9,17 @@ import { SEND_MESSAGE } from '../../utils/mutations';
 import { GET_MESSAGES } from '../../utils/queries';
 import { useMessageDispatch, useMessageState } from '../../utils/messagecontext';
 import Message from './Message';
-
+import ForumIcon from '@material-ui/icons/Forum';
 import InputAdornment from '@material-ui/core/InputAdornment';
+// import "./chatBody.css";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        height: "100vh",
+    // root: {
+    //     flexGrow: 1,
+    //     padding: theme.spacing(2),
+    //     height: "100vh",
 
-    },
+    // },
     input: {
         color: "#003262",
         '@media (max-width:600px)': {
@@ -71,7 +72,7 @@ const ChatBody = () => {
     const [content, setContent] = useState('');
     const selectedUser = users?.find((u) => u.selected === true)
     const messages = selectedUser?.messages
-     
+
 
     const [getMsgs, {
         loading: msgLoading, data: msgData },
@@ -123,7 +124,7 @@ const ChatBody = () => {
                     </div>
                 )}
             </Fragment>
-        ))
+        )) 
     } else if (messages.length === 0) {
         selectedChatMarkup = (
             <p className="info-text">
@@ -131,10 +132,18 @@ const ChatBody = () => {
             </p>
         )
     }
+    let friend
+    if (selectedUser) friend = (selectedUser.username).toUpperCase();
+    else {friend = ""};
+    
     return (
 
         <div>
-
+            <div className="chatBanner">
+                {' '}
+                {/* <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '} */}
+                <ForumIcon></ForumIcon> {friend}{' '}
+            </div>
             {selectedChatMarkup}
 
             <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>

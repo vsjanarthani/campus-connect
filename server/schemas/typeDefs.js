@@ -48,6 +48,7 @@ type Mutation {
 type Subscription {
     newMessage: Message!
     newReaction: Reaction!
+    newUser: User!
   }
 `;
 

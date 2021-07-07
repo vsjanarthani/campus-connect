@@ -15,14 +15,12 @@ import Badge from '@material-ui/core/Badge';
 import "./message.css";
 import moment from "moment";
 
+// reactions to messages
 const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
 
 const useStyles = makeStyles((theme) => ({
-    sent: {
-
-    },
-    received: {
-
+    container: {
+        display: "block",
     },
     button: {
         marginTop: "1rem",
@@ -47,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
 const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
-
+    // console.log(user.data.username)
     const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     // assigning variables to differentiate message style of sender and receiver
-    const sent = message.from === user.username;
+    const sent = message.from === user.data.username;
     const received = !sent;
     const reactionIcons = [...new Set(message.reactions.map((r) => r.content))]
     const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
@@ -81,7 +79,7 @@ const Message = ({ message }) => {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <BottomNavigation key={message._id}>
+        <BottomNavigation className={classes.container} key={message._id}>
 
             {/* placement={sent ? 'right' : 'left'} */}
 

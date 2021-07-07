@@ -1,4 +1,4 @@
-const { UserInputError, AuthenticationError, } = require('apollo-server-express');
+const { UserInputError, AuthenticationError, withFilter} = require('apollo-server-express');
 const { User, Message } = require('../../models');
 const { authToken } = require('../../utils/auth');
 
@@ -61,7 +61,7 @@ module.exports = {
   // Mutations
   Mutation: {
     // Add user or signup
-    addUser: async (_parent, args) => {
+    addUser: async (_parent, args, context) => {
       let { username, email, password } = args
       let errors = {}
       try {
@@ -76,10 +76,11 @@ module.exports = {
         }
         const user = await User.create(args);
         const token = authToken(user);
-        return {
-          ...user.toJSON(),
-          token,
-        }
+        const newUser = JSON.parse(JSON.stringify(user));
+        newUser.token = token;
+        console.log("NEW USER", newUser);
+        context.pubsub.publish('NEW_USER',  { newUser })
+        return newUser
       } catch (error) {
         console.log(error)
         throw error
@@ -107,6 +108,26 @@ module.exports = {
       }
     },
   },
+
+  Subscription: {
+    newUser: {
+      subscribe: withFilter(
+        (_parent, _args, context) => {
+          console.log(`this is context ${context}`)
+          if (!context.user) throw new AuthenticationError('Unauthenticated')
+          console.log("context", context.pubsub)
+          return context.pubsub.asyncIterator('NEW_USER')
+        },
+        ({ newUser }, _args, { user }) => {
+          console.log("hey")
+          console.log(user.data.username);
+          if (newUser) return true;
+          else return false;
+        } 
+
+      )
+    }
+  }
 
 };
 

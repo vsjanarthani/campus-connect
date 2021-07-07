@@ -111,7 +111,7 @@ const Signup = props => {
 		onError: err => {
 			console.log(err.graphQLErrors[0].message);
 			setOpen(true);
-			setAlertMsg(err.graphQLErrors[0].message);
+			setAlertMsg(err.graphQLErrors[0]?.message);
 			setSeverity('error');
 		},
 		onCompleted(data) {
