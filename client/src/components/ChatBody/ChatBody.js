@@ -11,6 +11,7 @@ import { useMessageDispatch, useMessageState } from '../../utils/messagecontext'
 import Message from './Message';
 import ForumIcon from '@material-ui/icons/Forum';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Initial from './chatInitial.js'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -109,7 +110,7 @@ const ChatBody = () => {
 
     let selectedChatMarkup
     if (!messages && !msgLoading) {
-        selectedChatMarkup = <p className="info-text">Select a friend</p>
+       return selectedChatMarkup = <p className="info-text">Select a friend</p> && <Initial/>
 
     } else if (msgLoading) {
         selectedChatMarkup = <p className="info-text">Loading..</p>
