@@ -48,7 +48,7 @@ const Chat = props => {
 		new Date()
 	)
 
-	
+
 
 	const toggleDrawer = (anchor, open) => event => {
 		if (
@@ -131,6 +131,7 @@ const Chat = props => {
 		}
 	}, [reactionError, reactionData]);
 	const [open, setOpen] = useState(false);
+
 	return (
 		<div className="messenger">
 			<Hidden smDown>
@@ -172,7 +173,7 @@ const Chat = props => {
                                    ),
                                }}
                            /> */}
-						
+
 						<UserList messageUpdate={messageUpdate} data={props.data} className="mobile-hide" />
 					</div>
 				</div>

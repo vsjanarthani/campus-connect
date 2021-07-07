@@ -93,15 +93,12 @@ module.exports = {
                     return context.pubsub.asyncIterator('NEW_MESSAGE')
                 },
                 ({ newMessage }, _args, { user }) => {
-                    // console.log("96 message")
-                    // console.log(user.data.username);
                     if (
                         newMessage.from === user.data.username ||
                         newMessage.to === user.data.username
                     ) {
                         return true
                     }
-
                     return false
                 }
             ),
@@ -113,13 +110,10 @@ module.exports = {
                     return pubsub.asyncIterator('NEW_REACTION')
                 },
                 async ({ newReaction }, _, { user }) => {
-                    // console.log("newReaction subscription getting hit")
                     const message = await newReaction.getMessage();
-                    // console.log(`this is the message${message}`);
                     if (message.from === user.username || message.to === user.username) {
                         return true
                     }
-
                     return false
                 }
             ),

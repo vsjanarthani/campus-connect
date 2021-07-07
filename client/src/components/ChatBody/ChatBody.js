@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -14,12 +14,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 // import "./chatBody.css";
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //     flexGrow: 1,
-    //     padding: theme.spacing(2),
-    //     height: "100vh",
 
-    // },
     input: {
         color: "#003262",
         '@media (max-width:600px)': {
@@ -29,41 +24,23 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginTop: "1rem",
         color: "#003262",
-
         borderColor: "grey",
     },
     field: {
         margin: "1rem 0rem",
         width: "100%"
-
     },
+    text: {
+        color: "#003262",
+        textAlign: 'center',
+        padding: '0.5rem',
+    },
+    div: {
+        padding: theme.spacing(2),
+        background: 'white',
+    },
+
 }));
-
-const InputField = withStyles({
-    root: {
-        "& label.Mui-focused": {
-            color: "grey",
-        },
-        "& label": {
-            color: "#003262",
-            '@media (max-width:600px)': {
-                fontSize: '0.9rem',
-            },
-        },
-        "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-                borderColor: "grey",
-            },
-            "&:hover fieldset": {
-                borderColor: "coffee",
-            },
-            "&.Mui-focused fieldset": {
-                color: "whitesmoke",
-                borderColor: "grey",
-            },
-        },
-    },
-})(TextField);
 
 const ChatBody = () => {
     const classes = useStyles();
@@ -110,70 +87,61 @@ const ChatBody = () => {
 
     let selectedChatMarkup
     if (!messages && !msgLoading) {
-        selectedChatMarkup = <p className="info-text">Select a friend</p>
-
+        selectedChatMarkup = <p className={classes.text}>Select a friend</p>
     } else if (msgLoading) {
-        selectedChatMarkup = <p className="info-text">Loading..</p>
+        selectedChatMarkup = <p className={classes.text} > Loading..</ p>
     } else if (messages.length > 0) {
-        selectedChatMarkup = messages.map((message, index) => (
+        selectedChatMarkup = messages.map((message) => (
             <Fragment key={message._id}>
                 <Message message={message} />
-                {index === messages.length - 1 && (
-                    <div className="invisible">
-                        <hr className="m-0" />
-                    </div>
-                )}
             </Fragment>
-        )) 
+        ))
     } else if (messages.length === 0) {
         selectedChatMarkup = (
-            <p className="info-text">
-                You are now connected to {selectedUser.username}! Send them a message.
+            <p className={classes.text}>
+                Connected Successfully.
             </p>
         )
     }
     let friend
     if (selectedUser) friend = (selectedUser.username).toUpperCase();
-    else {friend = ""};
-    
+    else { friend = "" };
+
     return (
 
-        <div>
-            <div className="chatBanner">
+        <div container>
+            <div className={classes.text}>
                 {' '}
-                {/* <ForumIcon></ForumIcon> [CHATFRIEND USERNAME]{' '} */}
-                <ForumIcon></ForumIcon> {friend}{' '}
+                <ForumIcon /> {friend}{' '}
             </div>
-            {selectedChatMarkup}
-
-            <Box component="form" className={classes.form} onSubmit={handleFormSubmit}>
-
-                <TextField
-
-                    variant="outlined"
-                    name='msg'
-                    type='text'
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    inputProps={{ className: classes.input }}
-                    className={classes.field}
-                    label="Send Message"
-                    placeholder="Send a message..."
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Button
-
-                                    endIcon={<Send />}
-                                    type="submit" >
-
-                                </Button>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            </Box>
-
+            <div className={classes.div}>
+                {selectedChatMarkup}
+            </div>
+            <div>
+                <Box component="form" onSubmit={handleFormSubmit}>
+                    <TextField
+                        variant="outlined"
+                        name='msg'
+                        type='text'
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        inputProps={{ className: classes.input }}
+                        className={classes.field}
+                        label="Send Message"
+                        placeholder="Send a message..."
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <Button
+                                        endIcon={<Send />}
+                                        type="submit" >
+                                    </Button>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Box>
+            </div>
         </div>
     )
 }
