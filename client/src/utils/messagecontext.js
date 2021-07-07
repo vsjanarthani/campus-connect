@@ -35,15 +35,10 @@ const messageReducer = (state, action) => {
                 users: usersCopy,
             }
         case 'ADD_MESSAGE':
-            console.log(state);
-            console.log("add message");
+            // console.log(state);
             usersCopy = [...state.users]
             const addMessage = (theUser) => {
-                console.log(usersCopy);
                 userIndex = usersCopy.findIndex((u) => u.username === theUser)
-                console.log(userIndex)
-                // console.log(userIndex2)
-                // userIndex2 = usersCopy.findIndex((u) => u.username === self)
                 message.reactions = []
 
                 let newUser = {
@@ -54,18 +49,7 @@ const messageReducer = (state, action) => {
                         : [],
                     latestMessage: message,
                 }
-
-                // let newUser2 = {
-                //     ...usersCopy[userIndex2],
-                //     updated: new Date(),
-                //     messages: usersCopy[userIndex2].messages
-                //         ? [...usersCopy[userIndex2].messages, message]
-                //         : [],
-                //     latestMessage: message,
-                // }
-
                 usersCopy[userIndex] = newUser
-                // usersCopy[userIndex2] = newUser2
             }
             addMessage(username);
             addMessage(self);

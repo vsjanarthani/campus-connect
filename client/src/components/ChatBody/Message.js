@@ -49,7 +49,6 @@ const Message = ({ message }) => {
     const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     // assigning variables to differentiate message style of sender and receiver
     const sent = message.from === user.data.username;
-    const received = !sent;
     const reactionIcons = [...new Set(message.reactions.map((r) => r.content))]
     const [reactToMessage] = useMutation(REACT_TO_MESSAGE, {
         onError: (err) => console.log(err),
@@ -80,8 +79,6 @@ const Message = ({ message }) => {
 
     return (
         <BottomNavigation className={classes.container} key={message._id}>
-
-            {/* placement={sent ? 'right' : 'left'} */}
 
             <div className={sent ? "message user" : "message"}>
                 <div className="messageTop">
@@ -128,9 +125,6 @@ const Message = ({ message }) => {
                         </Badge>
                     </div>
                 </div>
-                {/* <div className="messageBottom">
-                    1 hour ago
-            </div> */}
             </div>
 
         </BottomNavigation >

@@ -1,4 +1,4 @@
-const { UserInputError, AuthenticationError, withFilter} = require('apollo-server-express');
+const { UserInputError, AuthenticationError, withFilter } = require('apollo-server-express');
 const { User, Message } = require('../../models');
 const { authToken } = require('../../utils/auth');
 
@@ -78,8 +78,7 @@ module.exports = {
         const token = authToken(user);
         const newUser = JSON.parse(JSON.stringify(user));
         newUser.token = token;
-        console.log("NEW USER", newUser);
-        context.pubsub.publish('NEW_USER',  { newUser })
+        context.pubsub.publish('NEW_USER', { newUser })
         return newUser
       } catch (error) {
         console.log(error)
@@ -93,14 +92,13 @@ module.exports = {
         // throw error if the user is not logged in
         if (!context.user) throw new AuthenticationError('Not logged in');
         const user = context.user.data.username;
-        console.log(args);
         const { businessLogo, funLogo, imageUrl, linkedin, Instagram } = args;
         const updatedUser = await User.findOneAndUpdate(
           { username: user },
           { $set: { profile: { businessLogo, funLogo, imageUrl, linkedin, Instagram } } },
           { new: true }
         );
-        console.log(updatedUser);
+        // console.log(updatedUser);
         return updatedUser;
       } catch (error) {
         console.log(error)
@@ -113,22 +111,17 @@ module.exports = {
     newUser: {
       subscribe: withFilter(
         (_parent, _args, context) => {
-          console.log(`this is context ${context}`)
-          if (!context.user) throw new AuthenticationError('Unauthenticated')
-          console.log("context", context.pubsub)
+          if (!context.user) throw new AuthenticationError('Unauthenticated');
           return context.pubsub.asyncIterator('NEW_USER')
         },
         ({ newUser }, _args, { user }) => {
-          console.log("hey")
-          console.log(user.data.username);
+          console.log(newUser);
           if (newUser) return true;
           else return false;
-        } 
-
+        }
       )
     }
   }
-
 };
 
 
