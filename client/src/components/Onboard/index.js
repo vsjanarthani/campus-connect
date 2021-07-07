@@ -116,6 +116,10 @@ const Onboard = () => {
 		}
 	}
 	const connectButtonClick = function () {
+		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
+			throw error;
+			return;
+		}
 		try {
 			createProfile({
 				variables: { businessLogo: formState.businessLogo, funLogo: formState.funLogo, Instagram: formState.Instagram, linkedin: formState.linkedin },
@@ -220,6 +224,11 @@ const Onboard = () => {
 							>
 								Connect
 							</Button>
+							{error ? (
+          <div>
+            <p>Please enter a Fun Logo, Business Logo, your Insta handle and LinkedIn</p>
+          </div>
+        ) : null}
 						</Grid>
 					</Grid>
 				</form>
