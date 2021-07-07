@@ -4,9 +4,9 @@ import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 
-import BackspaceIcon from '@material-ui/icons/Backspace';
+// import BackspaceIcon from '@material-ui/icons/Backspace';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Drawer from '@material-ui/core/Drawer';
