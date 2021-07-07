@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './userList.css';
-import { useQuery } from '@apollo/client';
+import { NEW_USER } from '../../utils/subscriptions';
+import { useQuery, useSubscription } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import {
 	useMessageDispatch,
@@ -62,10 +63,23 @@ const UserList = props => {
 	// const selectedUser = users?.find((u) => u.selected === true)?.username
 
 	const { loading } = useQuery(GET_USERS, {
-		onCompleted: data =>
-			dispatch({ type: 'SET_USERS', payload: data.getUsers }),
+		onCompleted: data => {
+			console.log("aliff is amazing-get users query", data)
+			return dispatch({ type: 'SET_USERS', payload: data.getUsers })},
 		onError: err => console.log(err)
 	});
+
+	const { data: userData, error: userError } = useSubscription(NEW_USER);
+
+	useEffect(()=> {
+		
+		console.log("Changed to NEWUSERDATA", userData);
+		console.log("USERS", users);
+		if(userData) {
+
+			dispatch({ type: 'SET_USERS', payload: [...users, {profile: [], ...userData.newUser}] })
+		}
+	}, [userData])
 
 	let usersMarkup;
 	if (!users || loading) {
@@ -76,6 +90,7 @@ const UserList = props => {
 		usersMarkup = users.map(user => {
 			// const selected = selectedUser === user.username
 			let avatar
+		
 			console.log(user.profile)
 			// console.log(user.profile[0].businessLogo)
 

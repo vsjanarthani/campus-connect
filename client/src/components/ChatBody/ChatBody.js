@@ -11,14 +11,15 @@ import { useMessageDispatch, useMessageState } from '../../utils/messagecontext'
 import Message from './Message';
 import ForumIcon from '@material-ui/icons/Forum';
 import InputAdornment from '@material-ui/core/InputAdornment';
+// import "./chatBody.css";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
-        height: "100vh",
+    // root: {
+    //     flexGrow: 1,
+    //     padding: theme.spacing(2),
+    //     height: "100vh",
 
-    },
+    // },
     input: {
         color: "#003262",
         '@media (max-width:600px)': {

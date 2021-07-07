@@ -25,3 +25,17 @@ export const NEW_REACTION = gql`
     }
   }
 `
+
+export const NEW_USER = gql`
+  subscription newUser {
+    newUser {
+    token
+      _id
+      username
+    email
+    createdAt
+    }
+  
+  }
+`;
+

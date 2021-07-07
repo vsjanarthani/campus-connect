@@ -14,7 +14,7 @@ import Rail from '../../components/MobileRail';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useMessageDispatch } from '../../utils/messagecontext';
-import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
+import { NEW_MESSAGE, NEW_REACTION, NEW_USER } from '../../utils/subscriptions';
 // import { TextField } from '@material-ui/core';
 // import SearchIcon from '@material-ui/icons/Search';
 // import InputAdornment from '@material-ui/core/InputAdornment';
@@ -44,6 +44,12 @@ const Chat = props => {
 		right: false
 	});
 
+	const [messageUpdate, setMessageUpdate] = React.useState(
+		new Date()
+	)
+
+	
+
 	const toggleDrawer = (anchor, open) => event => {
 		if (
 			event &&
@@ -63,13 +69,27 @@ const Chat = props => {
 	const { data: messageData, error: messageError } =
 		useSubscription(NEW_MESSAGE);
 
+	// const { data: userData, error: userError } =
+	// 	useSubscription(NEW_USER);
+
 	const { data: reactionData, error: reactionError } =
 		useSubscription(NEW_REACTION);
 	console.log(reactionData);
+
+	// useEffect(() => {
+	// 	if (userError) console.log(userError);
+	// 	if (userData) {
+	// 		console.log("new user created")
+	// 		setMessageUpdate(new Date())
+	// 		// messageDispatch({ type: 'SET_USERS', payload: data.getUsers })
+	// 	}
+	// }, [userData])
 	useEffect(() => {
+		console.log("useEffect message")
 		if (messageError) console.log(messageError);
 
 		if (messageData) {
+
 			const message = messageData.newMessage;
 			const user1 = user.username === message.to ? message.from : message.to;
 			const user2 = user.username === message.to ? message.to : message.from;
@@ -152,7 +172,8 @@ const Chat = props => {
                                    ),
                                }}
                            /> */}
-						<UserList data={props.data} className="mobile-hide" />
+						
+						<UserList messageUpdate={messageUpdate} data={props.data} className="mobile-hide" />
 					</div>
 				</div>
 			</Hidden>
