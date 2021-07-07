@@ -2,7 +2,6 @@ import React from 'react';
 import './animations.css';
 import { useAuthState } from '../../utils/auth';
 import { Typography, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 const Home = props => {
 	// 	const useStyles = makeStyles((theme) => {
@@ -19,9 +18,8 @@ const Home = props => {
 		<div>
 			{!user ? (
 				<>
-					<Typography>Welcome to Campus Connect</Typography>
 					<Typography variant="h2" className="bounce-in">
-						Thank you!!
+						Congratulation BootCamp Grads!!
 					</Typography>
 					<Container maxWidth="sm">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iusto

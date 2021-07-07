@@ -5,12 +5,20 @@ const MessageDispatchContext = createContext()
 
 const messageReducer = (state, action) => {
     let usersCopy, userIndex;
-    const { username, message, messages, reaction, self } = action.payload
+    const { username, message, messages, reaction, self, addedUser } = action.payload
     switch (action.type) {
         case 'SET_USERS':
             return {
                 ...state,
                 users: [...action.payload]
+            }
+
+        case 'SET_NEW_USERS':
+            console.log(state.users);
+            usersCopy = state.users.push(addedUser)
+            return {
+                ...state,
+                users: usersCopy,
             }
         case 'SET_USER_MESSAGES':
             console.log(state.users)
@@ -115,7 +123,6 @@ const messageReducer = (state, action) => {
 
 export const MessageProvider = ({ children }) => {
     const [state, dispatch] = useReducer(messageReducer, { users: [] })
-    console.log(state)
     return (
         <MessageDispatchContext.Provider value={dispatch}>
             <MessageStateContext.Provider value={state}>

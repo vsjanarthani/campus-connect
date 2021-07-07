@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Badge from '@material-ui/core/Badge';
 import "./message.css";
 import moment from "moment";
@@ -46,7 +45,6 @@ const Message = ({ message }) => {
     const classes = useStyles();
     const { user } = useAuthState();
     // console.log(user.data.username)
-    const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     // assigning variables to differentiate message style of sender and receiver
     const sent = message.from === user.data.username;
     const reactionIcons = [...new Set(message.reactions.map((r) => r.content))]
@@ -108,8 +106,6 @@ const Message = ({ message }) => {
                             <Typography className={classes.typography}>
                                 {reactions.map((reaction) => (
                                     <Button
-                                        // variant="link"
-                                        // className="react-icon-button"
                                         key={message.reaction}
                                         id={message._id}
                                         value={reaction}
