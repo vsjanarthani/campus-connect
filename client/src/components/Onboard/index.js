@@ -216,7 +216,7 @@ const Onboard = () => {
 								className={classes.connectButton}
 								onClick={connectButtonClick}
 								component={Link}
-								to="/chat"
+								to="/"
 							>
 								Connect
 							</Button>
