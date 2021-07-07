@@ -80,5 +80,5 @@ If you have any questions, please reach out to any of the contributors.
 
 ### Resources 
 [Confetti Animation](https://www.cssscript.com/demo/confetti-falling-animation/)
+![Frame 19](https://user-images.githubusercontent.com/77648727/124691727-23f7d200-de91-11eb-87f7-c7a0dbe1bc83.png)
 
-![Frame 19](https://user-images.githubusercontent.com/77648727/124679094-ae800780-de78-11eb-828b-f19ba5e9553b.png)
