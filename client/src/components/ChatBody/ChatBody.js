@@ -44,20 +44,22 @@ const useStyles = makeStyles((theme) => ({
 
 const ChatBody = () => {
     const classes = useStyles();
-    const { users } = useMessageState();
     const dispatch = useMessageDispatch();
     const [content, setContent] = useState('');
-    const selectedUser = users?.find((u) => u.selected === true)
+    const { users } = useMessageState();
+    console.log(users);
+    const selectedUser = users?.find((u) => u?.selected === true)
     const messages = selectedUser?.messages
-
 
     const [getMsgs, {
         loading: msgLoading, data: msgData },
     ] = useLazyQuery(GET_MESSAGES);
 
+
     const [sendMsg] = useMutation(SEND_MESSAGE, {
         onError: (err) => console.log(err),
     })
+
 
     useEffect(() => {
         if (selectedUser && !selectedUser.messages) {

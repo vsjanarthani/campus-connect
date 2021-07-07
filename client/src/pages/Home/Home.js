@@ -19,22 +19,21 @@ const Home = props => {
 			{!user ? (
 				<>
 					<Typography variant="h2" className="bounce-in">
-						Congratulation BootCamp Grads!!
+						Its Graduation Day!!
 					</Typography>
 					<Container maxWidth="sm">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi iusto
-						error voluptatem eius accusantium, fugiat rerum provident alias modi
-						officiis nostrum, velit commodi sint deserunt reprehenderit illo
-						odit culpa quibusdam?
+						Congratulations to all of you for successfully completing the coding bootcamp. It was a challenging journey for all of us. Sign up and join campus connect to stay in touch
+						with cohort and TAs.
+
 					</Container>
 				</>
 			) : (
 				<>
 					{' '}
 					<Typography>Welcome {user.data.username}</Typography>{' '}
-					<Typography variant="h2" className="bounce-in">
-						Congrats {user.data.username}!
-					</Typography>
+					{/* <Typography variant="h2" className="bounce-in">
+						Welcome {user.data.username}!
+					</Typography> */}
 				</>
 			)}
 		</div>

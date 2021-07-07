@@ -83,7 +83,7 @@ const Chat = props => {
 	useEffect(() => {
 		// console.log('useeffect for reaction');
 		if (reactionError) console.log(reactionError);
-		console.log(reactionData);
+		// console.log(reactionData);
 		if (reactionData) {
 			const reaction = reactionData.newReaction;
 			const user1 =
