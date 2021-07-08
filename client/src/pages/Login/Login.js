@@ -63,6 +63,11 @@ const useStyles = makeStyles((_theme) => ({
     field: {
         margin: "1rem 0rem",
     },
+    signLogLink: {
+        color: `#003262`,
+        textDecoration: `none`,
+        fontWeight: `700`
+    }
 
 }));
 
@@ -187,7 +192,7 @@ const Login = () => {
                     className={classes.button}>
                     {loading ? 'loading..' : 'Login'}
                 </Button>
-                <Typography> New here? <Link to='./signup'>Sign up</Link>!</Typography>
+                <Typography> New here? <Link to='./signup' className={classes.signLogLink}>Sign up</Link>!</Typography>
             </Box>
             <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} className={classes.alertbox}>
                 <Alert onClose={() => setOpen(false)} severity={severity} className={classes.alertbox}>

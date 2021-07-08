@@ -6,7 +6,7 @@ import {
 	Typography,
 	FormControlLabel,
 	Switch,
-	Hidden
+	Hidden,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
@@ -59,12 +59,16 @@ const Header = props => {
 			color: 'whitesmoke',
 			fontFamily: 'Poppins',
 			fontWeight: 800,
+			textDecoration: 'none',
 			'@media (max-width:1200px)': {
 				fontSize: '1.2rem'
 			},
 			'@media (min-width:1200px)': {
 				fontSize: '1.5rem'
 			}
+		},
+		brand: {
+			height: 48
 		}
 	}));
 
@@ -81,11 +85,18 @@ const Header = props => {
 		<Box component="nav">
 			<AppBar position="static" className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
-					<Hidden smDown>
-						<Typography component={Button} component={Link} to="/">
-							<span className={classes.title}>Campus Connect</span>
-						</Typography>
-					</Hidden>
+					<List>
+						<Hidden smDown>
+							<Button>
+								<img src='../../../assets/Frame29.png' className={classes.brand} />
+							</Button>
+							<Button>
+								<Typography component={Link} style={{ textDecoration: 'none' }} to="/">
+									<span className={classes.title}>Campus Connect</span>
+								</Typography>
+							</Button>
+						</Hidden>
+					</List>
 					<List>
 						{!user ? (
 							<>
