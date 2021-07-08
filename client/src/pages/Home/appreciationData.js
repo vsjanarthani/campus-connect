@@ -9,19 +9,19 @@ const appreciationData = {
         },
         {
             to: "Manny",
-            message: "East or West, Manny is the best. Appreciate all your help and support throught this course. You have been awesome.",
+            message: "East or West, Manny is the best. Appreciate all your help and support throught this course. You are a motivated instructor, and it's impressive the way you build and coding community. May your stacks of XRP overflow. You have been awesome. Cryptokémon!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
         {
             to: "Aliff",
-            message: "You are our hero! Thank you for coming to our rescue, Aliff. We knew we could count on you!",
+            message: "You are our hero! Thank you for coming to our rescue, Aliff. We knew we could count on you! I don't know whether you are an honorary member of Team Campus Connect, or we should ask to be honorary members of Team Aliff.",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
         {
             to: "Nate",
-            message: "Thank you for extending a helping hand whenever we needed help. Without you, we wouldn't have made the progress we did!",
+            message: "Thank you for extending a helping hand whenever we needed it. The reach of your Austin powers was appreciated from California to Rhode Island! Without you, we wouldn't have made the progress we did!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
@@ -49,6 +49,13 @@ const appreciationData = {
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
+        {
+            to: "John",
+            message: "No matter how grueling and difficult BootCamp Life could be, there was always that opportunity to get a respite by visiting your office hours. The whole team agrees that you stand out for being so helpful and nice. Great Lebowski bg. When it comes to TA's, you are the bullseye.",
+            from: "Team Campus Connect",
+            imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
+        },
+
 
     ]
 
