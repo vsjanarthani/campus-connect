@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createElement } from 'react';
+import React, { useState, createElement } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -113,9 +113,6 @@ const Onboard = () => {
 	const { user } = useAuthState();
 	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
-	useEffect(() => {
-
-	}, [formState])
 	const handleClick = function (avatar, type) {
 
 		if (type === 'business') {
