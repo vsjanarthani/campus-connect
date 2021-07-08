@@ -42,17 +42,17 @@ After installing all the dependencies, run ```npm start``` in your terminal to s
 > AND MongoDB and the Mongoose ODM are used for the database     
 > AND queries and mutations for retrieving, adding, updating, and deleting data are incorporated     
 > WHEN I see the application          
-> THEN I see tt is deployed on a Heroku link with data     
+> THEN I see it is deployed on a Heroku link with data     
 > WHEN I see the application's polished UI     
 > THEN I see it is responsive and interative     
 > WHEN I review the application code for authentication     
 > THEN I see JWT has been used     
-> WHEN sensitive API KEY Informaiton is stored     
+> WHEN sensitive API KEY Information is stored     
 > THEN I can verify it is protected from public view
 > WHEN I review the repository     
 > THEN I see meets quality coding standards for file structure, naming conventions and descriptive comments     
 > WHEN I review the README     
-> THEN I see the repository has aunique name, description, technologies used, screenshot, and link to deployed application     
+> THEN I see the repository has a unique name, description, technologies used, screenshot, and link to deployed application     
 
 
  
@@ -73,7 +73,7 @@ This application is covered under **MIT** license.
 ![webpage](./assets/images/screenshot.png)
 
 ### Deployed
-The application is deployed on  [https:///](https:///)
+The application is deployed on  [https://campus-connect21.herokuapp.com/](https://campus-connect21.herokuapp.com/)
 
 ### Questions
 If you have any questions, please reach out to any of the contributors.
