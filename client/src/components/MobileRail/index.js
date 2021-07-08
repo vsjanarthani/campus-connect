@@ -4,7 +4,7 @@ import Divider from '@material-ui/core/Divider';
 // import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import UserList from '../../components/UserList/UserList';
+import UserListMobile from '../../components/UserList/UserListMobile';
 // import { MessageProvider } from '../../utils/messagecontext';
 import { useAuthState } from '../../utils/auth';
 
@@ -18,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles(() => ({
 	menuRail: {
-		width: '280 px',
+		width: '280px',
 		textAlign: 'left',
 		fontFamily: 'Poppins',
 		weight: `800`,
@@ -91,7 +91,7 @@ const Rail = props => {
 			<div className="messenger">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-						<UserList data={props.data} />
+						<UserListMobile data={props.data} />
 					</div>
 				</div>
 			</div>
