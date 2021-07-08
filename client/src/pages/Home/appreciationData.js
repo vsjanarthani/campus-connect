@@ -9,7 +9,7 @@ const appreciationData = {
         },
         {
             to: "Manny",
-            message: "East or West, Manny is the best. Appreciate all your help and support throught this course. You are a motivated instructor, and it's impressive the way you build and coding community. May your stacks of XRP overflow. You have been awesome. Cryptokémon!",
+            message: "East or West, Manny is the best. Appreciate all your help and support throughout this course. You are a motivated instructor, and it's impressive the way you build up the coding community. May your stacks of XRP overflow. You have been awesome. Cryptokémon!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
@@ -27,13 +27,13 @@ const appreciationData = {
         },
         {
             to: "Ma$on",
-            message: "Thank you for all of your motivational energy and pep talks, Mason! Appreciate your detailed feedback on our projects.",
+            message: "Thank you for all of your motivational energy and pep talks, Mason! You gave us the fire and enthusiasm we needed to make our projects, and presentations pop! Appreciate your detailed feedback on our projects. Take care of that little ;) puppy, and maybe get used to getting your reps by lifting those great big bags of dog food!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
         {
             to: "Wesley",
-            message: "What would we do without you Wesley?! Appreciate you nudging us in the right direction whenever we felt lost.",
+            message: "What would we do without you Wesley?! Appreciate you nudging us in the right direction whenever we felt lost (Which was like always in some of our cases, so thanks for always being there). Shout out to legendary zoom backgrounds (dog on the moon, water-bunker)!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
