@@ -8,6 +8,8 @@ This is an app to connect Coding Bootcamp Alumni for networking purposes. Find a
 - [x] ES6
 - [x] MongoDB
 - [x] React
+- [x] Material UI
+- [x] Figma
 - [x] Bootstrap
 - [x] Node.js (Express, Mongoose, graphQL, jsonwebtoken, Apollo/Client, Apollo-Server-Express)
 
@@ -70,7 +72,8 @@ This application is covered under **MIT** license.
 - [Sarah Durkin](https://github.com/sarahdurks)         
 
 ### Screenshot
-![webpage](./assets/images/screenshot.png)
+<img width="1216" alt="Screen Shot 2021-07-08 at 3 55 12 PM" src="https://user-images.githubusercontent.com/77648727/125000287-efa52280-e004-11eb-88f7-164644671e4d.png">
+
 
 ### Deployed
 The application is deployed on  [https://campus-connect21.herokuapp.com/](https://campus-connect21.herokuapp.com/)
