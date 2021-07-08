@@ -86,13 +86,13 @@ const Header = props => {
 			<AppBar position="static" className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
 					<List>
-						<Hidden smDown>
-							<Button>
-								<img
-									src="../../../assets/Frame29.png"
-									className={classes.brand}
-								/>
-							</Button>
+						<Button>
+							<img
+								src="../../../assets/Frame29.png"
+								className={classes.brand}
+							/>
+						</Button>
+						<Hidden xsDown>
 							<Button>
 								<Typography
 									component={Link}
@@ -107,7 +107,7 @@ const Header = props => {
 					<List>
 						{!user ? (
 							<>
-								<Hidden mdDown>
+								<Hidden smDown>
 									<Clock
 										className={classes.clock}
 										format={'h:mm a'}
@@ -132,12 +132,14 @@ const Header = props => {
 							</>
 						) : (
 							<>
-								<Clock
-									className={classes.clock}
-									format={'h:mm a'}
-									style={{ fontSize: '1.2em' }}
-									ticking={true}
-								/>
+								<Hidden smDown>
+									<Clock
+										className={classes.clock}
+										format={'h:mm a'}
+										style={{ fontSize: '1.2em' }}
+										ticking={true}
+									/>
+								</Hidden>
 								<Switch //https://material-ui.com/components/switches/
 									color="default"
 									name="checkedB"
@@ -150,10 +152,11 @@ const Header = props => {
 									component={Link}
 									to="/chat"
 								>
-									<ChatIcon /> Chat
+									<ChatIcon />
+									<Hidden xsDown>Chat</Hidden>
 								</Button>
 								<Button className={classes.listItem} href="/" onClick={logout}>
-									<ExitToAppIcon /> Logout
+									<ExitToAppIcon /> <Hidden xsDown>Logout</Hidden>
 								</Button>
 							</>
 						)}
