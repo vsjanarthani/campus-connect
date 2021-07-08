@@ -7,7 +7,7 @@ import appreciationData from './appreciationData';
 import Appreciate from './card';
 
 const Home = props => {
-	const useStyles = makeStyles(theme => ({
+	const useStyles = makeStyles(_theme => ({
 		celebrate: {
 			marginTop: '50%'
 		},

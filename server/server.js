@@ -1,4 +1,5 @@
 // import packages and varialbes needed
+require('dotenv').config();
 const http = require('http');
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
@@ -6,7 +7,6 @@ const { typeDefs, resolvers } = require('./schemas');
 const path = require('path');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
-require('dotenv').config();
 
 // Intergrating apolloserver with express and subscription
 async function startApolloServer() {
@@ -18,7 +18,7 @@ async function startApolloServer() {
     context: authMiddleware,
     subscriptions: { path: '/graphql' }
   });
-  
+
   await server.start();
   server.applyMiddleware({ app })
 

@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './userList.css';
-import { NEW_USER } from '../../utils/subscriptions';
-import { useQuery, useSubscription } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import {
 	useMessageDispatch,
@@ -66,22 +65,11 @@ const UserList = props => {
 
 	const { loading } = useQuery(GET_USERS, {
 		onCompleted: data => {
-			console.log("aliff is amazing-get users query", data)
-			return dispatch({ type: 'SET_USERS', payload: data.getUsers })},
+			dispatch({ type: 'SET_USERS', payload: data.getUsers })
+		},
 		onError: err => console.log(err)
 	});
 
-	const { data: userData, error: userError } = useSubscription(NEW_USER);
-
-	useEffect(()=> {
-		
-		console.log("Changed to NEWUSERDATA", userData);
-		console.log("USERS", users);
-		if(userData) {
-
-			dispatch({ type: 'SET_USERS', payload: [...users, {profile: [], ...userData.newUser}] })
-		}
-	}, [userData])
 
 	let usersMarkup;
 	if (!users || loading) {
@@ -119,9 +107,7 @@ const UserList = props => {
 							primary={user.username}
 							className="conversationName"
 						/>
-						{/* <ListItemText secondary={user.latestMessage
-							? user.latestMessage.content
-							: 'Connected..'} /> */}
+
 						<Button
 							href={user.linkedin || 'https://www.linkedin.com'}
 							target="_blank"
