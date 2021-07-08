@@ -4,7 +4,7 @@ import Divider from '@material-ui/core/Divider';
 // import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import UserListMobile from '../../components/UserList/UserListMobile';
+import UserList from '../../components/UserList/UserList';
 // import { MessageProvider } from '../../utils/messagecontext';
 import { useAuthState } from '../../utils/auth';
 
@@ -91,7 +91,7 @@ const Rail = props => {
 			<div className="messenger">
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-						<UserListMobile data={props.data} />
+						<UserList data={props.data} />
 					</div>
 				</div>
 			</div>

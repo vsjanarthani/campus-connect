@@ -6,7 +6,7 @@ import {
 	Typography,
 	FormControlLabel,
 	Switch,
-	Hidden,
+	Hidden
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
@@ -28,7 +28,7 @@ const Header = props => {
 			flexGrow: 1,
 			margin: 0,
 			width: '100%',
-			height: '8vh',
+			height: '4rem',
 			background: props.data.header
 		},
 		toolbar: {
@@ -88,10 +88,17 @@ const Header = props => {
 					<List>
 						<Hidden smDown>
 							<Button>
-								<img src='../../../assets/Frame29.png' className={classes.brand} />
+								<img
+									src="../../../assets/Frame29.png"
+									className={classes.brand}
+								/>
 							</Button>
 							<Button>
-								<Typography component={Link} style={{ textDecoration: 'none' }} to="/">
+								<Typography
+									component={Link}
+									style={{ textDecoration: 'none' }}
+									to="/"
+								>
 									<span className={classes.title}>Campus Connect</span>
 								</Typography>
 							</Button>

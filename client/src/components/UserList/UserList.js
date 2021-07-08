@@ -65,11 +65,10 @@ const UserList = props => {
 
 	const { loading } = useQuery(GET_USERS, {
 		onCompleted: data => {
-			dispatch({ type: 'SET_USERS', payload: data.getUsers })
+			dispatch({ type: 'SET_USERS', payload: data.getUsers });
 		},
 		onError: err => console.log(err)
 	});
-
 
 	let usersMarkup;
 	if (!users || loading) {
@@ -118,7 +117,6 @@ const UserList = props => {
 						<Button
 							href={user.instagram || 'https://www.instagram.com'}
 							target="_blank"
-							id="social"
 						>
 							{' '}
 							<InstagramIcon className={classes.iconChat} />

@@ -8,12 +8,17 @@ import { useAuthState } from '../../utils/auth';
 
 // import BackspaceIcon from '@material-ui/icons/Backspace';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Drawer from '@material-ui/core/Drawer';
 import Rail from '../../components/MobileRail';
-import { makeStyles } from '@material-ui/core/styles';
 import { useMessageDispatch } from '../../utils/messagecontext';
 import { NEW_MESSAGE, NEW_REACTION, NEW_USER } from '../../utils/subscriptions';
-import { Divider, Avatar, Hidden, SwipeableDrawer, Button } from '@material-ui/core';
+import {
+	makeStyles,
+	Divider,
+	Avatar,
+	Hidden,
+	SwipeableDrawer,
+	Button
+} from '@material-ui/core';
 // import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const Chat = props => {
@@ -50,18 +55,20 @@ const Chat = props => {
 
 	const { data: userData, error: userError } = useSubscription(NEW_USER);
 
-	const { data: messageData, error: messageError } = useSubscription(NEW_MESSAGE);
+	const { data: messageData, error: messageError } =
+		useSubscription(NEW_MESSAGE);
 
-	const { data: reactionData, error: reactionError } = useSubscription(NEW_REACTION);
+	const { data: reactionData, error: reactionError } =
+		useSubscription(NEW_REACTION);
 
 	useEffect(() => {
 		if (userError) console.log(userError);
 		if (userData) {
-			console.log("new user created", userData);
+			console.log('new user created', userData);
 			const addedUser = userData.newUser;
 			messageDispatch({ type: 'SET_NEW_USERS', payload: addedUser });
 		}
-	}, [userData])
+	}, [userData]);
 
 	useEffect(() => {
 		if (messageError) console.log(messageError);
@@ -84,7 +91,7 @@ const Chat = props => {
 		if (reactionError) console.log(reactionError);
 		if (reactionData) {
 			const reaction = reactionData.newReaction;
-			console.log(reaction)
+			console.log(reaction);
 			const user1 = reaction.username;
 			const user2 = user.data.username;
 			console.log(user1, user2);
@@ -105,12 +112,6 @@ const Chat = props => {
 			<Hidden smDown>
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-						{/* <IconButton onClick={() => setOpen(true)}>
-							<BackspaceIcon className={classes.opener}> </BackspaceIcon>
-						</IconButton> */}
-						<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
-							<Rail />
-						</Drawer>
 						<div className="aligned">
 							<Avatar
 								id="myavatar"
