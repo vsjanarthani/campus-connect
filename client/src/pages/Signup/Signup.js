@@ -62,7 +62,12 @@ const useStyles = makeStyles(_theme => ({
 	},
 	field: {
 		margin: '1rem 0rem'
-	}
+	},
+	signLogLink: {
+        color: `#003262`,
+        textDecoration: `none`,
+		fontWeight: `700`
+    }
 }));
 
 const InputField = withStyles({
@@ -201,7 +206,7 @@ const Signup = props => {
 				>
 					{loading ? 'loading..' : 'Signup'}
 				</Button>
-				<Typography>Already have an account? Log in <Link to='./login'>here</Link>.</Typography>
+				<Typography>Already have an account? Log in <Link to='./login' className={classes.signLogLink}>here</Link>.</Typography>
 			</Box>
 			<Snackbar
 				open={open}
