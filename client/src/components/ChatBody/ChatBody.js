@@ -50,8 +50,13 @@ const ChatBody = () => {
     const [content, setContent] = useState('');
     const { users } = useMessageState();
     console.log(users);
-    const selectedUser = users?.find((u) => u?.selected === true)
-    const messages = selectedUser?.messages
+
+    let selectedUser;
+    let messages;
+    if (users.length > 0) {
+        selectedUser = users?.find((u) => u?.selected === true);
+        messages = selectedUser?.messages;
+    } 
 
     const [getMsgs, {
         loading: msgLoading, data: msgData },
@@ -91,17 +96,17 @@ const ChatBody = () => {
 
     let selectedChatMarkup
     if (!messages && !msgLoading) {
-       return selectedChatMarkup = <p className="info-text">Select a friend</p> && <Initial/>
+        return selectedChatMarkup = <p className="info-text">Select a friend</p> && <Initial />
 
     } else if (msgLoading) {
         selectedChatMarkup = <p className={classes.text} > Loading..</ p>
-    } else if (messages.length > 0) {
+    } else if (messages?.length > 0) {
         selectedChatMarkup = messages.map((message) => (
             <Fragment key={message._id}>
                 <Message message={message} />
             </Fragment>
         ))
-    } else if (messages.length === 0) {
+    } else if (messages?.length === 0) {
         selectedChatMarkup = (
             <p className={classes.text}>
                 Connected Successfully.
