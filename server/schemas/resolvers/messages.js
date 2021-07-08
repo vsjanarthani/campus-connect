@@ -51,6 +51,7 @@ module.exports = {
                 // create new message and publish it
                 const msgToSend = await Message.create({ from: sender, to, msg });
                 context.pubsub.publish('NEW_MESSAGE', { newMessage: msgToSend })
+                console.log(msgToSend);
                 return msgToSend;
             } catch (error) {
                 console.log(error)
@@ -58,24 +59,26 @@ module.exports = {
             }
         },
         // React to message
-        reactToMessage: async (_parent, { messageId, content }, { user, pubsub }) => {
+        reactToMessage: async (_parent, { messageId, content }, context) => {
             // const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎']
             try {
+                const username = context.user.data.username;
                 // throw error if the user is not logged in
-                if (!user) throw new AuthenticationError('Not logged in');
+                if (!context.user) throw new AuthenticationError('Not logged in');
                 // Get message
                 const updatedMsg = await Message.findOneAndUpdate(
                     { _id: messageId },
-                    { $push: { reactions: { content, username: user.data.username } } },
+                    { $push: { reactions: { content, username, messageId } } },
                     { new: true }
                 );
                 console.log(updatedMsg);
                 if (!updatedMsg) throw new UserInputError('message not found');
-                if (updatedMsg.from !== user.data.username && updatedMsg.to !== user.data.username) {
+                if (updatedMsg.from !== username && updatedMsg.to !== username) {
                     throw new ForbiddenError('Unauthorized');
                 }
                 const index = updatedMsg.reactions.length - 1;
-                pubsub.publish('NEW_REACTION', { newReaction: updatedMsg.reactions[index] });
+                console.log(updatedMsg.reactions[index]);
+                context.pubsub.publish('NEW_REACTION', { newReaction: updatedMsg.reactions[index] });
                 return updatedMsg;
             } catch (error) {
                 console.log(error)
@@ -105,13 +108,13 @@ module.exports = {
         },
         newReaction: {
             subscribe: withFilter(
-                (_, __, { pubsub, user }) => {
-                    if (!user) throw new AuthenticationError('Unauthenticated')
-                    return pubsub.asyncIterator('NEW_REACTION')
+                (_parent, _args, context) => {
+                    if (!context.user) throw new AuthenticationError('Unauthenticated')
+                    return context.pubsub.asyncIterator('NEW_REACTION')
                 },
-                async ({ newReaction }, _, { user }) => {
-                    const message = await newReaction.getMessage();
-                    if (message.from === user.username || message.to === user.username) {
+                async ({ newReaction }, _args, { user }) => {
+                    console.log(newReaction.username);
+                    if (newReaction.content) {
                         return true
                     }
                     return false
