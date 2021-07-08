@@ -41,7 +41,7 @@ This will take you to the onboarding page where you can personalize your experie
 
 Following this, you can get to chatting! Connect with the other users of Campus Connect! When you are chatting, be sure to share your successes, opportunities, questions, quandaries, memories, enouragement and updates! 
 
-![webpage](./assets/images/screenshot.png)
+![webpage](./client/public/assets/screenshot.png)
 
 When you are feeling like you are in a great mood, go ahead and give the them switcher toggle a try. Party time!
 
