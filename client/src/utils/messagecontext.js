@@ -21,11 +21,9 @@ const messageReducer = (state, action) => {
                 users: usersCopy,
             }
         case 'SET_USER_MESSAGES':
-            console.log(state.users)
+
             usersCopy = [...state.users]
-
             userIndex = usersCopy.findIndex((u) => u.username === username)
-
             usersCopy[userIndex] = { ...usersCopy[userIndex], messages }
 
             return {
@@ -46,8 +44,6 @@ const messageReducer = (state, action) => {
             // console.log(state);
             usersCopy = [...state.users]
             const addMessage = (theUser) => {
-                console.log(usersCopy);
-                // console.log(userIndex)
                 userIndex = usersCopy.findIndex((u) => u.username === theUser)
                 message.reactions = []
 
@@ -70,22 +66,22 @@ const messageReducer = (state, action) => {
 
         case 'ADD_REACTION':
             usersCopy = [...state.users]
-            console.log("add reaction");
             const addReaction = (theUser) => {
 
                 userIndex = usersCopy.findIndex((u) => u.username === theUser)
                 // Make a shallow copy of user
                 let userCopy = { ...usersCopy[userIndex] }
-                console.log(userCopy);
+                console.log(userCopy)
 
                 // Find the index of the message that this reaction pertains to
                 const messageIndex = userCopy.messages?.findIndex(
-                    (m) => m._id === reaction.message._id
+                    (m) => m._id === reaction.messageId
                 )
 
                 if (messageIndex > -1) {
                     // Make a shallow copy of user messages
                     let messagesCopy = [...userCopy.messages]
+                    console.log(messagesCopy);
 
                     // Make a shallow copy of user message reactions
                     let reactionsCopy = [...messagesCopy[messageIndex].reactions]

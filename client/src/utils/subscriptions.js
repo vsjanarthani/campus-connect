@@ -17,11 +17,9 @@ export const NEW_REACTION = gql`
     newReaction {
       _id
       content
-      message {
-        _id
-        from
-        to
-      }
+      createdAt
+      username
+      messageId
     }
   }
 `
@@ -30,8 +28,8 @@ export const NEW_USER = gql`
   subscription newUser {
     newUser {
     token
-      _id
-      username
+    _id
+    username
     email
     createdAt
     }

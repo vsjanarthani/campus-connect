@@ -81,19 +81,13 @@ const Chat = props => {
 	}, [messageError, messageData]);
 
 	useEffect(() => {
-		// console.log('useeffect for reaction');
 		if (reactionError) console.log(reactionError);
-		// console.log(reactionData);
 		if (reactionData) {
 			const reaction = reactionData.newReaction;
-			const user1 =
-				user.username === reaction.message.to
-					? reaction.message.from
-					: reaction.message.to;
-			const user2 =
-				user.username === reaction.message.to
-					? reaction.message.to
-					: reaction.message.from;
+			console.log(reaction)
+			const user1 = reaction.username;
+			const user2 = user.data.username;
+			console.log(user1, user2);
 			messageDispatch({
 				type: 'ADD_REACTION',
 				payload: {

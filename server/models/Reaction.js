@@ -4,10 +4,13 @@ const reactionSchema = new Schema(
     {
         content: {
             type: String,
-            required: true,
-            maxlength: 280
+            required: true
         },
         username: {
+            type: String,
+            required: true
+        },
+        messageId: {
             type: String,
             required: true
         },

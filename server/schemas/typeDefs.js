@@ -24,8 +24,8 @@ type Reaction {
     _id: ID!
     content: String!
     createdAt: String!
-    message: Message!
-    user: User!
+    username: String!
+    messageId: String
   }
   type Profile {
     imageUrl: String
