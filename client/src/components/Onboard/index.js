@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createElement } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -88,6 +88,9 @@ const useStyles = makeStyles(theme => ({
 		margin: `auto`,
 		width: '90vw',
 		maxWidth: `640px`
+	},
+	hide: {
+		display: `none`
 	}
 }));
 
@@ -117,15 +120,14 @@ const Onboard = () => {
 				funLogo: avatar
 			})
 			console.log('let loose');
-		}
-		// const checkLogo = function () {
-		// 	if (formState.businessLogo == avatar) {
-		// 		return className="selected";
-		// 	} 
-		// }
+		}		
 	}
 	const connectButtonClick = function () {
+		let errorMessage = document.createElement("p");
+		let subHeader = document.querySelector("#sub-header");
+		errorMessage.textContent="Social Media handles are required!";
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
+			subHeader.appendChild(errorMessage);			
 			throw error;
 			return;
 		}
@@ -173,7 +175,9 @@ const Onboard = () => {
 					avatars={businessLogos}
 					onClick={(value, value2) => handleClick(value, value2)}					
 				/>
-				<p>Your fave tech is:</p><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
+				<Typography className={classes.textDetail}>
+				Your fave tech is: 
+				</Typography><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
 			</div>
 			<Grid>
 				{' '}
@@ -186,10 +190,12 @@ const Onboard = () => {
 					avatars={funLogos}
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
-				<p>You would party with: </p>
+				<Typography className={classes.textDetail}>
+				You would party with:
+				</Typography>
 				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
-			<Typography className={classes.subHeader}>Social Profiles</Typography>
+			<Typography className={classes.subHeader} id="sub-header">Social Profiles</Typography>
 			<Box className={classes.boxy}>
 				<form noValidate autoComplete="off">
 					<Grid>
