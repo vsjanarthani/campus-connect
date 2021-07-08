@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -12,7 +12,8 @@ import { useAuthState } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { CREATE_PROFILE } from '../../utils/mutations';
 import { useLazyQuery, useMutation } from '@apollo/client';
-
+// import FunModal, { handleFunModal } from '../FunModal';
+import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles(theme => ({
 	root: {
 		width: '90vw',
@@ -99,8 +100,11 @@ const Onboard = () => {
 	const { user } = useAuthState();
 	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
+	useEffect(() => {
 
+	}, [formState])
 	const handleClick = function (avatar, type) {
+		
 		if (type === 'business') {
 			setFormState({
 				...formState,
@@ -114,6 +118,11 @@ const Onboard = () => {
 			})
 			console.log('let loose');
 		}
+		// const checkLogo = function () {
+		// 	if (formState.businessLogo == avatar) {
+		// 		return className="selected";
+		// 	} 
+		// }
 	}
 	const connectButtonClick = function () {
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
@@ -162,8 +171,9 @@ const Onboard = () => {
 			<div className={classes.scroller}>
 				<Funavatar
 					avatars={businessLogos}
-					onClick={(value, value2) => handleClick(value, value2)}
+					onClick={(value, value2) => handleClick(value, value2)}					
 				/>
+				<p>Your fave tech is:</p><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
 			</div>
 			<Grid>
 				{' '}
@@ -176,6 +186,8 @@ const Onboard = () => {
 					avatars={funLogos}
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
+				<p>You would party with: </p>
+				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
 			<Typography className={classes.subHeader}>Social Profiles</Typography>
 			<Box className={classes.boxy}>
