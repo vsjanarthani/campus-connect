@@ -132,10 +132,21 @@ const Onboard = () => {
 	const connectButtonClick = function () {
 		let errorMessage = document.createElement("p");
 		let subHeader = document.querySelector("#sub-header");
+		
 		errorMessage.textContent = "Please choose Avatar Alter Egos and Social Media Handles!";
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
+				function removeElem() {
+					const elems = document.querySelectorAll('#deleteme');
+					setTimeout(function() {
+					  for (const e of elems) {
+						e.remove();
+					  }
+					}, 3000);
+				  }
 			subHeader.appendChild(errorMessage);
-			subHeader.classList.add('warned')
+			subHeader.classList.add('warned');
+			errorMessage.setAttribute('id', 'deleteme')
+			removeElem();
 			throw error;
 			return;
 		}
