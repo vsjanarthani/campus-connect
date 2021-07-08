@@ -111,6 +111,7 @@ const avatars = [];
 const Onboard = () => {
 	const classes = useStyles();
 	const { user } = useAuthState();
+	const [alertMsg, setAlertMsg] = useState('');
 	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
 	const handleClick = function (avatar, type) {
@@ -130,15 +131,12 @@ const Onboard = () => {
 		}
 	}
 	const connectButtonClick = function () {
-		let errorMessage = document.createElement("p");
-		let subHeader = document.querySelector("#sub-header");
-		errorMessage.textContent = "Please choose Avatar Alter Egos and Social Media Handles!";
+
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
-			subHeader.appendChild(errorMessage);
-			subHeader.classList.add('warned')
+			setAlertMsg("Please choose Avatar Alter Egos and Social Media Handles!");
 			throw error;
-			return;
 		}
+
 		try {
 			createProfile({
 				variables: { businessLogo: formState.businessLogo, funLogo: formState.funLogo, Instagram: formState.Instagram, linkedin: formState.linkedin },
@@ -207,7 +205,7 @@ const Onboard = () => {
 				</Typography>
 				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
-			<Typography className={classes.warned} id="sub-header"></Typography>
+			<Typography className={classes.warned} id="sub-header">{alertMsg}</Typography>
 			<Typography className={classes.subHeader}>Social Profiles</Typography>
 			<Box className={classes.boxy}>
 				<form noValidate autoComplete="off">
