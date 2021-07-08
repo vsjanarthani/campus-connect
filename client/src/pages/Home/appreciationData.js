@@ -9,7 +9,7 @@ const appreciationData = {
         },
         {
             to: "Manny",
-            message: "East or West, Manny is the best. Appreciate all you help and support throught this course. You have been awesome.",
+            message: "East or West, Manny is the best. Appreciate all your help and support throught this course. You have been awesome.",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
