@@ -21,7 +21,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
-import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
