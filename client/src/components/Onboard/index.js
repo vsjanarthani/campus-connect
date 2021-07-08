@@ -91,6 +91,16 @@ const useStyles = makeStyles(theme => ({
 	},
 	hide: {
 		display: `none`
+	},
+	logoBox: {
+		height: 56,
+		display: `flex`,
+		alignItems: `center`,
+		flexWrap: `wrap`,
+	},
+	warned: {
+		color: `#ba000d`,
+		fontWeight: `fontWeightBold`
 	}
 }));
 
@@ -107,7 +117,7 @@ const Onboard = () => {
 
 	}, [formState])
 	const handleClick = function (avatar, type) {
-		
+
 		if (type === 'business') {
 			setFormState({
 				...formState,
@@ -120,14 +130,15 @@ const Onboard = () => {
 				funLogo: avatar
 			})
 			console.log('let loose');
-		}		
+		}
 	}
 	const connectButtonClick = function () {
 		let errorMessage = document.createElement("p");
 		let subHeader = document.querySelector("#sub-header");
-		errorMessage.textContent="Social Media handles are required!";
+		errorMessage.textContent = "Please choose Avatar Alter Egos and Social Media Handles!";
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
-			subHeader.appendChild(errorMessage);			
+			subHeader.appendChild(errorMessage);
+			subHeader.classList.add('warned')
 			throw error;
 			return;
 		}
@@ -173,10 +184,12 @@ const Onboard = () => {
 			<div className={classes.scroller}>
 				<Funavatar
 					avatars={businessLogos}
-					onClick={(value, value2) => handleClick(value, value2)}					
+					onClick={(value, value2) => handleClick(value, value2)}
 				/>
+			</div>
+			<div className={classes.logoBox}>
 				<Typography className={classes.textDetail}>
-				Your fave tech is: 
+					Your fave tech is:
 				</Typography><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
 			</div>
 			<Grid>
@@ -190,12 +203,15 @@ const Onboard = () => {
 					avatars={funLogos}
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
+			</div >
+			<div className={classes.logoBox}>
 				<Typography className={classes.textDetail}>
-				You would party with:
+					You would party with:
 				</Typography>
 				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
-			<Typography className={classes.subHeader} id="sub-header">Social Profiles</Typography>
+			<Typography className={classes.warned} id="sub-header"></Typography>
+			<Typography className={classes.subHeader}>Social Profiles</Typography>
 			<Box className={classes.boxy}>
 				<form noValidate autoComplete="off">
 					<Grid>
@@ -242,7 +258,7 @@ const Onboard = () => {
 							>
 								Connect
 							</Button>
-							
+
 						</Grid>
 					</Grid>
 				</form>
