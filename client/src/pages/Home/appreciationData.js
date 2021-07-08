@@ -26,7 +26,7 @@ const appreciationData = {
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
         {
-            to: "Mason",
+            to: "Ma$on",
             message: "Thank you for all of your motivational energy and pep talks, Mason! Appreciate your detailed feedback on our projects.",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
@@ -40,6 +40,12 @@ const appreciationData = {
         {
             to: "Amanda",
             message: "Amanda! You worked your magic and got rid of bugs everytime we needed you. Appreciate all of your help, Amanda.",
+            from: "Team Campus Connect",
+            imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
+        },
+        {
+            to: "Artur",
+            message: "You saved us right as we were about to pass the event horizon of an infinite loop. We couldn't be more grateful! And, none of it woudl have been possible without your help getting the SSH keys to work!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
