@@ -45,7 +45,7 @@ const appreciationData = {
         },
         {
             to: "Artur",
-            message: "You saved us right as we were about to pass the event horizon of an infinite loop. We couldn't be more grateful! And, none of it woudl have been possible without your help getting the SSH keys to work!",
+            message: "You saved us right as we were about to pass the event horizon of an infinite loop. We couldn't be more grateful! And, none of it would have been possible without your help getting the SSH keys to work!",
             from: "Team Campus Connect",
             imageUrl: "https://acegif.com/wp-content/gif/wowo-applause-10.gif"
         },
