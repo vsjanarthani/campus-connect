@@ -1,4 +1,4 @@
-![Frame 18](https://user-images.githubusercontent.com/77648727/123899304-c78a3500-d91b-11eb-8cad-3b7b7db0aac7.png)
+![Frame 28](https://user-images.githubusercontent.com/77648727/124849274-4eaa5f00-df53-11eb-83d3-144d6599e855.png)
 
 ## Description
 This is an app to connect Coding Bootcamp Alumni for networking purposes. Find a friend, a reference, talk tech stacks or chat about the good ol' bootcamp days. Celebrate, we made it!
