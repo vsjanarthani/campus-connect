@@ -22,7 +22,10 @@ const Home = props => {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
-			width: '40%'
+			width: '40%',
+			'@media (max-width:600px)': {
+				width: '100%'
+			}
 		}
 	}));
 
@@ -53,7 +56,7 @@ const Home = props => {
 							return (
 								<div className={classes.slide} key={appreciation.title}>
 									<Appreciate
-										imageUrl={appreciation.image}
+										imageUrl={appreciation.imageUrl}
 										to={appreciation.to}
 										message={appreciation.message}
 										from={appreciation.from}
