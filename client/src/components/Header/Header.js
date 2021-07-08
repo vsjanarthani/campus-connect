@@ -59,6 +59,7 @@ const Header = props => {
 			color: 'whitesmoke',
 			fontFamily: 'Poppins',
 			fontWeight: 800,
+			textDecoration: 'none',
 			'@media (max-width:1200px)': {
 				fontSize: '1.2rem'
 			},

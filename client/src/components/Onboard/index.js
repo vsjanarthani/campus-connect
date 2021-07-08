@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createElement } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -12,7 +12,8 @@ import { useAuthState } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { CREATE_PROFILE } from '../../utils/mutations';
 import { useLazyQuery, useMutation } from '@apollo/client';
-
+// import FunModal, { handleFunModal } from '../FunModal';
+import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles(theme => ({
 	root: {
 		width: '90vw',
@@ -87,6 +88,19 @@ const useStyles = makeStyles(theme => ({
 		margin: `auto`,
 		width: '90vw',
 		maxWidth: `640px`
+	},
+	hide: {
+		display: `none`
+	},
+	logoBox: {
+		height: 56,
+		display: `flex`,
+		alignItems: `center`,
+		flexWrap: `wrap`,
+	},
+	warned: {
+		color: `#ba000d`,
+		fontWeight: `fontWeightBold`
 	}
 }));
 
@@ -99,8 +113,8 @@ const Onboard = () => {
 	const { user } = useAuthState();
 	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
-
 	const handleClick = function (avatar, type) {
+
 		if (type === 'business') {
 			setFormState({
 				...formState,
@@ -116,7 +130,12 @@ const Onboard = () => {
 		}
 	}
 	const connectButtonClick = function () {
+		let errorMessage = document.createElement("p");
+		let subHeader = document.querySelector("#sub-header");
+		errorMessage.textContent = "Please choose Avatar Alter Egos and Social Media Handles!";
 		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
+			subHeader.appendChild(errorMessage);
+			subHeader.classList.add('warned')
 			throw error;
 			return;
 		}
@@ -165,6 +184,11 @@ const Onboard = () => {
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
 			</div>
+			<div className={classes.logoBox}>
+				<Typography className={classes.textDetail}>
+					Your fave tech is:
+				</Typography><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
+			</div>
 			<Grid>
 				{' '}
 				<Typography className={classes.textDetail}>
@@ -176,7 +200,14 @@ const Onboard = () => {
 					avatars={funLogos}
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
+			</div >
+			<div className={classes.logoBox}>
+				<Typography className={classes.textDetail}>
+					You would party with:
+				</Typography>
+				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
+			<Typography className={classes.warned} id="sub-header"></Typography>
 			<Typography className={classes.subHeader}>Social Profiles</Typography>
 			<Box className={classes.boxy}>
 				<form noValidate autoComplete="off">
@@ -224,7 +255,7 @@ const Onboard = () => {
 							>
 								Connect
 							</Button>
-							
+
 						</Grid>
 					</Grid>
 				</form>
