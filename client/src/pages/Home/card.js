@@ -4,17 +4,21 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles(theme => ({
     carddiv: {
-        maxWidth: 700,
-        width: 240,
-        margin: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: 650,
+        padding: '1rem',
         '@media (min-width:600px)': {
             width: 590
         }
     },
     para: {
-        fontFamily: `roboto`,
+        fontFamily: `cursive`,
         color: '#003262',
         lineHeight: '1.5',
         fontWeight: 300,
@@ -29,15 +33,16 @@ const useStyles = makeStyles(theme => ({
         }
     },
     media: {
-        height: '350',
+        maxHeight: 240,
         borderRadius: '4%',
-        width: '100%'
+        maxWidth: 240,
+        textAlign: 'center',
     },
     title: {
         fontSize: '1rem',
+        color: '#C4820E',
         textAlign: 'center',
         paddingTop: '2rem',
-        color: '#003262',
         '@media (min-width:600px)': {
             fontSize: '1.5rem'
         }
@@ -45,7 +50,9 @@ const useStyles = makeStyles(theme => ({
     signature: {
         textAlign: 'right',
         color: '#003262',
-        fontFamily: 'cursive'
+        fontFamily: 'Yomogi',
+        fontWeight: 800,
+        fontSize: '1rem',
     }
 }));
 
@@ -54,16 +61,17 @@ const Appreciate = ({ to, imageUrl, message, from }) => {
 
     return (
         <Card className={classes.carddiv}>
+            <Typography gutterBottom className={classes.title} component="h2">
+                Dear {to}
+            </Typography>
             <img alt="funny gif" className={classes.media} src={imageUrl} />
             <CardContent className={classes.cardbody}>
-                <Typography gutterBottom className={classes.title} component="h2">
-                    Dear {to}
-                </Typography>
+
                 <Typography component="p" className={classes.para}>
                     {message}
                 </Typography>
                 <Typography component="p" className={classes.signature}>
-                    {from}
+                    -{from}
                 </Typography>
             </CardContent>
         </Card>

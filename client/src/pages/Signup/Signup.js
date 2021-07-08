@@ -40,34 +40,35 @@ const useStyles = makeStyles(_theme => ({
 	},
 	button: {
 		maxWidth: 750,
-			fontFamily: `Poppins`,
-			width:`100%`,
-			borderRadius: `6px`,
-			bordercolor: `grey`,
-			border: '1px solid #D9EDFF',
-			color: `white`,
-			background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
+		fontFamily: `Poppins`,
+		width: `100%`,
+		borderRadius: `6px`,
+		bordercolor: `grey`,
+		border: '1px solid #D9EDFF',
+		color: `white`,
+		background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
+		boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+		fontSize: '1.3rem',
+		marginTop: `1vh`,
+
+		height: `56px`,
+		textalign: 'center',
+		lineheight: '50px',
+		"&:hover": {
+			transition: `0.5s`,
+			background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
 			boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-			fontSize: '1.3rem',
-			marginTop: `1vh`,
-		
-			height: `56px`,
-			textalign: 'center',
-			lineheight: '50px',
-			"&:hover": {
-				transition: `0.5s`,
-				background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',  
-				boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',      }
-	
+		}
+
 	},
 	field: {
 		margin: '1rem 0rem'
 	},
 	signLogLink: {
-        color: `#003262`,
-        textDecoration: `none`,
+		color: `#003262`,
+		textDecoration: `none`,
 		fontWeight: `700`
-    }
+	}
 }));
 
 const InputField = withStyles({

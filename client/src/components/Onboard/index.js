@@ -144,6 +144,7 @@ const Onboard = () => {
 		} catch (e) {
 			console.log(e);
 		}
+		window.location.href = '/';
 	};
 
 	const handleChange = (event) => {
