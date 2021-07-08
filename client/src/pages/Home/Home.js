@@ -7,22 +7,25 @@ import appreciationData from './appreciationData';
 import Appreciate from './card';
 
 const Home = props => {
-	const useStyles = makeStyles((theme) => ({
+	const useStyles = makeStyles(_theme => ({
 		celebrate: {
-			marginTop: '50%',
+			marginTop: '50%'
 		},
 		root: {
 			flexGrow: 1,
 			width: '100%',
 			display: 'flex',
 			justifyContent: 'center',
-			flexWrap: 'wrap',
+			flexWrap: 'wrap'
 		},
 		slide: {
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
 			width: '40%',
+			'@media (max-width:600px)': {
+				width: '100%'
+			}
 		}
 	}));
 
@@ -39,9 +42,9 @@ const Home = props => {
 						Its Graduation Day!!
 					</Typography>
 					<Container maxWidth="sm">
-						Congratulations to all of you for successfully completing the coding bootcamp. It was a challenging journey for all of us. Sign up and join campus connect to stay in touch
-						with cohort and TAs.
-
+						Congratulations to all of you for successfully completing the coding
+						bootcamp. It was a challenging journey for all of us. Sign up and
+						join campus connect to stay in touch with cohort and TAs.
 					</Container>
 				</>
 			) : (
@@ -51,17 +54,15 @@ const Home = props => {
 					<div className={classes.root}>
 						{appreciations.map(appreciation => {
 							return (
-								<div
-									className={classes.slide}
-									key={appreciation.title}>
+								<div className={classes.slide} key={appreciation.title}>
 									<Appreciate
-										imageUrl={appreciation.image}
+										imageUrl={appreciation.imageUrl}
 										to={appreciation.to}
 										message={appreciation.message}
 										from={appreciation.from}
 									/>
 								</div>
-							)
+							);
 						})}
 					</div>
 				</>

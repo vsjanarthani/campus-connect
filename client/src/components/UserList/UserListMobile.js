@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './userList.css';
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
@@ -6,7 +6,6 @@ import {
 	useMessageDispatch,
 	useMessageState
 } from '../../utils/messagecontext';
-import { useAuthState } from '../../utils/auth';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -24,23 +23,14 @@ const useStyles = makeStyles(() => ({
 		dividerColor: `#F5F5F5`
 	},
 	iconChat: {
-		fontsize: '1rem'
+		fontsize: '0.8rem'
 	},
 	socialbtn: {
-		width: '5px'
-	},
-	container: {
-		flexGrow: 1,
-		maxHeight: '100%',
-		overflow: 'auto',
-		borderRadius: '5px',
-		paddingBottom: `1vh`,
-		background: '#FFFFFF',
-		boxShadow: `inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)`
+		width: '3px'
 	},
 	listItem: {
 		color: '#003262',
-		paddingLeft: '0.5rem',
+		paddingLeft: '0.2rem',
 		textTransform: 'none',
 		'&:hover': {
 			color: '#15B313'
@@ -56,20 +46,17 @@ const useStyles = makeStyles(() => ({
 	}
 }));
 
-const UserList = props => {
+const UserListMobile = props => {
 	const classes = useStyles();
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
-	const { user } = useAuthState();
 	// const selectedUser = users?.find((u) => u.selected === true)?.username
 
 	const { loading } = useQuery(GET_USERS, {
-		onCompleted: data => {
-			dispatch({ type: 'SET_USERS', payload: data.getUsers })
-		},
+		onCompleted: data =>
+			dispatch({ type: 'SET_USERS', payload: data.getUsers }),
 		onError: err => console.log(err)
 	});
-
 
 	let usersMarkup;
 	if (!users || loading) {
@@ -77,9 +64,12 @@ const UserList = props => {
 	} else if (users.length === 0) {
 		usersMarkup = <p>No users have joined yet</p>;
 	} else if (users.length > 0) {
-		const userList = users.filter(list => list.username !== user.data.username);
-		usersMarkup = userList.map(user => {
+		usersMarkup = users.map(user => {
+			// const selected = selectedUser === user.username
 			let avatar;
+			console.log(user.profile);
+			// console.log(user.profile[0].businessLogo)
+
 			if (props.data.funAvatar) {
 				avatar = user.profile[0]?.funLogo;
 			} else {
@@ -95,7 +85,6 @@ const UserList = props => {
 						}
 						component={Button}
 					>
-						<FiberManualRecordIcon className="active" />
 						<Avatar
 							alt={user.username}
 							src={
@@ -107,20 +96,21 @@ const UserList = props => {
 							primary={user.username}
 							className="conversationName"
 						/>
-
+						{/* <ListItemText secondary={user.latestMessage
+							? user.latestMessage.content
+							: 'Connected..'} /> */}
 						<Button
 							href={user.linkedin || 'https://www.linkedin.com'}
 							target="_blank"
 							className={classes.socialbtn}
 						>
-							<LinkedInIcon className="iconChat" />{' '}
+							<LinkedInIcon className="iconChat" />
 						</Button>
 						<Button
 							href={user.instagram || 'https://www.instagram.com'}
 							target="_blank"
 							id="social"
 						>
-							{' '}
 							<InstagramIcon className={classes.iconChat} />
 						</Button>
 					</ListItem>
@@ -129,12 +119,8 @@ const UserList = props => {
 			);
 		});
 	}
-	return (
-		<Box className={classes.container} component="div">
-			<List>{usersMarkup}</List>
-		</Box>
-	);
+	return <List>{usersMarkup}</List>;
 };
-export default UserList;
+export default UserListMobile;
 
 // https://icons8.com/icon/set/characters/office - Good reference for random free icon links

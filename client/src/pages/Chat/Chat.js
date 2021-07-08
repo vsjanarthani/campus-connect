@@ -4,8 +4,9 @@ import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
-import IconButton from '@material-ui/core/IconButton';
-import BackspaceIcon from '@material-ui/icons/Backspace';
+// import IconButton from '@material-ui/core/IconButton';
+
+// import BackspaceIcon from '@material-ui/icons/Backspace';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Drawer from '@material-ui/core/Drawer';
 import Rail from '../../components/MobileRail';
@@ -16,7 +17,6 @@ import { Divider, Avatar, Hidden, SwipeableDrawer, Button } from '@material-ui/c
 // import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const Chat = props => {
-
 	const useStyles = makeStyles(theme => ({
 		root: {
 			dividerColor: `#F5F5F5`
@@ -111,9 +111,9 @@ const Chat = props => {
 			<Hidden smDown>
 				<div className="chatMenu">
 					<div className="chatMenuWrapper">
-						<IconButton onClick={() => setOpen(true)}>
+						{/* <IconButton onClick={() => setOpen(true)}>
 							<BackspaceIcon className={classes.opener}> </BackspaceIcon>
-						</IconButton>
+						</IconButton> */}
 						<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
 							<Rail />
 						</Drawer>

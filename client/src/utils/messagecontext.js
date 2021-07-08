@@ -46,6 +46,8 @@ const messageReducer = (state, action) => {
             // console.log(state);
             usersCopy = [...state.users]
             const addMessage = (theUser) => {
+                console.log(usersCopy);
+                // console.log(userIndex)
                 userIndex = usersCopy.findIndex((u) => u.username === theUser)
                 message.reactions = []
 
