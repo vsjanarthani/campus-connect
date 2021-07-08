@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -24,7 +24,7 @@ const useStyles = makeStyles(_theme => ({
 			marginTop: '2rem',
 			padding: 5
 		},
-		'@media (min-width:1200px)': {
+		'@media (min-width:600px)': {
 			top: '50%',
 			left: '50%',
 			transform: 'translate(-50%, -50%)',
@@ -46,7 +46,7 @@ const useStyles = makeStyles(_theme => ({
 		bordercolor: `grey`,
 		border: '1px solid #D9EDFF',
 		color: `white`,
-		background: "linear-gradient(180deg, #43688F 0%, #0A3460 100%)",
+		background: 'linear-gradient(180deg, #43688F 0%, #0A3460 100%)',
 		boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 		fontSize: '1.3rem',
 		marginTop: `1vh`,
@@ -54,20 +54,22 @@ const useStyles = makeStyles(_theme => ({
 		height: `56px`,
 		textalign: 'center',
 		lineheight: '50px',
-		"&:hover": {
+		'&:hover': {
 			transition: `0.5s`,
 			background: 'linear-gradient(180deg, #0A3460 0%, #43688F 100%)',
-			boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+			boxshadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'
 		}
-
 	},
 	field: {
 		margin: '1rem 0rem'
 	},
 	signLogLink: {
 		color: `#003262`,
-		textDecoration: `none`,
-		fontWeight: `700`
+		textDecoration: `underline`,
+		fontWeight: `700`,
+		'&:hover': {
+			color: '#fcb418'
+		}
 	}
 }));
 
@@ -112,7 +114,6 @@ const Signup = props => {
 		password: ''
 	});
 
-
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
 			console.log(err.graphQLErrors[0].message);
@@ -147,7 +148,7 @@ const Signup = props => {
 		setVariables({
 			username: '',
 			password: '',
-			email: '',
+			email: ''
 		});
 	};
 
@@ -158,7 +159,9 @@ const Signup = props => {
 				className={classes.form}
 				onSubmit={handleFormSubmit}
 			>
-				<Typography>Welcome, let's connect you to your bootcamp cohort!</Typography>
+				<Typography>
+					Welcome, let's connect you to your bootcamp cohort!
+				</Typography>
 				<InputField
 					fullWidth={true}
 					variant="outlined"
@@ -207,7 +210,13 @@ const Signup = props => {
 				>
 					{loading ? 'loading..' : 'Signup'}
 				</Button>
-				<Typography>Already have an account? Log in <Link to='./login' className={classes.signLogLink}>here</Link>.</Typography>
+				<Typography>
+					Already have an account? Log in{' '}
+					<Link to="./login" className={classes.signLogLink}>
+						here
+					</Link>
+					.
+				</Typography>
 			</Box>
 			<Snackbar
 				open={open}

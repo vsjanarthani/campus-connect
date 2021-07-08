@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
 		height: 56,
 		display: `flex`,
 		alignItems: `center`,
-		flexWrap: `wrap`,
+		flexWrap: `wrap`
 	},
 	warned: {
 		color: `#ba000d`,
@@ -104,42 +104,53 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-
-
 const avatars = [];
 
 const Onboard = () => {
 	const classes = useStyles();
 	const { user } = useAuthState();
 	const [alertMsg, setAlertMsg] = useState('');
-	const [formState, setFormState] = useState({ businessLogo: '', funLogo: '', linkedin: '', Instagram: '' });
+	const [formState, setFormState] = useState({
+		businessLogo: '',
+		funLogo: '',
+		linkedin: '',
+		Instagram: ''
+	});
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
 	const handleClick = function (avatar, type) {
-
 		if (type === 'business') {
 			setFormState({
 				...formState,
 				businessLogo: avatar
-			})
+			});
 			console.log('get down to business');
 		} else if (type === 'funlogo') {
 			setFormState({
 				...formState,
 				funLogo: avatar
-			})
+			});
 			console.log('let loose');
 		}
-	}
+	};
 	const connectButtonClick = function () {
-
-		if (!formState.businessLogo || !formState.Instagram || !formState.funLogo || !formState.linkedin) {
-			setAlertMsg("Please choose Avatar Alter Egos and Social Media Handles!");
+		if (
+			!formState.businessLogo ||
+			!formState.Instagram ||
+			!formState.funLogo ||
+			!formState.linkedin
+		) {
+			setAlertMsg('Please choose Avatar Alter Egos and Social Media Handles!');
 			throw error;
 		}
 
 		try {
 			createProfile({
-				variables: { businessLogo: formState.businessLogo, funLogo: formState.funLogo, Instagram: formState.Instagram, linkedin: formState.linkedin },
+				variables: {
+					businessLogo: formState.businessLogo,
+					funLogo: formState.funLogo,
+					Instagram: formState.Instagram,
+					linkedin: formState.linkedin
+				}
 			});
 		} catch (e) {
 			console.log(e);
@@ -147,14 +158,13 @@ const Onboard = () => {
 		window.location.href = '/';
 	};
 
-	const handleChange = (event) => {
+	const handleChange = event => {
 		const { name, value } = event.target;
 		setFormState({
 			...formState,
-			[name]: value,
+			[name]: value
 		});
 	};
-
 
 	// console.log(user.data.username, user.data.businessLogo, user.data._id)
 	console.log(user);
@@ -186,7 +196,11 @@ const Onboard = () => {
 			<div className={classes.logoBox}>
 				<Typography className={classes.textDetail}>
 					Your fave tech is:
-				</Typography><Avatar alt={'Your chosen business logo'} src={formState.businessLogo} />
+				</Typography>
+				<Avatar
+					alt={'Your chosen business logo'}
+					src={formState.businessLogo}
+				/>
 			</div>
 			<Grid>
 				{' '}
@@ -199,14 +213,16 @@ const Onboard = () => {
 					avatars={funLogos}
 					onClick={(value, value2) => handleClick(value, value2)}
 				/>
-			</div >
+			</div>
 			<div className={classes.logoBox}>
 				<Typography className={classes.textDetail}>
 					You would party with:
 				</Typography>
 				<Avatar alt={'Your chosen fun logo'} src={formState.funLogo} />
 			</div>
-			<Typography className={classes.warned} id="sub-header">{alertMsg}</Typography>
+			<Typography className={classes.warned} id="sub-header">
+				{alertMsg}
+			</Typography>
 			<Typography className={classes.subHeader}>Social Profiles</Typography>
 			<Box className={classes.boxy}>
 				<form noValidate autoComplete="off">
@@ -254,7 +270,6 @@ const Onboard = () => {
 							>
 								Connect
 							</Button>
-
 						</Grid>
 					</Grid>
 				</form>
