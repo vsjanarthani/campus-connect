@@ -2,19 +2,19 @@ const appreciationData = {
     appreciation: [
         {
             to: "Manny",
-            message: "East or West, you are the best. You are a motivated instructor, and it's impressive the way you build up the coding community. May your stacks of XRP overflow. You have been awesome. Cryptokémon!",
+            message: "East or West, you are the best. You are a motivated instructor, and it's impressive the way you build up the coding community. May your stacks of XRP overflow. You have been awesome Cryptokémon!",
             from: "Team Campus Connect",
             imageUrl: "https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif"
         },
         {
             to: "Aliff",
-            message: "You are our hero! Thank you for coming to our rescue, Aliff. We knew we could count on you! I don't know whether you are an honorary member of Team Campus Connect, or we should ask to be honorary members of Team Aliff.",
+            message: "You are our hero! Thank you for coming to our rescue, Aliff. We knew we could count on you! we don't know whether you are an honorary member of Team Campus Connect, or we should ask to be honorary members of Team Aliff.",
             from: "Team Campus Connect",
             imageUrl: "https://media.giphy.com/media/3HSzHiDUtNLhu/giphy.gif"
         },
         {
             to: "Nate",
-            message: "Thank you for extending a helping hand whenever we needed it. The reach of your Austin powers was appreciated from California to Rhode Island! Without you, we wouldn't have made the progress we did!",
+            message: "Thank you for extending a helping hand whenever we needed it. The reach of your Austin powers is appreciated from California to Rhode Island! Without you, we wouldn't have made the progress we did!",
             from: "Team Campus Connect",
             imageUrl: "https://media.giphy.com/media/nGMnDqebzDcfm/giphy.gif"
         },
@@ -50,7 +50,7 @@ const appreciationData = {
         },
         {
             to: "Jeff",
-            message: `We are eagerly waiting for hear a positive update from you on extending our project submission deadline. Thank you for all your support and prompt replies.`,
+            message: `We are eagerly waiting to hear a positive update from you, on extending our project submission deadline. Thank you for all your support, weekly update emails and prompt replies.`,
             from: "Team Campus Connect",
             imageUrl: "https://media.giphy.com/media/xUOwFZmWUC2QDHKu4M/giphy.gif"
         },
