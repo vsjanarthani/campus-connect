@@ -124,7 +124,7 @@ const Login = () => {
 		onCompleted(data) {
 			dispatch({ type: 'LOGIN', payload: data.login });
 			// window.location.href = '/';
-			history.push('/chat');
+			history.push('/');
 		}
 	});
 
