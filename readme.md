@@ -19,6 +19,8 @@ You can also view the [Campus Connect Github Repository](https://github.com/Clay
 - [x] Material UI
 - [x] Figma
 - [x] React
+- [x] Material UI
+- [x] Figma
 - [x] Bootstrap
 - [x] Node.js (Express, Mongoose, graphQL, jsonwebtoken, Apollo/Client, Apollo-Server-Express)
 
