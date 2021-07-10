@@ -1,35 +1,34 @@
 {
-  "name": "campus-connect",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server/server.js",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && npm start",
-    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
-    "heroku-postbuild": "cd client && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vsjanarthani/Campus-Connect-MERN.git"
-  },
-  "keywords": [],
-  "author": "Janarthani V Subramaniam",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vsjanarthani/Campus-Connect-MERN/issues"
-  },
-  "homepage": "https://github.com/vsjanarthani/Campus-Connect-MERN#readme",
-  "devDependencies": {
-    "concurrently": "^6.2.0"
-  },
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "if-env": "^1.0.4",
-    "material-ui-image": "^3.3.2",
-    "react-confetti": "^6.0.1"
-  }
+	"name": "campus-connect",
+	"version": "1.0.0",
+	"description": "![Frame 18](https://user-images.githubusercontent.com/77648727/123899304-c78a3500-d91b-11eb-8cad-3b7b7db0aac7.png)",
+	"main": "server/server.js",
+	"scripts": {
+		"start": "node server/server.js",
+		"develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+		"install": "cd server && npm i && cd ../client && npm i",
+		"seed": "cd server && npm run seed",
+		"build": "cd client && npm run build",
+		"heroku-postbuild": "cd client && npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vsjanarthani/Campus-Connect-MERN.git"
+	},
+	"keywords": [],
+	"author": "Janarthani V Subramaniam",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/vsjanarthani/Campus-Connect-MERN/issues"
+	},
+	"homepage": "https://github.com/vsjanarthani/Campus-Connect-MERN#readme",
+	"devDependencies": {
+		"concurrently": "^6.2.0"
+	},
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"if-env": "^1.0.4",
+		"material-ui-image": "^3.3.2",
+		"react-confetti": "^6.0.1"
+	}
 }

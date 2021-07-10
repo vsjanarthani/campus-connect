@@ -173,7 +173,7 @@ const Onboard = () => {
 			<Grid container>
 				<Typography component="h1" className={classes.header}>
 					{' '}
-					{user.data.username}'s Profile{' '}
+					{user?.data?.username}'s Profile{' '}
 				</Typography>{' '}
 			</Grid>
 
