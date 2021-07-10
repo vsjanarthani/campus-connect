@@ -13,27 +13,42 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-    width: '300px'
+  height: '100vh',
+  width: '100vw',
+   
     
     },
     media: {
-      height: '100px',
-      justifySelf: `baseline`,
+      height: '150px',
+   
       
    
     },
-    notfound: {
-        margin: `10vw`,
-        marginTop: '15vh'
-    }
+    card: {
+      maxWidth: 650,
+      '@media (max-width:600px)': {
+          width: 350,
+          marginTop: '5rem',
+          padding: '15px',
+      },
+      '@media (min-width:1200px)': {
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          position: "absolute",
+          padding: '15px',
+          maxWidth: 750
+
+    }}
+   
   });
 
 const NoMatch = () => {
     const classes = useStyles();
 
     return (
-        <Grid className={classes.notfound}>
-      <Card className={classes.root}>
+        <Grid className={classes.root}>
+      <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
             className={classes.media}

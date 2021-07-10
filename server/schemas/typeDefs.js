@@ -8,10 +8,8 @@ type User {
   email: String
   token: ID!
   createdAt: String!
-  imageUrl: String
   latestMessage: Message
-  businessLogo: String
-  funLogo: String
+  profile: [Profile]
 }
 type Message {
   _id: ID!
@@ -26,8 +24,15 @@ type Reaction {
     _id: ID!
     content: String!
     createdAt: String!
-    message: Message!
-    user: User!
+    username: String!
+    messageId: String
+  }
+  type Profile {
+    imageUrl: String
+    funLogo: String
+    businessLogo: String
+    linkedin: String
+    Instagram: String
   }
 type Query {
   login(username: String!, password: String!): User!
@@ -38,10 +43,12 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): User!
   sendMsg(to:String! msg:String!): Message!
   reactToMessage(messageId: ID!, content: String!): Message!
+  createProfile(businessLogo: String, funLogo: String, imageUrl: String, linkedin: String, Instagram: String): User!
 }
 type Subscription {
     newMessage: Message!
     newReaction: Reaction!
+    newUser: User!
   }
 `;
 

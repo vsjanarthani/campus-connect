@@ -1,9 +1,10 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
-// require('dotenv').config();
 const pubsub = new PubSub();
 
 const secret = 'mysecretsshhhhh';
+// const secret = process.env.SESSION_KEY;
 const expiration = '2h';
 
 const authMiddleware = (context) => {

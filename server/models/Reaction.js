@@ -1,28 +1,24 @@
 const { Schema } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
 
 const reactionSchema = new Schema(
     {
         content: {
             type: String,
-            required: true,
-            maxlength: 280
+            required: true
         },
         username: {
+            type: String,
+            required: true
+        },
+        messageId: {
             type: String,
             required: true
         },
         createdAt: {
             type: Date,
             default: Date.now,
-            // get: timestamp => dateFormat(timestamp)
         }
     },
-    {
-        toJSON: {
-            getters: true
-        }
-    }
 );
 
 module.exports = reactionSchema;

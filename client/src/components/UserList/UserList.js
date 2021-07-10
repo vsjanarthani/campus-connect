@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './userList.css';
-import { useQuery } from '@apollo/client';
+import { NEW_USER } from '../../utils/subscriptions';
+import { useQuery, useSubscription } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import {
 	useMessageDispatch,
 	useMessageState
 } from '../../utils/messagecontext';
+import { useAuthState } from '../../utils/auth';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -59,13 +61,25 @@ const UserList = props => {
 	const classes = useStyles();
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
-	// const selectedUser = users?.find((u) => u.selected === true)?.username
+	const { user } = useAuthState();
+
 
 	const { loading } = useQuery(GET_USERS, {
-		onCompleted: data =>
-			dispatch({ type: 'SET_USERS', payload: data.getUsers }),
-		onError: err => console.log(err)
+		onCompleted: data => {
+			console.log("aliff is amazing-get users query", data)
+			return dispatch({ type: 'SET_USERS', payload: data.getUsers })},
+		onError: err => console.log(err),
+        fetchPolicy: "network-only"
 	});
+
+	const { data: userData, error: userError } = useSubscription(NEW_USER);
+
+	useEffect(()=> {
+		if(userData) {
+
+			dispatch({ type: 'SET_USERS', payload: [...users, {profile: [], ...userData.newUser}] })
+		}
+	}, [userData])
 
 	let usersMarkup;
 	if (!users || loading) {
@@ -73,13 +87,13 @@ const UserList = props => {
 	} else if (users.length === 0) {
 		usersMarkup = <p>No users have joined yet</p>;
 	} else if (users.length > 0) {
-		usersMarkup = users.map(user => {
-			// const selected = selectedUser === user.username
+		const userList = users.filter(list => list.username !== user.data.username);
+		usersMarkup = userList.map(user => {
 			let avatar;
 			if (props.data.funAvatar) {
-				avatar = user.funLogo;
+				avatar = user.profile[0]?.funLogo;
 			} else {
-				avatar = user.businessLogo;
+				avatar = user.profile[0]?.businessLogo;
 			}
 			return (
 				<div key={user.username}>
@@ -103,9 +117,7 @@ const UserList = props => {
 							primary={user.username}
 							className="conversationName"
 						/>
-						{/* <ListItemText secondary={user.latestMessage
-							? user.latestMessage.content
-							: 'Connected..'} /> */}
+
 						<Button
 							href={user.linkedin || 'https://www.linkedin.com'}
 							target="_blank"
@@ -116,7 +128,6 @@ const UserList = props => {
 						<Button
 							href={user.instagram || 'https://www.instagram.com'}
 							target="_blank"
-							id="social"
 						>
 							{' '}
 							<InstagramIcon className={classes.iconChat} />

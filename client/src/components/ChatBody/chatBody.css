@@ -1,0 +1,7 @@
+.chatBanner {
+    display: flex;
+    font-family: "Roboto";
+    align-self: center;
+    margin-bottom: 5rem;
+    align-items: center;
+}

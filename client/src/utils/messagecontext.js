@@ -4,20 +4,26 @@ const MessageStateContext = createContext()
 const MessageDispatchContext = createContext()
 
 const messageReducer = (state, action) => {
-    let usersCopy, userIndex
-    const { username, message, messages, reaction } = action.payload
+    let usersCopy, userIndex;
+    const { username, message, messages, reaction, self, addedUser } = action.payload
     switch (action.type) {
         case 'SET_USERS':
             return {
                 ...state,
                 users: [...action.payload]
             }
+
+        case 'SET_NEW_USERS':
+            console.log(state.users);
+            usersCopy = state.users.push(addedUser)
+            return {
+                ...state,
+                users: usersCopy,
+            }
         case 'SET_USER_MESSAGES':
-            console.log(state.users)
+
             usersCopy = [...state.users]
-
             userIndex = usersCopy.findIndex((u) => u.username === username)
-
             usersCopy[userIndex] = { ...usersCopy[userIndex], messages }
 
             return {
@@ -35,23 +41,24 @@ const messageReducer = (state, action) => {
                 users: usersCopy,
             }
         case 'ADD_MESSAGE':
-            console.log(state);
+            // console.log(state);
             usersCopy = [...state.users]
-            console.log(usersCopy);
-            userIndex = usersCopy.findIndex((u) => u.username === username)
-    
-            message.reactions = []
+            const addMessage = (theUser) => {
+                userIndex = usersCopy.findIndex((u) => u.username === theUser)
+                message.reactions = []
 
-            let newUser = {
-                ...usersCopy[userIndex],
-                messages: usersCopy[userIndex].messages
-                    ? [message, ...usersCopy[userIndex].messages]
-                    : [],
-                latestMessage: message,
+                let newUser = {
+                    ...usersCopy[userIndex],
+                    updated: new Date(),
+                    messages: usersCopy[userIndex].messages
+                        ? [...usersCopy[userIndex].messages, message]
+                        : [],
+                    latestMessage: message,
+                }
+                usersCopy[userIndex] = newUser
             }
-
-            usersCopy[userIndex] = newUser
-
+            addMessage(username);
+            addMessage(self);
             return {
                 ...state,
                 users: usersCopy,
@@ -59,45 +66,49 @@ const messageReducer = (state, action) => {
 
         case 'ADD_REACTION':
             usersCopy = [...state.users]
+            const addReaction = (theUser) => {
 
-            userIndex = usersCopy.findIndex((u) => u.username === username)
+                userIndex = usersCopy.findIndex((u) => u.username === theUser)
+                // Make a shallow copy of user
+                let userCopy = { ...usersCopy[userIndex] }
+                console.log(userCopy)
 
-            // Make a shallow copy of user
-            let userCopy = { ...usersCopy[userIndex] }
-
-            // Find the index of the message that this reaction pertains to
-            const messageIndex = userCopy.messages?.findIndex(
-                (m) => m._id === reaction.message._id
-            )
-
-            if (messageIndex > -1) {
-                // Make a shallow copy of user messages
-                let messagesCopy = [...userCopy.messages]
-
-                // Make a shallow copy of user message reactions
-                let reactionsCopy = [...messagesCopy[messageIndex].reactions]
-
-                const reactionIndex = reactionsCopy.findIndex(
-                    (r) => r._id === reaction._id
+                // Find the index of the message that this reaction pertains to
+                const messageIndex = userCopy.messages?.findIndex(
+                    (m) => m._id === reaction.messageId
                 )
 
-                if (reactionIndex > -1) {
-                    // Reaction exists, update it
-                    reactionsCopy[reactionIndex] = reaction
-                } else {
-                    // New Reaction, add it
-                    reactionsCopy = [...reactionsCopy, reaction]
-                }
+                if (messageIndex > -1) {
+                    // Make a shallow copy of user messages
+                    let messagesCopy = [...userCopy.messages]
+                    console.log(messagesCopy);
 
-                messagesCopy[messageIndex] = {
-                    ...messagesCopy[messageIndex],
-                    reactions: reactionsCopy,
-                }
+                    // Make a shallow copy of user message reactions
+                    let reactionsCopy = [...messagesCopy[messageIndex].reactions]
 
-                userCopy = { ...userCopy, messages: messagesCopy }
-                usersCopy[userIndex] = userCopy
+                    const reactionIndex = reactionsCopy.findIndex(
+                        (r) => r._id === reaction._id
+                    )
+
+                    if (reactionIndex > -1) {
+                        // Reaction exists, update it
+                        reactionsCopy[reactionIndex] = reaction
+                    } else {
+                        // New Reaction, add it
+                        reactionsCopy = [...reactionsCopy, reaction]
+                    }
+
+                    messagesCopy[messageIndex] = {
+                        ...messagesCopy[messageIndex],
+                        reactions: reactionsCopy,
+                    }
+
+                    userCopy = { ...userCopy, messages: messagesCopy }
+                    usersCopy[userIndex] = userCopy
+                }
             }
-
+            addReaction(username);
+            addReaction(self);
             return {
                 ...state,
                 users: usersCopy,
@@ -110,7 +121,6 @@ const messageReducer = (state, action) => {
 
 export const MessageProvider = ({ children }) => {
     const [state, dispatch] = useReducer(messageReducer, { users: [] })
-    console.log(state)
     return (
         <MessageDispatchContext.Provider value={dispatch}>
             <MessageStateContext.Provider value={state}>

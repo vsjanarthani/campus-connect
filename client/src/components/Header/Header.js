@@ -5,8 +5,10 @@ import {
 	List,
 	Typography,
 	FormControlLabel,
-	Switch
+	Switch,
+	Hidden
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,20 +22,13 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
 import { findLastKey } from 'lodash';
 
-import IconButton from "@material-ui/core/IconButton";
-
-import BackspaceIcon from '@material-ui/icons/Backspace';
-
-import Drawer from "@material-ui/core/Drawer";
-import Rail from '../../components/MobileRail';
-
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
 		appbar: {
 			flexGrow: 1,
 			margin: 0,
 			width: '100%',
-			height: '8vh',
+			height: '4rem',
 			background: props.data.header
 		},
 		toolbar: {
@@ -64,15 +59,19 @@ const Header = props => {
 			color: 'whitesmoke',
 			fontFamily: 'Poppins',
 			fontWeight: 800,
+			textDecoration: 'none',
 			'@media (max-width:1200px)': {
 				fontSize: '1.2rem'
 			},
 			'@media (min-width:1200px)': {
 				fontSize: '1.5rem'
 			}
+		},
+		brand: {
+			height: 48
 		}
 	}));
-	const [open, setOpen] = useState(false);
+
 	const classes = useStyles();
 	const authDispatch = useAuthDispatch();
 	const { user } = useAuthState();
@@ -86,33 +85,61 @@ const Header = props => {
 		<Box component="nav">
 			<AppBar position="static" className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
-					<Typography component={Button} href="/">
-						<span className={classes.title}>Campus Connect</span>
-					</Typography>
+					<List>
+						<Button>
+							<img
+								src="../../../assets/Frame29.png"
+								className={classes.brand}
+							/>
+						</Button>
+						<Hidden xsDown>
+							<Button>
+								<Typography
+									component={Link}
+									style={{ textDecoration: 'none' }}
+									to="/"
+								>
+									<span className={classes.title}>Campus Connect</span>
+								</Typography>
+							</Button>
+						</Hidden>
+					</List>
 					<List>
 						{!user ? (
 							<>
-								<Clock
-									className={classes.clock}
-									format={'h:mm a'}
-									style={{ fontSize: '1.2em' }}
-									ticking={true}
-								/>
-								<Button className={classes.listItem} href="/login">
+								<Hidden smDown>
+									<Clock
+										className={classes.clock}
+										format={'h:mm a'}
+										style={{ fontSize: '1.2em' }}
+										ticking={true}
+									/>
+								</Hidden>
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/login"
+								>
 									<DoubleArrowIcon /> Login
 								</Button>
-								<Button className={classes.listItem} href="/signup">
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/signup"
+								>
 									<CreateIcon /> Signup
 								</Button>
 							</>
 						) : (
 							<>
-								<Clock
-									className={classes.clock}
-									format={'h:mm a'}
-									style={{ fontSize: '1.2em' }}
-									ticking={true}
-								/>
+								<Hidden smDown>
+									<Clock
+										className={classes.clock}
+										format={'h:mm a'}
+										style={{ fontSize: '1.2em' }}
+										ticking={true}
+									/>
+								</Hidden>
 								<Switch //https://material-ui.com/components/switches/
 									color="default"
 									name="checkedB"
@@ -120,24 +147,22 @@ const Header = props => {
 									onChange={event => props.onChange(event.target.checked)}
 								/>
 
-								<Button className={classes.listItem} href="/chat">
-									<ChatIcon /> Chat
+								<Button
+									className={classes.listItem}
+									component={Link}
+									to="/chat"
+								>
+									<ChatIcon />
+									<Hidden xsDown>Chat</Hidden>
 								</Button>
 								<Button className={classes.listItem} href="/" onClick={logout}>
-									<ExitToAppIcon /> Logout
+									<ExitToAppIcon /> <Hidden xsDown>Logout</Hidden>
 								</Button>
 							</>
 						)}
 					</List>
 				</Toolbar>
 			</AppBar>
-			<IconButton onClick={() => setOpen(true)}>
-                           <BackspaceIcon className={classes.opener}>  </BackspaceIcon>
-                            </IconButton>
-			<Drawer open={open} anchor="left" onClose={() => setOpen(false)}>
-                <Rail
-                />
-            </Drawer>
 		</Box>
 	);
 };
