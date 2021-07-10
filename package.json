@@ -27,6 +27,7 @@
 	"dependencies": {
 		"dotenv": "^10.0.0",
 		"if-env": "^1.0.4",
+		"material-ui-image": "^3.3.2",
 		"react-confetti": "^6.0.1"
 	}
 }
