@@ -93,7 +93,7 @@ const Chat = props => {
 			const reaction = reactionData.newReaction;
 			console.log(reaction);
 			const user1 = reaction.username;
-			const user2 = user.data.username;
+			const user2 = user?.data?.username;
 			console.log(user1, user2);
 			messageDispatch({
 				type: 'ADD_REACTION',
@@ -121,7 +121,7 @@ const Chat = props => {
 								}}
 							></Avatar>{' '}
 							<span id="namename" className={classes.text}>
-								{user.data.username}'s Friends
+								{user?.data?.username}'s Friends
 							</span>
 						</div>
 
