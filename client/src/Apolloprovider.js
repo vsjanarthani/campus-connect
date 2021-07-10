@@ -28,7 +28,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 
 let httpLink = createHttpLink({
 	// uri: '/graphql/',
-	uri: 'wss://tranquil-tor-65592.herokuapp.com/graphql'
+	uri: 'https://tranquil-tor-65592.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
