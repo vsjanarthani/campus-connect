@@ -16,6 +16,7 @@
     "graphql-tag": "^2.12.5",
     "jwt-decode": "^3.1.2",
     "live": "^0.1.25-beta.0",
+    "material-ui-image": "^3.3.2",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "prop-types": "^15.7.2",

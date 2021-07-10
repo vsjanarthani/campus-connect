@@ -4,13 +4,11 @@ import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
-// import IconButton from '@material-ui/core/IconButton';
 
-// import BackspaceIcon from '@material-ui/icons/Backspace';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Rail from '../../components/MobileRail';
 import { useMessageDispatch } from '../../utils/messagecontext';
-import { NEW_MESSAGE, NEW_REACTION, NEW_USER } from '../../utils/subscriptions';
+import { NEW_MESSAGE, NEW_REACTION } from '../../utils/subscriptions';
 import {
 	makeStyles,
 	Divider,
@@ -53,22 +51,12 @@ const Chat = props => {
 
 	const { user } = useAuthState();
 
-	const { data: userData, error: userError } = useSubscription(NEW_USER);
-
 	const { data: messageData, error: messageError } =
 		useSubscription(NEW_MESSAGE);
 
 	const { data: reactionData, error: reactionError } =
 		useSubscription(NEW_REACTION);
 
-	useEffect(() => {
-		if (userError) console.log(userError);
-		if (userData) {
-			console.log('new user created', userData);
-			const addedUser = userData.newUser;
-			messageDispatch({ type: 'SET_NEW_USERS', payload: addedUser });
-		}
-	}, [userData]);
 
 	useEffect(() => {
 		if (messageError) console.log(messageError);

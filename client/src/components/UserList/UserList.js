@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './userList.css';
-import { useQuery } from '@apollo/client';
+import { NEW_USER } from '../../utils/subscriptions';
+import { useQuery, useSubscription } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
 import {
 	useMessageDispatch,
@@ -61,14 +62,24 @@ const UserList = props => {
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
 	const { user } = useAuthState();
-	// const selectedUser = users?.find((u) => u.selected === true)?.username
+
 
 	const { loading } = useQuery(GET_USERS, {
 		onCompleted: data => {
-			dispatch({ type: 'SET_USERS', payload: data.getUsers });
-		},
-		onError: err => console.log(err)
+			console.log("aliff is amazing-get users query", data)
+			return dispatch({ type: 'SET_USERS', payload: data.getUsers })},
+		onError: err => console.log(err),
+        fetchPolicy: "network-only"
 	});
+
+	const { data: userData, error: userError } = useSubscription(NEW_USER);
+
+	useEffect(()=> {
+		if(userData) {
+
+			dispatch({ type: 'SET_USERS', payload: [...users, {profile: [], ...userData.newUser}] })
+		}
+	}, [userData])
 
 	let usersMarkup;
 	if (!users || loading) {
