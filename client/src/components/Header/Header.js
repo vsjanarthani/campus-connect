@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	AppBar,
 	Toolbar,
 	List,
 	Typography,
-	FormControlLabel,
 	Switch,
 	Hidden
 } from '@material-ui/core';
@@ -89,6 +88,7 @@ const Header = props => {
 						<Button>
 							<img
 								src="../../../assets/Frame29.png"
+								alt='logo'
 								className={classes.brand}
 							/>
 						</Button>

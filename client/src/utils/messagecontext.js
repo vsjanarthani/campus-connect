@@ -15,7 +15,10 @@ const messageReducer = (state, action) => {
 
         case 'SET_NEW_USERS':
             console.log(state.users);
-            usersCopy = state.users.push(addedUser)
+            usersCopy = [...state.users]
+            console.log(addedUser);
+            usersCopy.push(addedUser);
+            console.log(usersCopy);
             return {
                 ...state,
                 users: usersCopy,

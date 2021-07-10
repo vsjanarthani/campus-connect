@@ -25,16 +25,16 @@ function App() {
 	// set theme state when toggle is switched
 	useEffect(() => {
 		if (!themeToggle) {
-			console.log('Work 💼');
+			// console.log('Work 💼');
 			setCurrentTheme(workTheme);
 		} else {
-			console.log('After hours 🍸');
+			// console.log('After hours 🍸');
 			setCurrentTheme(funTheme);
 		}
 	}, [themeToggle]);
 
 	useEffect(() => {
-		console.log(currentTheme);
+		// console.log(currentTheme);
 	}, [currentTheme]);
 
 	const useStyles = makeStyles({

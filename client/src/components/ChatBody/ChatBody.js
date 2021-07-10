@@ -52,7 +52,7 @@ const ChatBody = () => {
 	const dispatch = useMessageDispatch();
 	const [content, setContent] = useState('');
 	const { users } = useMessageState();
-	console.log(users);
+	// console.log(users);
 
 	let selectedUser;
 	let messages;

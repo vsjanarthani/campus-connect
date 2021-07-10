@@ -65,10 +65,18 @@ const Chat = props => {
 		if (userError) console.log(userError);
 		if (userData) {
 			console.log('new user created', userData);
-			const addedUser = userData.newUser;
-			messageDispatch({ type: 'SET_NEW_USERS', payload: addedUser });
+			const addedUser = {
+				username: userData.newUser.username,
+				email: userData.newUser.email,
+				createdAt: userData.newUser.createdAt,
+				latestMessage: null,
+				profile: [],
+				__typename: "User",
+			}
+			console.log(addedUser);
+			messageDispatch({ type: 'SET_NEW_USERS', payload: { addedUser: addedUser } });
 		}
-	}, [userData]);
+	}, [userError, userData]);
 
 	useEffect(() => {
 		if (messageError) console.log(messageError);
@@ -91,10 +99,10 @@ const Chat = props => {
 		if (reactionError) console.log(reactionError);
 		if (reactionData) {
 			const reaction = reactionData.newReaction;
-			console.log(reaction);
+			// console.log(reaction);
 			const user1 = reaction.username;
 			const user2 = user.data.username;
-			console.log(user1, user2);
+			// console.log(user1, user2);
 			messageDispatch({
 				type: 'ADD_REACTION',
 				payload: {
@@ -105,7 +113,6 @@ const Chat = props => {
 			});
 		}
 	}, [reactionError, reactionData]);
-	const [open, setOpen] = useState(false);
 
 	return (
 		<div className="messenger">
