@@ -10,10 +10,14 @@ We wanted to create a chat application made specifically for Coding Bootcamp alu
 The application is deployed on [https://tranquil-tor-65592.herokuapp.com/](https://tranquil-tor-65592.herokuapp.com/)
 You can also view the [Campus Connect Github Repository](https://github.com/Clayto30/campus-connect)
 
+<img width="1216" alt="Screen Shot 2021-07-08 at 3 55 12 PM" src="https://user-images.githubusercontent.com/77648727/125000287-efa52280-e004-11eb-88f7-164644671e4d.png">
+
 ## Built Using 
 - [x] JavaScript
 - [x] ES6
 - [x] MongoDB
+- [x] Material UI
+- [x] Figma
 - [x] React
 - [x] Bootstrap
 - [x] Node.js (Express, Mongoose, graphQL, jsonwebtoken, Apollo/Client, Apollo-Server-Express)
