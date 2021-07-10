@@ -28,7 +28,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 
 let httpLink = createHttpLink({
 	// uri: '/graphql/',
-	uri: 'https://tranquil-tor-65592.herokuapp.com/graphql'
+	uri: 'https://camp-us-connect.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -49,7 +49,7 @@ httpLink = authLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
 	// uri: `ws://${host}/graphql/`,
-	uri: 'wss://tranquil-tor-65592.herokuapp.com/graphql',
+	uri: 'wss://camp-us-connect.herokuapp.com/graphql',
 	options: {
 		reconnect: true,
 		connectionParams: {
