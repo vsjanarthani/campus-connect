@@ -9,25 +9,8 @@ import { setContext } from '@apollo/client/link/context';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 
-// import { Client, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
-//     const wsClient = new Client('ws://localhost:8080');
-//     const networkInterface = createNetworkInterface({
-//     uri: '/graphql',
-//     opts: {
-//         credentials: 'same-origin',
-//     },
-//     });
-//     const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
-//     networkInterface,
-//     wsClient,
-//     );
-//     const client = new ApolloClient({
-//     networkInterface: networkInterfaceWithSubscriptions,
-//     // ...
-// });
-
 let httpLink = createHttpLink({
-	// uri: '/graphql/',
+	// uri: 'http://localhost:3001/graphql/',
 	uri: 'https://jana-campus-connect.herokuapp.com/graphql/',
 })
 
@@ -45,10 +28,8 @@ const authLink = setContext((_, { headers }) => {
 
 httpLink = authLink.concat(httpLink);
 
-// const host = window.location.host
-
 const wsLink = new WebSocketLink({
-	// uri: `ws://${host}/graphql/`,
+	// uri: 'ws://localhost:3001/graphql',
 	uri: 'wss://jana-campus-connect.herokuapp.com/graphql',
 	options: {
 		reconnect: true,
@@ -81,4 +62,4 @@ const ApolloProvider = props => {
 
 export default ApolloProvider;
 
-// change the Uri before deploying to heroku
+
