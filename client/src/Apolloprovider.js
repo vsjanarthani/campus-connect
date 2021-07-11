@@ -49,7 +49,7 @@ httpLink = authLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
 	// uri: `ws://${host}/graphql/`,
-	uri: 'ws://jana-campus-connect.herokuapp.com/graphql',
+	uri: 'wss://jana-campus-connect.herokuapp.com/graphql',
 	options: {
 		reconnect: true,
 		connectionParams: {
