@@ -115,7 +115,7 @@ module.exports = {
           return context.pubsub.asyncIterator('NEW_USER')
         },
         ({ newUser }, _args, { user }) => {
-          console.log(newUser);
+          // console.log(newUser);
           if (newUser) return true;
           else return false;
         }

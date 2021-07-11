@@ -61,7 +61,7 @@ const Chat = props => {
 	useEffect(() => {
 		if (userError) console.log(userError);
 		if (userData) {
-			console.log('new user created', userData);
+			// console.log('new user created', userData);
 			const addedUser = {
 				username: userData.newUser.username,
 				email: userData.newUser.email,
@@ -70,7 +70,7 @@ const Chat = props => {
 				profile: [],
 				__typename: "User",
 			}
-			console.log(addedUser);
+			// console.log(addedUser);
 			messageDispatch({ type: 'SET_NEW_USERS', payload: { addedUser: addedUser } });
 		}
 	}, [userError, userData]);

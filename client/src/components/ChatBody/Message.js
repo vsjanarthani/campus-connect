@@ -15,7 +15,7 @@ import './message.css';
 import moment from 'moment';
 
 // reactions to messages
-const reactions = ['❤️', '😆', '😯', '😢', '😡', '👍', '👎'];
+const reactions = ['❤️', '😀', '😆', '😯', '😢', '😡', '👍', '👎', '🤠', '😕', '🥳', '🤩', '😭', '💯', '👋'];
 
 const useStyles = makeStyles(theme => ({
 	container: {

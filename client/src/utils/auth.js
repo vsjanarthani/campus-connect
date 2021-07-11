@@ -25,10 +25,6 @@ const authReducer = (state, action) => {
 			};
 		case 'SIGNUP':
 			localStorage.setItem('token', action.payload.token);
-			console.log({
-				...state,
-				user: action.payload
-			});
 			return {
 				...state,
 				user: action.payload

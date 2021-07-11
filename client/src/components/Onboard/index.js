@@ -132,7 +132,7 @@ const Onboard = () => {
 	const connectButtonClick = function () {
 		if (
 			!formState.businessLogo ||
-			!formState.github
+			!formState.funLogo
 		) {
 			setAlertMsg('Please choose Avatar/ Alter Egos!');
 			throw error;

@@ -14,11 +14,9 @@ const messageReducer = (state, action) => {
             }
 
         case 'SET_NEW_USERS':
-            console.log(state.users);
             usersCopy = [...state.users]
-            console.log(addedUser);
             usersCopy.push(addedUser);
-            console.log(usersCopy);
+            // console.log(usersCopy);
             return {
                 ...state,
                 users: usersCopy,
@@ -74,7 +72,7 @@ const messageReducer = (state, action) => {
                 userIndex = usersCopy.findIndex((u) => u.username === theUser)
                 // Make a shallow copy of user
                 let userCopy = { ...usersCopy[userIndex] }
-                console.log(userCopy)
+                // console.log(userCopy)
 
                 // Find the index of the message that this reaction pertains to
                 const messageIndex = userCopy.messages?.findIndex(
@@ -84,7 +82,7 @@ const messageReducer = (state, action) => {
                 if (messageIndex > -1) {
                     // Make a shallow copy of user messages
                     let messagesCopy = [...userCopy.messages]
-                    console.log(messagesCopy);
+                    // console.log(messagesCopy);
 
                     // Make a shallow copy of user message reactions
                     let reactionsCopy = [...messagesCopy[messageIndex].reactions]
@@ -123,14 +121,14 @@ const messageReducer = (state, action) => {
 }
 
 export const MessageProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(messageReducer, { users: [] });
-	return (
-		<MessageDispatchContext.Provider value={dispatch}>
-			<MessageStateContext.Provider value={state}>
-				{children}
-			</MessageStateContext.Provider>
-		</MessageDispatchContext.Provider>
-	);
+    const [state, dispatch] = useReducer(messageReducer, { users: [] });
+    return (
+        <MessageDispatchContext.Provider value={dispatch}>
+            <MessageStateContext.Provider value={state}>
+                {children}
+            </MessageStateContext.Provider>
+        </MessageDispatchContext.Provider>
+    );
 };
 
 export const useMessageState = () => useContext(MessageStateContext);

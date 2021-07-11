@@ -38,7 +38,7 @@ module.exports = {
     Mutation: {
         // Send message
         sendMsg: async (_parent, { to, msg }, context) => {
-            console.log(context.user.data.username);
+            // console.log(context.user.data.username);
             try {
                 // throw error if the user is not logged in
                 if (!context.user) throw new AuthenticationError('Not logged in');
@@ -51,7 +51,7 @@ module.exports = {
                 // create new message and publish it
                 const msgToSend = await Message.create({ from: sender, to, msg });
                 context.pubsub.publish('NEW_MESSAGE', { newMessage: msgToSend })
-                console.log(msgToSend);
+                // console.log(msgToSend);
                 return msgToSend;
             } catch (error) {
                 console.log(error)
@@ -77,7 +77,6 @@ module.exports = {
                     throw new ForbiddenError('Unauthorized');
                 }
                 const index = updatedMsg.reactions.length - 1;
-                console.log(updatedMsg.reactions[index]);
                 context.pubsub.publish('NEW_REACTION', { newReaction: updatedMsg.reactions[index] });
                 return updatedMsg;
             } catch (error) {
@@ -113,7 +112,7 @@ module.exports = {
                     return context.pubsub.asyncIterator('NEW_REACTION')
                 },
                 async ({ newReaction }, _args, { user }) => {
-                    console.log(newReaction.username);
+                    // console.log(newReaction.username);
                     if (newReaction.content) {
                         return true
                     }

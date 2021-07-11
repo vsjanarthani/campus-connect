@@ -2,8 +2,6 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
 const pubsub = new PubSub();
-
-// const secret = 'mysecretsshhhhh';
 const secret = process.env.JWT_SECRET;
 const expiration = '2h';
 
@@ -45,4 +43,3 @@ const authToken = ({ username, email, _id }) => {
 
 module.exports = { authMiddleware, authToken }
 
-// unable to add the secret key to .env!

@@ -5,17 +5,11 @@
     padding: 1rem;
     margin-left: 1.5rem;
  }
-  
-   /* .messageImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
- } */
+
  .info-text {
     font-family: "Roboto";
  }
+ 
  .messageText {
     position: relative;
     padding: 10px 20px;
