@@ -7,20 +7,20 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
-      unique: true,
+      unique: [true, 'username is not unique'],
+      required: [true, 'username is required'],
       trim: true
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      unique: [true, 'email is not unique'],
+      required: [true, 'email is required'],
       match: [/.+@.+\..+/, 'Must match an email address!']
     },
     password: {
       type: String,
       required: true,
-      minlength: 5
+      minlength: [5, "Password must atleast be 5 characters long"],
     },
     createdAt: {
       type: Date,

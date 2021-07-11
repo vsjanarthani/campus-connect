@@ -118,6 +118,7 @@ const Signup = props => {
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
 			setOpen(true);
+			console.log(err);
 			setAlertMsg(err?.graphQLErrors[0]?.message);
 			setSeverity('error');
 		},

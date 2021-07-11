@@ -50,9 +50,9 @@ const appreciationData = {
         },
         {
             to: "Jeff",
-            message: `We are eagerly waiting to hear a positive update from you, on extending our project submission deadline. Thank you for all your support, weekly update emails and prompt replies.`,
+            message: `Thank you for all your support, weekly update emails and prompt replies. Appreciate you getting an extension for project and assignment submission deadlines. You Rock!`,
             from: "Team Campus Connect",
-            imageUrl: "https://media.giphy.com/media/xUOwFZmWUC2QDHKu4M/giphy.gif"
+            imageUrl: "https://media.giphy.com/media/3o7budf6HCv3kONBBu/giphy.gif"
         },
         {
             to: "Team Campus Connect",
