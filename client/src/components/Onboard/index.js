@@ -132,11 +132,9 @@ const Onboard = () => {
 	const connectButtonClick = function () {
 		if (
 			!formState.businessLogo ||
-			!formState.github ||
-			!formState.funLogo ||
-			!formState.linkedin
+			!formState.github
 		) {
-			setAlertMsg('Please choose Avatar Alter Egos and Social Media Handles!');
+			setAlertMsg('Please choose Avatar/ Alter Egos!');
 			throw error;
 		}
 
