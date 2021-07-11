@@ -124,7 +124,7 @@ const Login = () => {
 		onCompleted(data) {
 			dispatch({ type: 'LOGIN', payload: data.login });
 			// window.location.href = '/';
-			history.push('/');
+			window.location.href = '/';
 		}
 	});
 
@@ -141,7 +141,6 @@ const Login = () => {
 	// submit form
 	const handleFormSubmit = async event => {
 		event.preventDefault();
-		console.log(variables);
 		try {
 			await login({
 				variables: { ...variables }
@@ -184,6 +183,7 @@ const Login = () => {
 					fullWidth={true}
 					label="Password"
 					name="password"
+					type="password"
 					required
 					variant="outlined"
 					value={variables.password}

@@ -123,13 +123,11 @@ const Onboard = () => {
 				...formState,
 				businessLogo: avatar
 			});
-			console.log('get down to business');
 		} else if (type === 'funlogo') {
 			setFormState({
 				...formState,
 				funLogo: avatar
 			});
-			console.log('let loose');
 		}
 	};
 	const connectButtonClick = function () {
@@ -166,8 +164,6 @@ const Onboard = () => {
 		});
 	};
 
-	// console.log(user.data.username, user.data.businessLogo, user.data._id)
-	console.log(user);
 	return (
 		<Box className={classes.root}>
 			<Grid container>
