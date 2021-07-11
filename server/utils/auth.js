@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 const { PubSub } = require('apollo-server-express');
 const pubsub = new PubSub();
 
-const secret = 'mysecretsshhhhh';
-// const secret = process.env.SESSION_KEY;
+// const secret = 'mysecretsshhhhh';
+const secret = process.env.JWT_SECRET;
 const expiration = '2h';
 
 const authMiddleware = (context) => {
