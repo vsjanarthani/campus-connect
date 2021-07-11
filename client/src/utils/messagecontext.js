@@ -1,7 +1,7 @@
-import React, { createContext, useReducer, useContext } from 'react'
+import React, { createContext, useReducer, useContext } from 'react';
 
-const MessageStateContext = createContext()
-const MessageDispatchContext = createContext()
+const MessageStateContext = createContext();
+const MessageDispatchContext = createContext();
 
 const messageReducer = (state, action) => {
     let usersCopy, userIndex;
@@ -123,15 +123,15 @@ const messageReducer = (state, action) => {
 }
 
 export const MessageProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(messageReducer, { users: [] })
-    return (
-        <MessageDispatchContext.Provider value={dispatch}>
-            <MessageStateContext.Provider value={state}>
-                {children}
-            </MessageStateContext.Provider>
-        </MessageDispatchContext.Provider>
-    )
-}
+	const [state, dispatch] = useReducer(messageReducer, { users: [] });
+	return (
+		<MessageDispatchContext.Provider value={dispatch}>
+			<MessageStateContext.Provider value={state}>
+				{children}
+			</MessageStateContext.Provider>
+		</MessageDispatchContext.Provider>
+	);
+};
 
-export const useMessageState = () => useContext(MessageStateContext)
-export const useMessageDispatch = () => useContext(MessageDispatchContext)
+export const useMessageState = () => useContext(MessageStateContext);
+export const useMessageDispatch = () => useContext(MessageDispatchContext);

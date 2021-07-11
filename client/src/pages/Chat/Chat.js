@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './chat.css';
 import UserList from '../../components/UserList/UserList';
 import ChatBody from '../../components/ChatBody/ChatBody';
 import { useSubscription } from '@apollo/client';
 import { useAuthState } from '../../utils/auth';
-// import IconButton from '@material-ui/core/IconButton';
-
-// import BackspaceIcon from '@material-ui/icons/Backspace';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Rail from '../../components/MobileRail';
 import { useMessageDispatch } from '../../utils/messagecontext';
@@ -19,7 +16,6 @@ import {
 	SwipeableDrawer,
 	Button
 } from '@material-ui/core';
-// import { isNonEmptyArray } from '@apollo/client/utilities';
 
 const Chat = props => {
 	const useStyles = makeStyles(theme => ({
@@ -166,4 +162,3 @@ const Chat = props => {
 };
 
 export default Chat;
-// need to add dynamic avatar for logged in user, hardcoded image now

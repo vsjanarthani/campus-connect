@@ -1,13 +1,13 @@
 import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider as Provider,
-    createHttpLink,
-    split,
-} from '@apollo/client'
-import { setContext } from '@apollo/client/link/context'
-import { WebSocketLink } from '@apollo/client/link/ws'
-import { getMainDefinition } from '@apollo/client/utilities'
+	ApolloClient,
+	InMemoryCache,
+	ApolloProvider as Provider,
+	createHttpLink,
+	split
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 // import { Client, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 //     const wsClient = new Client('ws://localhost:8080');
@@ -27,58 +27,57 @@ import { getMainDefinition } from '@apollo/client/utilities'
 // });
 
 let httpLink = createHttpLink({
-    // uri: '/graphql/',
-    uri: 'https://https://jana-campus-connect.herokuapp.com//graphql/',
+	// uri: '/graphql/',
+	uri: 'https://jana-campus-connect.herokuapp.com/graphql/',
 })
 
 const authLink = setContext((_, { headers }) => {
-    // // get the authentication token from local storage if it exists
-    const token = localStorage.getItem('token')
-    // return the headers to the context so httpLink can read them
-    return {
-        headers: {
-            ...headers,
-            authorization: token ? `Bearer ${token}` : '',
-        },
-    }
-})
+	// // get the authentication token from local storage if it exists
+	const token = localStorage.getItem('token');
+	// return the headers to the context so httpLink can read them
+	return {
+		headers: {
+			...headers,
+			authorization: token ? `Bearer ${token}` : ''
+		}
+	};
+});
 
-httpLink = authLink.concat(httpLink)
+httpLink = authLink.concat(httpLink);
 
 // const host = window.location.host
 
-
 const wsLink = new WebSocketLink({
-    // uri: `ws://${host}/graphql/`,
-    uri: 'ws://https://jana-campus-connect.herokuapp.com/graphql',
-    options: {
-        reconnect: true,
-        connectionParams: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-    },
+	// uri: `ws://${host}/graphql/`,
+	uri: 'ws://jana-campus-connect.herokuapp.com/graphql',
+	options: {
+		reconnect: true,
+		connectionParams: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`,
+		},
+	},
 })
 
 const splitLink = split(
-    ({ query }) => {
-        const definition = getMainDefinition(query)
-        return (
-            definition.kind === 'OperationDefinition' &&
-            definition.operation === 'subscription'
-        )
-    },
-    wsLink,
-    httpLink
-)
+	({ query }) => {
+		const definition = getMainDefinition(query);
+		return (
+			definition.kind === 'OperationDefinition' &&
+			definition.operation === 'subscription'
+		);
+	},
+	wsLink,
+	httpLink
+);
 
 const client = new ApolloClient({
-    link: splitLink,
-    cache: new InMemoryCache(),
-})
+	link: splitLink,
+	cache: new InMemoryCache()
+});
 
-const ApolloProvider = (props) => {
-    return <Provider client={client} {...props} />
-}
+const ApolloProvider = props => {
+	return <Provider client={client} {...props} />;
+};
 
 export default ApolloProvider;
 

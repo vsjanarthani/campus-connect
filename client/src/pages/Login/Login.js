@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -105,6 +105,7 @@ function Alert(props) {
 
 const Login = () => {
 	const classes = useStyles();
+	const history = useHistory();
 	const [open, setOpen] = useState(false);
 	const [alertMsg, setAlertMsg] = useState('');
 	const [severity, setSeverity] = useState('');
@@ -115,13 +116,14 @@ const Login = () => {
 	});
 	const [login, { loading }] = useLazyQuery(LOGIN_USER, {
 		onError: err => {
-			console.log(err.graphQLErrors[0].message);
+			// console.log(err.graphQLErrors[0].message);
 			setOpen(true);
 			setAlertMsg(err.graphQLErrors[0]?.message);
 			setSeverity('error');
 		},
 		onCompleted(data) {
 			dispatch({ type: 'LOGIN', payload: data.login });
+			// window.location.href = '/';
 			window.location.href = '/';
 		}
 	});
@@ -139,7 +141,6 @@ const Login = () => {
 	// submit form
 	const handleFormSubmit = async event => {
 		event.preventDefault();
-		console.log(variables);
 		try {
 			await login({
 				variables: { ...variables }
@@ -182,6 +183,7 @@ const Login = () => {
 					fullWidth={true}
 					label="Password"
 					name="password"
+					type="password"
 					required
 					variant="outlined"
 					value={variables.password}

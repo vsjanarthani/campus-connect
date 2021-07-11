@@ -20,7 +20,7 @@ async function startApolloServer() {
   });
 
   await server.start();
-  server.applyMiddleware({ app })
+  server.applyMiddleware({ app });
 
   const httpServer = http.createServer(app);
 
@@ -30,17 +30,21 @@ async function startApolloServer() {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
+  // if we're in production, serve client/build as static assets
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+  }
+
   // Make sure to call listen on httpServer, NOT on app.
   await new Promise(resolve => httpServer.listen(PORT, resolve));
-  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
-  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
+  console.log(
+    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+  );
+  console.log(
+    `🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`
+  );
   return { server, app, httpServer };
 }
-
-// if we're in production, serve client/build as static assets
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
 
 // app.get('*', (_req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));

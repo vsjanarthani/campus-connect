@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './userList.css';
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../utils/queries';
@@ -61,7 +61,7 @@ const UserList = props => {
 	const dispatch = useMessageDispatch();
 	const { users } = useMessageState();
 	const { user } = useAuthState();
-	// const selectedUser = users?.find((u) => u.selected === true)?.username
+
 
 	const { loading } = useQuery(GET_USERS, {
 		onCompleted: data => {
@@ -134,5 +134,3 @@ const UserList = props => {
 	);
 };
 export default UserList;
-
-// https://icons8.com/icon/set/characters/office - Good reference for random free icon links

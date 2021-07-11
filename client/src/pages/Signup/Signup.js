@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -105,6 +105,7 @@ function Alert(props) {
 
 const Signup = props => {
 	const classes = useStyles();
+	const history = useHistory();
 	const [alertMsg, setAlertMsg] = useState('');
 	const [severity, setSeverity] = useState('');
 	const [open, setOpen] = useState(false);
@@ -116,15 +117,13 @@ const Signup = props => {
 
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
-			console.log(err.graphQLErrors[0].message);
 			setOpen(true);
-			setAlertMsg(err.graphQLErrors[0]?.message);
+			setAlertMsg(err?.graphQLErrors[0]?.message);
 			setSeverity('error');
 		},
 		onCompleted(data) {
-			console.log(data);
 			dispatch({ type: 'SIGNUP', payload: data.addUser });
-			window.location.href = '/onboard';
+			history.push('/onboard');
 		}
 	});
 
@@ -141,7 +140,7 @@ const Signup = props => {
 			setOpen(true);
 			setAlertMsg(error);
 			setSeverity('error');
-			console.error(error);
+			console.log(error);
 		}
 
 		// clear form values
@@ -192,6 +191,7 @@ const Signup = props => {
 					fullWidth={true}
 					label="Password"
 					name="password"
+					type="password"
 					required
 					variant="outlined"
 					value={variables.password}
