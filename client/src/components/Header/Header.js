@@ -19,7 +19,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CreateIcon from '@material-ui/icons/Create';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import ChatIcon from '@material-ui/icons/Chat';
-import { findLastKey } from 'lodash';
 
 const Header = props => {
 	const useStyles = makeStyles(theme => ({
@@ -79,6 +78,10 @@ const Header = props => {
 		authDispatch({ type: 'LOGOUT' });
 		window.location.href = '/';
 	};
+	const refresh = () => {
+		window.location.href = '/chat';
+		return;
+	}
 
 	return (
 		<Box component="nav">
@@ -150,6 +153,7 @@ const Header = props => {
 								<Button
 									className={classes.listItem}
 									component={Link}
+									onClick={refresh}
 									to="/chat"
 								>
 									<ChatIcon />

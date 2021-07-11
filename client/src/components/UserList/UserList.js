@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
+import GitHub from '@material-ui/icons/GitHub';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const useStyles = makeStyles(() => ({
@@ -55,6 +55,7 @@ const useStyles = makeStyles(() => ({
 		}
 	}
 }));
+
 
 const UserList = props => {
 	const classes = useStyles();
@@ -115,11 +116,11 @@ const UserList = props => {
 							<LinkedInIcon className="iconChat" />{' '}
 						</Button>
 						<Button
-							href={user.instagram || 'https://www.instagram.com'}
+							href={user.github || 'https://github.com/'}
 							target="_blank"
 						>
 							{' '}
-							<InstagramIcon className={classes.iconChat} />
+							<GitHub className={classes.iconChat} />
 						</Button>
 					</ListItem>
 					<Divider classes={{ root: classes.dividerColor }} />

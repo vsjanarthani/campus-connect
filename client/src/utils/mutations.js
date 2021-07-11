@@ -37,14 +37,14 @@ mutation sendMsg($to: String!, $msg: String!) {
 }
 `
 export const CREATE_PROFILE = gql`
-mutation createProfile($businessLogo: String, $funLogo: String, $imageUrl: String, $linkedin: String, $Instagram: String ) {
-  createProfile(businessLogo: $businessLogo, funLogo: $funLogo, imageUrl: $imageUrl, linkedin: $linkedin, Instagram:$Instagram){  
+mutation createProfile($businessLogo: String, $funLogo: String, $imageUrl: String, $linkedin: String, $github: String ) {
+  createProfile(businessLogo: $businessLogo, funLogo: $funLogo, imageUrl: $imageUrl, linkedin: $linkedin, github:$github){  
     username
     profile{
       imageUrl
       businessLogo
       funLogo
-      Instagram
+      github
       linkedin
     }
   }

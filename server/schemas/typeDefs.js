@@ -32,7 +32,7 @@ type Reaction {
     funLogo: String
     businessLogo: String
     linkedin: String
-    Instagram: String
+    github: String
   }
 type Query {
   login(username: String!, password: String!): User!
@@ -43,7 +43,7 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): User!
   sendMsg(to:String! msg:String!): Message!
   reactToMessage(messageId: ID!, content: String!): Message!
-  createProfile(businessLogo: String, funLogo: String, imageUrl: String, linkedin: String, Instagram: String): User!
+  createProfile(businessLogo: String, funLogo: String, imageUrl: String, linkedin: String, github: String): User!
 }
 type Subscription {
     newMessage: Message!

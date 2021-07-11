@@ -1,20 +1,20 @@
-import React, { useState, createElement } from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
+import GitHub from '@material-ui/icons/GitHub';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 import { TextField, Grid, makeStyles, Typography } from '@material-ui/core';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import Funavatar from '../Funavatar';
 import funLogos from '../Funavatar/funlogos';
 import businessLogos from '../Funavatar/businesslogos';
 import { useAuthState } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 import { CREATE_PROFILE } from '../../utils/mutations';
-import { useLazyQuery, useMutation } from '@apollo/client';
-// import FunModal, { handleFunModal } from '../FunModal';
+import { useMutation } from '@apollo/client';
 import Avatar from '@material-ui/core/Avatar';
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(_theme => ({
 	root: {
 		width: '90vw',
 		justifyContent: `center`,
@@ -104,8 +104,6 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const avatars = [];
-
 const Onboard = () => {
 	const classes = useStyles();
 	const { user } = useAuthState();
@@ -114,7 +112,8 @@ const Onboard = () => {
 		businessLogo: '',
 		funLogo: '',
 		linkedin: '',
-		Instagram: ''
+		gitHub: '',
+		imageUrl: ''
 	});
 	const [createProfile, { error }] = useMutation(CREATE_PROFILE);
 	const handleClick = function (avatar, type) {
@@ -133,7 +132,7 @@ const Onboard = () => {
 	const connectButtonClick = function () {
 		if (
 			!formState.businessLogo ||
-			!formState.Instagram ||
+			!formState.github ||
 			!formState.funLogo ||
 			!formState.linkedin
 		) {
@@ -146,8 +145,9 @@ const Onboard = () => {
 				variables: {
 					businessLogo: formState.businessLogo,
 					funLogo: formState.funLogo,
-					Instagram: formState.Instagram,
-					linkedin: formState.linkedin
+					github: formState.gitHub,
+					linkedin: formState.linkedin,
+					imageUrl: formState.imageUrl
 				}
 			});
 		} catch (e) {
@@ -227,6 +227,24 @@ const Onboard = () => {
 							className={classes.field}
 							variant="outlined"
 							id="input-with-icon-textfield"
+							name="imageUrl"
+							label="Image Url"
+							placeholder="Image Url"
+							onChange={handleChange}
+							InputProps={{
+								startAdornment: (
+									<InputAdornment position="start">
+										<PhotoCameraIcon />
+									</InputAdornment>
+								)
+							}}
+						/>
+					</Grid>
+					<Grid>
+						<TextField
+							className={classes.field}
+							variant="outlined"
+							id="input-with-icon-textfield"
 							name="linkedin"
 							label="LinkedIn Profile"
 							placeholder="/in/LinkedInName"
@@ -245,14 +263,14 @@ const Onboard = () => {
 							className={classes.field}
 							variant="outlined"
 							id="input-with-icon-textfield"
-							label="Instragram Handle"
-							placeholder="@YourInstagram"
-							name="Instagram"
+							label="GitHub"
+							placeholder="@YourGitHub"
+							name="github"
 							onChange={handleChange}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
-										<InstagramIcon />
+										<GitHub />
 									</InputAdornment>
 								)
 							}}

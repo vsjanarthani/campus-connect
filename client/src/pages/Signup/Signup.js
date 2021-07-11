@@ -119,13 +119,14 @@ const Signup = props => {
 		onError: err => {
 			setOpen(true);
 			console.log(err);
-			setAlertMsg(err?.graphQLErrors[0]?.message);
+			setAlertMsg(err?.graphQLErrors[0]?.message || "something went wrong, Please try again");
 			setSeverity('error');
 		},
 		onCompleted(data) {
 			dispatch({ type: 'SIGNUP', payload: data.addUser });
 			history.push('/onboard');
-		}
+		},
+
 	});
 
 	const dispatch = useAuthDispatch();

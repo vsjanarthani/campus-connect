@@ -16,12 +16,9 @@ const profileSchema = new Schema(
         linkedin: {
             type: String,
         },
-        Github: {
+        github: {
             type: String,
         },
-        Instagram: {
-            type: String,
-        }
     },
 );
 

@@ -92,10 +92,10 @@ module.exports = {
         // throw error if the user is not logged in
         if (!context.user) throw new AuthenticationError('Not logged in');
         const user = context.user.data.username;
-        const { businessLogo, funLogo, imageUrl, linkedin, Instagram } = args;
+        const { businessLogo, funLogo, imageUrl, linkedin, github } = args;
         const updatedUser = await User.findOneAndUpdate(
           { username: user },
-          { $set: { profile: { businessLogo, funLogo, imageUrl, linkedin, Instagram } } },
+          { $set: { profile: { businessLogo, funLogo, imageUrl, linkedin, github } } },
           { new: true }
         );
         // console.log(updatedUser);

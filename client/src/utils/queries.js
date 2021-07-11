@@ -28,7 +28,7 @@ query getUsers {
       funLogo
       businessLogo
       linkedin
-      Instagram
+      github
     }
   }
 }

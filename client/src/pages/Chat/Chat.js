@@ -14,11 +14,12 @@ import {
 	Avatar,
 	Hidden,
 	SwipeableDrawer,
-	Button
+	Button,
+	Typography
 } from '@material-ui/core';
 
 const Chat = props => {
-	const useStyles = makeStyles(theme => ({
+	const useStyles = makeStyles(_theme => ({
 		root: {
 			dividerColor: `#F5F5F5`
 		},
@@ -111,52 +112,64 @@ const Chat = props => {
 	}, [reactionError, reactionData]);
 
 	return (
-		<div className="messenger">
-			<Hidden smDown>
-				<div className="chatMenu">
-					<div className="chatMenuWrapper">
-						<div className="aligned">
-							<Avatar
-								id="myavatar"
-								src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png"
-								style={{
-									border: '0.1px solid lightgray'
-								}}
-							></Avatar>{' '}
-							<span id="namename" className={classes.text}>
-								{user.data.username}'s Friends
-							</span>
-						</div>
+		<div>
+			{!user.data ? (
+				<>
+					<Typography variant="h2">
+						Loading.. Please wait
+					</Typography>
+				</>
+			) : (
+				<>
+					<div className="messenger">
+						<Hidden smDown>
+							<div className="chatMenu">
+								<div className="chatMenuWrapper">
+									<div className="aligned">
+										<Avatar
+											id="myavatar"
+											src="https://res.cloudinary.com/www-actionnetwork-com/image/upload/v1625022844/Frame_5_jpasit.png"
+											style={{
+												border: '0.1px solid lightgray'
+											}}
+										></Avatar>{' '}
+										<span id="namename" className={classes.text}>
+											{user.data.username}'s Friends
+										</span>
+									</div>
 
-						<Divider className="dividerColor" />
-						<UserList data={props.data} className="mobile-hide" />
+									<Divider className="dividerColor" />
+									<UserList data={props.data} className="mobile-hide" />
+								</div>
+							</div>
+						</Hidden>
+						<Hidden mdUp>
+							{['left'].map(anchor => (
+								<React.Fragment key={anchor}>
+									<Button onClick={toggleDrawer(anchor, true)}>
+										<ChevronRightIcon />
+									</Button>
+									<SwipeableDrawer
+										anchor={anchor}
+										open={state[anchor]}
+										onClose={toggleDrawer(anchor, false)}
+										onOpen={toggleDrawer(anchor, true)}
+									>
+										<Rail data={props.data} />
+									</SwipeableDrawer>
+								</React.Fragment>
+							))}
+						</Hidden>
+						<div className="chatBox">
+							<div className="chatBoxWrapper">
+								<div className="messagesHere">
+									<ChatBody />
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</Hidden>
-			<Hidden mdUp>
-				{['left'].map(anchor => (
-					<React.Fragment key={anchor}>
-						<Button onClick={toggleDrawer(anchor, true)}>
-							<ChevronRightIcon />
-						</Button>
-						<SwipeableDrawer
-							anchor={anchor}
-							open={state[anchor]}
-							onClose={toggleDrawer(anchor, false)}
-							onOpen={toggleDrawer(anchor, true)}
-						>
-							<Rail data={props.data} />
-						</SwipeableDrawer>
-					</React.Fragment>
-				))}
-			</Hidden>
-			<div className="chatBox">
-				<div className="chatBoxWrapper">
-					<div className="messagesHere">
-						<ChatBody />
-					</div>
-				</div>
-			</div>
+				</>
+			)}
 		</div>
 	);
 };
