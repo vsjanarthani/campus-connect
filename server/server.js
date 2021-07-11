@@ -35,6 +35,10 @@ async function startApolloServer() {
     app.use(express.static(path.join(__dirname, '../client/build')));
   }
 
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+
   // Make sure to call listen on httpServer, NOT on app.
   await new Promise(resolve => httpServer.listen(PORT, resolve));
   console.log(
@@ -46,9 +50,6 @@ async function startApolloServer() {
   return { server, app, httpServer };
 }
 
-// app.get('*', (_req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
 
 db.once('open', () => {
   startApolloServer();
