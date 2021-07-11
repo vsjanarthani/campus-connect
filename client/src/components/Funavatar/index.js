@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Funavatar(props) {
 	const classes = useStyles();
-	console.log(props);
 	return (
 		<div className={classes.root}>
 			{props.avatars.map(item => (

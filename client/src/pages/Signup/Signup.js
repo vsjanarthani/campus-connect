@@ -117,16 +117,12 @@ const Signup = props => {
 
 	const [addUser, { loading }] = useMutation(ADD_USER, {
 		onError: err => {
-			// console.log(err.graphQLErrors[0].message);
 			setOpen(true);
-			//might have to comment out???
 			setAlertMsg(err?.graphQLErrors[0]?.message);
 			setSeverity('error');
 		},
 		onCompleted(data) {
-			console.log(data);
 			dispatch({ type: 'SIGNUP', payload: data.addUser });
-			// window.location.href = '/onboard';
 			history.push('/onboard');
 		}
 	});
@@ -195,6 +191,7 @@ const Signup = props => {
 					fullWidth={true}
 					label="Password"
 					name="password"
+					type="password"
 					required
 					variant="outlined"
 					value={variables.password}

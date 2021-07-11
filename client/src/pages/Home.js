@@ -4,7 +4,6 @@ import { Typography } from '@material-ui/core';
 
 const Home = () => {
 	const { user } = useAuthState();
-	console.log(user);
 	return (
 		<div>
 			{!user ? (

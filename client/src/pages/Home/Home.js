@@ -31,15 +31,13 @@ const Home = props => {
 			color: '#003262',
 			textAlign: 'center',
 			fontVariant: 'small-caps',
-			padding: '1rem',
-
+			padding: '1rem'
 		}
 	}));
 
 	const classes = useStyles();
 
 	const { user } = useAuthState();
-	console.log(user);
 	const appreciations = appreciationData.appreciation;
 	return (
 		<div>
@@ -57,9 +55,10 @@ const Home = props => {
 			) : (
 				<>
 					{' '}
-					<Typography variant="h4" className={classes.title}>{user.data.username}'s Dashboard</Typography>{' '}
+					<Typography variant="h4" className={classes.title}>
+						{user.data.username}'s Dashboard
+					</Typography>{' '}
 					<div className={classes.root}>
-
 						{appreciations.map(appreciation => {
 							return (
 								<div className={classes.slide} key={appreciation.title}>
