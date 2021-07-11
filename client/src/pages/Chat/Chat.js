@@ -115,8 +115,8 @@ const Chat = props => {
 		<div>
 			{!user.data ? (
 				<>
-					<Typography variant="h2">
-						Loading.. Please wait
+					<Typography variant="h4">
+						Loading.. Please refresh
 					</Typography>
 				</>
 			) : (

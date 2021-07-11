@@ -78,10 +78,10 @@ const Header = props => {
 		authDispatch({ type: 'LOGOUT' });
 		window.location.href = '/';
 	};
-	const refresh = () => {
-		window.location.href = '/chat';
-		return;
-	}
+	// const refresh = () => {
+	// 	window.location.href = '/chat';
+	// 	return;
+	// }
 
 	return (
 		<Box component="nav">
@@ -153,7 +153,7 @@ const Header = props => {
 								<Button
 									className={classes.listItem}
 									component={Link}
-									onClick={refresh}
+									// onClick={refresh}
 									to="/chat"
 								>
 									<ChatIcon />
