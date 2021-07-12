@@ -8,10 +8,10 @@ Our motivation was not only to test the limits of our skillset by using React, G
 
 We wanted to create a chat application made specifically for Coding Bootcamp alums with both professional & personal networking and some fun features. The team leveraged the skills developed in bootcamp to create a way to connect the people with whom those skills were built. The Campus Connect Development Team hope this app will be used to stay in touch, support each other in our job searches, and facilitate tech career progression!
 
-The application is deployed on [https://campus-connect21.herokuapp.com](https://campus-connect21.herokuapp.com)
+The application is deployed on [https://jana-campus-connect.herokuapp.com/](https://jana-campus-connect.herokuapp.com/)<br>
 You can also view the [Campus Connect Github Repository](https://github.com/Clayto30/campus-connect)
 
-<img width="1216" alt="Screen Shot 2021-07-08 at 3 55 12 PM" src="https://user-images.githubusercontent.com/77648727/125000287-efa52280-e004-11eb-88f7-164644671e4d.png">
+<img width="1216" alt="Screen Shot" src="./errors/images/home.png">
 
 ## Built Using
 
@@ -34,7 +34,7 @@ You can also view the [Campus Connect Github Repository](https://github.com/Clay
 
 ### Installation
 
-To clone the repo run `git clone https://github.com/Clayto30/campus-connect.git ` in your terminal  
+To clone the repo run `git clone https://github.com/Clayto30/campus-connect.git` in your terminal  
 Run `npm install` to install the necessary dependencies.
 
 ### Usage
@@ -47,7 +47,7 @@ This will take you to the onboarding page where you can personalize your experie
 
 Following this, you can get to chatting! Connect with the other users of Campus Connect! When you are chatting, be sure to share your successes, opportunities, questions, quandaries, memories, enouragement and updates!
 
-![webpage](./client/public/assets/screenshot.png)
+![webpage](./errors/images/chat.png)
 
 When you are feeling like you are in a great mood, go ahead and give the them switcher toggle a try. Party time!
 
