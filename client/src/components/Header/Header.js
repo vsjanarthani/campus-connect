@@ -92,6 +92,8 @@ const Header = props => {
 							<img
 								src="../../../assets/Frame29.png"
 								alt='logo'
+								component={Link}
+								to="/"
 								className={classes.brand}
 							/>
 						</Button>
