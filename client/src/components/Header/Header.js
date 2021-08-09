@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuthDispatch } from '../../utils/auth';
 import { useAuthState } from '../../utils/auth';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import Clock from 'react-live-clock';
 // Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -159,6 +160,15 @@ const Header = props => {
 								>
 									<ChatIcon />
 									<Hidden xsDown>Chat</Hidden>
+								</Button>
+								<Button
+									className={classes.listItem}
+									component={Link}
+									// onClick={refresh}
+									to="/request"
+								>
+									<LiveHelpIcon />
+									<Hidden xsDown>Request</Hidden>
 								</Button>
 								<Button className={classes.listItem} href="/" onClick={logout}>
 									<ExitToAppIcon /> <Hidden xsDown>Logout</Hidden>

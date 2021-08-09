@@ -11,6 +11,7 @@ import Signup from './pages/Signup/Signup';
 import NoMatch from './pages/NoMatch';
 import Onboard from './components/Onboard';
 import Chat from './pages/Chat/Chat';
+import Request from './pages/Request/Request';
 import DynamicRoute from './utils/DynamicRoute';
 // theme stuff
 import { makeStyles } from '@material-ui/core/styles';
@@ -92,6 +93,12 @@ function App() {
 										exact
 										path="/onboard"
 										component={() => <Onboard data={currentTheme} />}
+										authenticated
+									/>
+									<DynamicRoute
+										exact
+										path="/request"
+										component={() => <Request data={currentTheme} />}
 										authenticated
 									/>
 									<DynamicRoute

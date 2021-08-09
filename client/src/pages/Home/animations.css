@@ -1,5 +1,6 @@
 .bounce-in {
 	text-align: center;
+	padding-top: 2rem;
 	font-size: 7rem;
 	animation: bounce-in 3s ease-in-out 0s infinite normal;
 }

@@ -44,13 +44,11 @@ const Home = props => {
 			{!user ? (
 				<>
 					<Typography variant="h2" className="bounce-in">
-						We Graduated!!
+						Welcome to Campus Connect!!
 					</Typography>
 					<Container maxWidth="sm">
-						Congratulations to all of you for successfully completing the coding
-						bootcamp. It was a challenging and fun journey for all of us. Sign up and
-						join campus connect to stay in touch with your cohort and TAs. Watch out this space
-						for more updates on latest news, interview prep tips, project collaboration requests and much more
+						Login or Signup to join the community of coding bootcamp graduates/alumini. You can connect or grow your network here
+						or look for collobrators, mentors.
 					</Container>
 				</>
 			) : (
