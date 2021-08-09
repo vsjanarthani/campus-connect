@@ -55,7 +55,7 @@ const Home = props => {
 				<>
 					{' '}
 					<Typography variant="h4" className={classes.title}>
-						{user.data.username}'s Dashboard
+						{user.data.username}'s Requests
 					</Typography>{' '}
 					<div className={classes.root}>
 						{appreciations.map(appreciation => {
